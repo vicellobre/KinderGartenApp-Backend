@@ -1,0 +1,100 @@
+###############################################################################
+# Set default behavior to automatically normalize line endings.
+###############################################################################
+* text=auto
+
+###############################################################################
+# Set behavior for common Unity project files
+#
+# Handle project and scene files as binary to avoid merge conflicts.
+###############################################################################
+*.unity binary
+*.prefab binary
+*.fbx binary
+*.mat binary
+*.png binary
+*.jpg binary
+*.tga binary
+*.psd binary
+*.wav binary
+*.mp3 binary
+*.ogg binary
+*.aif binary
+*.anim binary
+*.controller binary
+*.meta binary
+*.asset binary
+*.cubemap binary
+*.flare binary
+*.overrideController binary
+*.renderTexture binary
+*.mask binary
+*.guiskin binary
+*.ttf binary
+*.otf binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.rsp text
+*.asmdef text
+*.asmref text
+
+###############################################################################
+# Set the merge driver for project and solution files (Visual Studio projects)
+#
+# Merging from the command prompt will add diff markers to the files if there
+# are conflicts (Merging from VS is not affected by the settings below, in VS
+# the diff markers are never inserted). Diff markers may cause the following 
+# file extensions to fail to load in VS. By setting them as binary, these files
+# will always require manual resolution during merges.
+###############################################################################
+*.sln       merge=binary
+*.csproj    merge=binary
+*.vbproj    merge=binary
+*.vcxproj   merge=binary
+*.vcproj    merge=binary
+*.dbproj    merge=binary
+*.fsproj    merge=binary
+*.lsproj    merge=binary
+*.wixproj   merge=binary
+*.modelproj merge=binary
+*.sqlproj   merge=binary
+*.wwaproj   merge=binary
+
+###############################################################################
+# Set diff behavior for C# files (optional for earlier builds of msysgit)
+#
+# You can uncomment this line if you want improved diff output for C# files
+# on earlier versions of git.
+###############################################################################
+#*.cs     diff=csharp
+
+###############################################################################
+# Treat common image formats as binary (optional if already covered above)
+#
+# This is helpful in case there are image formats not already listed.
+###############################################################################
+*.jpg   binary
+*.png   binary
+*.gif   binary
+*.bmp   binary
+
+###############################################################################
+# Diff behavior for common document formats
+#
+# Convert binary document formats to text before diffing them, allowing you to
+# see changes in these documents. Useful for reviewing diffs on the command line.
+###############################################################################
+*.doc   diff=astextplain
+*.docx  diff=astextplain
+*.dot   diff=astextplain
+*.pdf   diff=astextplain
+*.rtf   diff=astextplain
+
+###############################################################################
+# GitHub linguist settings
+#
+# Mark the following directories as vendored so GitHub doesn't include them
+# in the language statistics. This is useful for third-party libraries.
+###############################################################################
+**/wwwroot/lib/** linguist-vendored
