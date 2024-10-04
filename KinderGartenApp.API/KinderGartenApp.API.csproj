@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -21,7 +21,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KinderGartenApp.Domain\KinderGartenApp.Domain.csproj" />
+    <Folder Include="Adapters\" />
+    <Folder Include="Contexts\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="UnitOfWorks\" />
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KinderGartenApp.Core\KinderGartenApp.Core.csproj" />
   </ItemGroup>
 
 </Project>

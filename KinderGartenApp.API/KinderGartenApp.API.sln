@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinderGartenApp.API", "KinderGartenApp.API.csproj", "{58D46E7E-C4A2-447F-B0EC-0C46FBEDA7B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KinderGartenApp.API", "KinderGartenApp.API.csproj", "{58D46E7E-C4A2-447F-B0EC-0C46FBEDA7B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinderGartenApp.Tests", "..\KinderGartenApp.Tests\KinderGartenApp.Tests.csproj", "{47147EA2-A5EA-432E-9418-6A387BF8C7BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KinderGartenApp.Tests", "..\KinderGartenApp.Tests\KinderGartenApp.Tests.csproj", "{47147EA2-A5EA-432E-9418-6A387BF8C7BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinderGartenApp.Domain", "..\KinderGartenApp.Domain\KinderGartenApp.Domain.csproj", "{29427C22-E010-47A7-9F00-C8E4DD1F2FB1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinderGartenApp.Core", "..\KinderGartenApp.Core\KinderGartenApp.Core.csproj", "{2C29124D-44A4-4203-91CB-1B4D7EFAF7E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{47147EA2-A5EA-432E-9418-6A387BF8C7BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47147EA2-A5EA-432E-9418-6A387BF8C7BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47147EA2-A5EA-432E-9418-6A387BF8C7BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{29427C22-E010-47A7-9F00-C8E4DD1F2FB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{29427C22-E010-47A7-9F00-C8E4DD1F2FB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{29427C22-E010-47A7-9F00-C8E4DD1F2FB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{29427C22-E010-47A7-9F00-C8E4DD1F2FB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C29124D-44A4-4203-91CB-1B4D7EFAF7E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C29124D-44A4-4203-91CB-1B4D7EFAF7E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C29124D-44A4-4203-91CB-1B4D7EFAF7E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C29124D-44A4-4203-91CB-1B4D7EFAF7E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

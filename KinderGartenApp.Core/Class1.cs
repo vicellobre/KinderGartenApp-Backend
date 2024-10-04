@@ -1,4 +1,4 @@
-﻿namespace KinderGartenApp.Domain
+﻿namespace KinderGartenApp.Core
 {
     public class Class1
     {
