@@ -1,3 +1,4 @@
+using KinderGartenApp.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KinderGartenApp.API.Controllers
