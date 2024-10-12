@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KinderGartenApp.Core.Entities
 {
@@ -14,10 +15,9 @@ namespace KinderGartenApp.Core.Entities
         public string Email { get; set; }
 
         [Required(ErrorMessage = "El campo de contraseña no debe ser vacío")]
-        [DataType(DataTypeOption.Password)]
         public string Password;
 
-        [RegularExpression("^[0-9]{10}$", ErrorMessage="El número telefónico debe tener diez (10) dígitos")]
+        [RegularExpression("^[0-9]{10}$", ErrorMessage = "El número telefónico debe tener diez (10) dígitos")]
         public string Telefono { get; set; }
     }
 }

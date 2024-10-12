@@ -8,10 +8,10 @@ namespace KinderGartenApp.Core
         public PadreValidator()
         {
             RuleFor(p => p.Nombre)
-                .NotNull()
-            RuleFor(p => p.Email)
-                .EmailAddress(FluentValidation.Validators.EmailValidationMode)
-                .WithMessage("Debe estar con el formato 'usuario@dominio'");
+                .NotNull();
+            //RuleFor(p => p.Email)
+            //    .EmailAddress(FluentValidation.Validators.EmailValidationMode)
+            //    .WithMessage("Debe estar con el formato 'usuario@dominio'");
             RuleFor(p => p.Password)
                 .MinimumLength(8)
                 .WithMessage("La contraseña debe contener al menos 8 caracteres");
