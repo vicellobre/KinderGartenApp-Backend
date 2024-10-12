@@ -45,7 +45,8 @@
 	<ItemGroup>
 		<Folder Include="Adapters\" />
 		<Folder Include="Contexts\" />
-		<Folder Include="Controllers\" />
+		<Folder Include="Extensions\" />
+		<Folder Include="UnitOfWorks\" />
 		<Folder Include="Repositories\" />
 	</ItemGroup>
 
