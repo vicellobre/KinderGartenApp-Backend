@@ -1,5 +1,3 @@
-using KinderGartenApp.API;
+using KinderGartenApp.API.Utilies;
 
-
-var app = Startup.Initialize(args);
-app.Run();
+HostBuilderHelper.CreateHostBuilder(args).Build().Run();

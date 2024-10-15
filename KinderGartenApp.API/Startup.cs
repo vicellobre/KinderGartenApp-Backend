@@ -2,40 +2,28 @@
 
 namespace KinderGartenApp.API
 {
-    public static class Startup
+    public class Startup
     {
-        public static WebApplication Initialize(string[] args)
-        {
-            // Crea una instancia del constructor de la aplicación
-            var builder = WebApplication.CreateBuilder(args);
-            ConfigureServices(builder);
-            
-            var app = builder.Build();
-            Configure(app);
-
-            return app;
-        }
-
         // Configura los servicios que serán utilizados por la aplicación
-        static void ConfigureServices(WebApplicationBuilder builder)
+        public void ConfigureServices(IServiceCollection services)
         {
             // Agrega dependencias adicionales
-            builder.Services.AddDependency();
+            services.AddDependency();
 
             // Configuración de los controladores (API Endpoints)
-            builder.Services.AddControllers();
+            services.AddControllers();
 
             // Configuración de Swagger/OpenAPI (documentación de la API)
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            services.AddEndpointsApiExplorer();
+            services.AddSwaggerGen();
         }
 
         // Configura la aplicación y define cómo se procesarán las solicitudes HTTP
-        static void Configure(WebApplication app)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 // Habilita Swagger
                 app.UseSwagger();
@@ -46,11 +34,15 @@ namespace KinderGartenApp.API
             // Redirige el tráfico HTTP a HTTPS
             app.UseHttpsRedirection();
 
+            app.UseRouting();
             // Configuración de autorización
             app.UseAuthorization();
 
             // Asigna los controladores para procesar las solicitudes HTTP
-            app.MapControllers();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
     }
 }
