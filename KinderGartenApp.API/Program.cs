@@ -1,3 +1,12 @@
 using KinderGartenApp.API.Utilies;
+using System.Diagnostics.CodeAnalysis;
 
-HostBuilderHelper.CreateHostBuilder(args).Build().Run();
+[ExcludeFromCodeCoverage]
+internal class Program
+{
+    private static void Main(string[] args)
+    {
+
+        HostBuilderHelper.CreateHostBuilder(args).Build().Run();
+    }
+}

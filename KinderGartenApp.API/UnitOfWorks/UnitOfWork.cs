@@ -9,7 +9,7 @@ namespace KinderGartenApp.API.UnitOfWorks
     /// Constructor que inicializa una nueva instancia de UnitOfWork con el contexto de la base de datos proporcionado.
     /// </remarks>
     /// <param name="dbContext">Contexto de la base de datos (CoWorkingContext).</param>
-    public class UnitOfWork(DbContext dbContext) : IUnitOfWork
+    public sealed class UnitOfWork(DbContext dbContext) : IUnitOfWork
     {
         private bool _disposed;
 
@@ -43,13 +43,20 @@ namespace KinderGartenApp.API.UnitOfWorks
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-        protected void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (!_disposed)
             {
                 if (disposing)
                 {
-                    Context?.Dispose();
+                    try
+                    {
+                        Context?.Dispose();
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error disposing context: {ex.Message}");
+                    }
                 }
                 _disposed = true;
             }
