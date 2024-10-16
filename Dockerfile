@@ -25,6 +25,9 @@ RUN dotnet publish ./KinderGartenApp.API/KinderGartenApp.API.csproj -c Release -
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 
+# Establecer el entorno como Development para habilitar Swagger
+#ENV ASPNETCORE_ENVIRONMENT=Development
+
 # Copiar los archivos publicados desde la etapa de build
 COPY --from=build /app/publish .
 
