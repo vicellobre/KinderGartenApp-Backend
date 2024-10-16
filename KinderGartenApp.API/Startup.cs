@@ -1,7 +1,9 @@
 ﻿using KinderGartenApp.API.Extensions;
+using System.Diagnostics.CodeAnalysis;
 
 namespace KinderGartenApp.API
 {
+    [ExcludeFromCodeCoverage]
     public class Startup
     {
         // Configura los servicios que serán utilizados por la aplicación

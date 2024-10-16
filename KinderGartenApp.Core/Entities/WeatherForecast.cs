@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace KinderGartenApp.Core.Entities
 {
+    [ExcludeFromCodeCoverage]
     public class WeatherForecast
     {
         public DateOnly Date { get; set; }

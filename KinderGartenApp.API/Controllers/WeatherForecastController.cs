@@ -1,10 +1,12 @@
 using KinderGartenApp.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Diagnostics.CodeAnalysis;
 
 namespace KinderGartenApp.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [ExcludeFromCodeCoverage]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
