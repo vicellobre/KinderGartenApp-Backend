@@ -14,8 +14,9 @@ namespace KinderGartenApp.Core.Entities
         [DataType(DataType.Date)]
         [CustomValidation(typeof(Son), "ValidarFechaNacimiento")]
         public DateTime BirthDate { get; set; }
-        [Required(ErrorMessage = "El ID del padre es obligatorio")]
+        [Required]/////     ya se que no es asi pero lo dejo asi de momento mientras investigo como hacer que se asigne automaticamente, tenganme paciencia estoy aprendiendo
         public int FatherId { get; set; }
+        public Padre Father { get; set; } = new();
 
         public static ValidationResult ValidarFechaNacimiento(DateTime BirthDate, ValidationContext context)
         {
