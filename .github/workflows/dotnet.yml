@@ -1,0 +1,61 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches:
+      - main
+      - Dev
+  pull_request:
+    branches:
+      - main
+      - Dev
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: 🛠️ Checkout Code
+      uses: actions/checkout@v4
+      
+    - name: 🚀 Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: 📦 Restore dependencies
+      run: dotnet restore
+
+    - name: 🛠️ Install Report Generator Tool
+      run: dotnet tool install -g dotnet-reportgenerator-globaltool
+      
+    - name: 🔧 Build
+      run: dotnet build --no-restore
+      
+    - name: 🧪 Run Tests with Code Coverage
+      run: dotnet test --no-build --collect:"XPlat Code Coverage" --results-directory TestResults --verbosity normal
+
+    - name: 🖼️ Publish Coverage Report to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        files: "TestResults/**/coverage.cobertura.xml"
+        flags: unittests
+        fail_ci_if_error: true
+        token: ${{ secrets.CODECOV_TOKEN }}
+        
+    # - name: 📜 Generate HTML Coverage Report
+    #   run: reportgenerator -reports:TestResults/**/coverage.cobertura.xml -targetdir:CoverageResults/Report -reporttypes:Html
+    #   env:
+    #     PATH: ${{ runner.tool_cache }}/.dotnet/tools:${{ env.PATH }}
+
+    # - name: 📊 Upload HTML Coverage Report
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: html-coverage-report
+    #     path: CoverageResults/Report
+
+    
