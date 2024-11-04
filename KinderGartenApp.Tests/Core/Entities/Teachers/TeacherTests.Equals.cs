@@ -27,4 +27,30 @@ public partial class TeacherTests
         // Act & Assert
         Assert.False(teacher1.Equals(teacher2));
     }
+
+    [Fact]
+    public void Equals_WithNullEntity_ShouldReturnFalse()
+    {
+        // Arrange
+        var teacher = Teacher.Create(Guid.NewGuid(), "Juan", "Perez", GradeLevel.Kinder1);
+
+        // Act
+        var result = teacher.Equals(null);
+
+        // Assert
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void Equals_WithDifferentType_ShouldReturnFalse()
+    {
+        // Arrange
+        var teacher = Teacher.Create(Guid.NewGuid(), "Juan", "Perez", GradeLevel.Kinder2);
+
+        // Act
+        var result = teacher.Equals(new object());
+
+        // Assert
+        Assert.False(result);
+    }
 }
