@@ -28,16 +28,16 @@ jobs:
         dotnet-version: 8.0.x
         
     - name: 📦 Restore dependencies
-      run: dotnet restore
+      run: dotnet restore KinderGartenApp.API/KinderGartenApp.API.sln
 
     - name: 🛠️ Install Report Generator Tool
       run: dotnet tool install -g dotnet-reportgenerator-globaltool
       
     - name: 🔧 Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore KinderGartenApp.API/KinderGartenApp.API.sln
       
     - name: 🧪 Run Tests with Code Coverage
-      run: dotnet test --no-build --collect:"XPlat Code Coverage" --results-directory TestResults --verbosity normal
+      run: dotnet test KinderGartenApp.API/KinderGartenApp.API.sln --no-build --collect:"XPlat Code Coverage" --results-directory TestResults --verbosity normal
 
     - name: 🖼️ Publish Coverage Report to Codecov
       uses: codecov/codecov-action@v3
