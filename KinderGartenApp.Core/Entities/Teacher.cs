@@ -36,14 +36,5 @@ public class Teacher : Entity
     /// </summary>
     //public ICollection<Children> Students { get; set; }
 
-    public static Teacher Create(Guid id, string? firstName, string? lastName, GradeLevel gradeLevel)
-    {
-        // Validación para asegurar que el gradeLevel es un valor válido del enum
-        if (!Enum.IsDefined(typeof(GradeLevel), gradeLevel))
-        {
-            throw new ArgumentException("Invalid grade level", nameof(gradeLevel));
-        }
-
-        return new(id, firstName, lastName, gradeLevel);
-    }
+    public static Teacher Create(Guid id, string? firstName, string? lastName, GradeLevel gradeLevel) => new(id, firstName, lastName, gradeLevel);
 }
