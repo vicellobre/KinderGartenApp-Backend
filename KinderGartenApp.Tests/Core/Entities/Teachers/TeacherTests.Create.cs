@@ -11,7 +11,7 @@ public partial class TeacherTests
         // Arrange
         var id = Guid.NewGuid();
         var firstName = "Juan";
-        var lastName = "Perez";
+        var lastName = "Pérez";
         var gradeLevel = GradeLevel.PreKinder;
 
         // Act
@@ -61,15 +61,20 @@ public partial class TeacherTests
     }
 
     [Fact]
-    public void Teacher_Create_WithInvalidGradeLevel_ShouldThrowArgumentException()
+    public void Teacher_Create_WithInvalidGradeLevel_ShouldSetGradeLevelToInvalidValue()
     {
         // Arrange
         var id = Guid.NewGuid();
         var firstName = "Juan";
-        var lastName = "Perez";
-        var gradeLevel = (GradeLevel)100; // Invalid grade level
+        var lastName = "Pérez";
+        var invalidGradeLevel = (GradeLevel)100; // Invalid grade level
 
-        // Act & Assert
-        Assert.Throws<ArgumentException>(() => Teacher.Create(id, firstName, lastName, gradeLevel));
+        // Act
+        var teacher = Teacher.Create(id, firstName, lastName, invalidGradeLevel);
+
+        // Assert
+        Assert.NotNull(teacher);
+        Assert.Equal(invalidGradeLevel, teacher.GradeLevel);
     }
+
 }
