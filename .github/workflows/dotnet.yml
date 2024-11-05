@@ -7,10 +7,8 @@ on:
   push:
     branches:
       - main
-      - Dev
   pull_request:
     branches:
-      - main
       - Dev
 jobs:
   build:
@@ -30,10 +28,7 @@ jobs:
     - name: 📦 Restore dependencies
       run: dotnet restore KinderGartenApp.API/KinderGartenApp.API.sln
 
-    - name: 🛠️ Install Report Generator Tool
-      run: dotnet tool install -g dotnet-reportgenerator-globaltool
-      
-    - name: 🔧 Build
+    - name: 🛠️ Build
       run: dotnet build --no-restore KinderGartenApp.API/KinderGartenApp.API.sln
       
     - name: 🧪 Run Tests with Code Coverage
@@ -46,16 +41,3 @@ jobs:
         flags: unittests
         fail_ci_if_error: true
         token: ${{ secrets.CODECOV_TOKEN }}
-        
-    # - name: 📜 Generate HTML Coverage Report
-    #   run: reportgenerator -reports:TestResults/**/coverage.cobertura.xml -targetdir:CoverageResults/Report -reporttypes:Html
-    #   env:
-    #     PATH: ${{ runner.tool_cache }}/.dotnet/tools:${{ env.PATH }}
-
-    # - name: 📊 Upload HTML Coverage Report
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: html-coverage-report
-    #     path: CoverageResults/Report
-
-    
