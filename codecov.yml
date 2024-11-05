@@ -1,0 +1,13 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 80  # Requiere al menos 80% de cobertura
+        threshold: 5  # Permite hasta una disminución de 5%
+        paths:
+          - "KinderGartenApp.API"
+          - "KinderGartenApp.Core"
+        branches:
+          - master
+        informational: false
+        only_pulls: true
