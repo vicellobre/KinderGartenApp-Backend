@@ -1,0 +1,43 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - Dev
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: 🛠️ Checkout Code
+      uses: actions/checkout@v4
+      
+    - name: 🚀 Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+        
+    - name: 📦 Restore dependencies
+      run: dotnet restore KinderGartenApp.API/KinderGartenApp.API.sln
+
+    - name: 🛠️ Build
+      run: dotnet build --no-restore KinderGartenApp.API/KinderGartenApp.API.sln
+      
+    - name: 🧪 Run Tests with Code Coverage
+      run: dotnet test KinderGartenApp.API/KinderGartenApp.API.sln --no-build --collect:"XPlat Code Coverage" --results-directory TestResults --verbosity normal
+
+    - name: 🖼️ Publish Coverage Report to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        files: "TestResults/**/coverage.cobertura.xml"
+        flags: unittests
+        fail_ci_if_error: true
+        token: ${{ secrets.CODECOV_TOKEN }}
