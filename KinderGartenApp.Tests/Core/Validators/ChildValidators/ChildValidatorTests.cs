@@ -3,7 +3,7 @@ using KinderGartenApp.Core;
 
 namespace KinderGartenApp.Tests.Tests
 {
-    public class ChildValidatorTests
+    public partial class ChildValidatorTests
     {
         [Fact]
         public void ChildValidator_Validate_IdealScenario_ShouldReturnTrue()

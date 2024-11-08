@@ -12,13 +12,13 @@ namespace KinderGartenApp.Core
             if (string.IsNullOrWhiteSpace(child.FirstName) || child.FirstName.StartsWith(' ') || child.FirstName.EndsWith(' '))
                 return (false, "El nombre no puede estar vacío o empezar o terminar con un espacio en blanco.");
 
-            if (child.FirstName.Length > 100)
+            if (child.FirstName.Length > maxNamesLenght)
                 return (false, $"El nombre no puede tener más de {maxNamesLenght} caracteres.");
 
             if (string.IsNullOrWhiteSpace(child.LastName) || child.LastName.StartsWith(' ') || child.LastName.EndsWith(' '))
                 return (false, "El apellido no puede estar vacío o empezar o terminar con un espacio en blanco.");
 
-            if (child.LastName.Length > 100)
+            if (child.LastName.Length > maxNamesLenght)
                 return (false, $"El apellido no puede tener más de {maxNamesLenght} caracteres.");
 
             if (child.BirthDate > DateTime.Now)
