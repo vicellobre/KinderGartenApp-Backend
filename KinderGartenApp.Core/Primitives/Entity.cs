@@ -78,12 +78,12 @@ public abstract class Entity : IEquatable<Entity>
             return false;
         }
 
-        if (obj.GetType() != GetType())
+        if (obj is not Entity entity)
         {
             return false;
         }
 
-        if (obj is not Entity entity)
+        if (obj.GetType() != GetType())
         {
             return false;
         }
