@@ -2,6 +2,8 @@ using KinderGartenApp.Core;
 using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Enumarations;
 
+namespace KinderGartenApp.Tests.Core.Entities.Children;
+
 public partial class ChildTests
 {
     [Fact]
@@ -11,7 +13,7 @@ public partial class ChildTests
         var id = Guid.NewGuid();
         var firstName = "Mateo";
         var lastName = "Quiceno";
-        var birthDate = DateTime.Now.AddYears(-5);
+        var birthDate = DateTime.Now.AddYears(-7);
         var gradeLevel = GradeLevel.Kinder1;
         var parentId = 123;
 
