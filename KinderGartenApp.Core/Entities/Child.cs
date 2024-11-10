@@ -14,7 +14,7 @@ namespace KinderGartenApp.Core.Entities
 
         public int ParentId { get; set; }
 
-        public Padre Parent { get; set; } = new();
+        public Parent Parent { get; set; }
 
         private Child(Guid id, string? firstName, string? lastName, DateTime birthDate, GradeLevel gradeLevel, int parentId) : base(id)
         {
