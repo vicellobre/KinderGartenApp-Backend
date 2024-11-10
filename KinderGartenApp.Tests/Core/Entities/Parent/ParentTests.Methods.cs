@@ -61,4 +61,22 @@ public partial class ParentTests
         Assert.Equal(child1, parent.Sons[0]);
         Assert.Equal(child2, parent.Sons[1]);
     }
+
+    [Fact]
+    public void Parent_AddChild_CantAddTheSameChildren_ShouldAddJustOneChild()
+    {
+        //Arrange
+        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "1234", "1234567890");
+        var id = Guid.NewGuid();
+        Child child1 = Child.Create(id, "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, 123);
+        Child child2 = Child.Create(id, "Theo", "Suarez", DateTime.Now.AddYears(-7), GradeLevel.Kinder2, 1523);
+
+        //Act
+        parent.AddChild(child1);
+        parent.AddChild(child2);
+
+        //Assert
+        Assert.NotNull(parent.Sons);
+        Assert.Single(parent.Sons);
+    }
 }
