@@ -19,7 +19,8 @@ public partial class ChildTests
 
         //Act
         Child child = Child.Create(id, firstName, lastName, birthDate, gradeLevel, parentId);
-        bool childEqualsWithNullChild = child.Equals(new object());
+        string? nullObject = null;
+        bool childEqualsWithNullChild = child.Equals(nullObject);
 
         //Assert
         Assert.False(childEqualsWithNullChild);
