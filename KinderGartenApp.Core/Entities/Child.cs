@@ -26,8 +26,6 @@ namespace KinderGartenApp.Core.Entities
             ParentId = parentId;
         }
 
-        private Child(Guid id) : base(id) { }
-
         public static Child Create(Guid id, string? firstName, string? lastName, DateTime birthDate, GradeLevel gradeLevel, int parentId)
         {
             return new(id, firstName, lastName, birthDate, gradeLevel, parentId);
@@ -42,11 +40,6 @@ namespace KinderGartenApp.Core.Entities
             }
 
             return false;
-        }
-
-        public static Child CreateNull()
-        {
-            return new(Guid.NewGuid());
         }
     }
 }

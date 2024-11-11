@@ -38,7 +38,7 @@ public partial class ParentTests
     {
         //Arrange
         var id = Guid.NewGuid();
-        Parent parent1 = Parent.CreateNull();
+        Parent? parent1 = null;
         Parent parent2 = Parent.Create(id, "Omar", "Montenegro", "Omar@Gmail.com", "123456", "0987654321");
 
         //Act
@@ -54,7 +54,7 @@ public partial class ParentTests
         //Arrange
         var id = Guid.NewGuid();
         Parent parent1 = Parent.Create(id, "David", "Martinez", "David@gmail.com", "1234", "1234567890");
-        Parent parent2 = Parent.CreateNull();
+        Parent? parent2 = null;
 
         //Act
         bool parent1EqualsToParent2 = parent1 == parent2;
@@ -68,8 +68,8 @@ public partial class ParentTests
     {
         //Arrange
         var id = Guid.NewGuid();
-        Parent parent1 = Parent.CreateNull();
-        Parent parent2 = Parent.CreateNull();
+        Parent? parent1 = null;
+        Parent? parent2 = null;
 
         //Act
         bool parent1EqualsToParent2 = parent1 == parent2;

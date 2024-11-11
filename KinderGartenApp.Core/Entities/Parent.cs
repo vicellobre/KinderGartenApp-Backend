@@ -27,16 +27,9 @@ public class Parent : Entity
         Phone = phone;
     }
 
-    private Parent(Guid id) : base(id) { }
-
     public static Parent Create(Guid id, string? firstName, string? lastName, string? email, string? password, string? phone)
     {
         return new(id, firstName, lastName, email, password, phone);
-    }
-
-    public static Parent CreateNull()
-    {
-        return new(Guid.NewGuid());
     }
 
     public bool AddChild(Child child)
