@@ -1,5 +1,6 @@
 ﻿using KinderGartenApp.Core.Primitives;
 using KinderGartenApp.Core.Enumarations;
+using KinderGartenApp.Core.Validators;
 
 namespace KinderGartenApp.Core.Entities
 {
@@ -14,7 +15,7 @@ namespace KinderGartenApp.Core.Entities
 
         public int ParentId { get; set; }
 
-        public Parent Parent { get; set; }
+        public Parent? Parent { get; set; }
 
         private Child(Guid id, string? firstName, string? lastName, DateTime birthDate, GradeLevel gradeLevel, int parentId) : base(id)
         {
@@ -25,9 +26,27 @@ namespace KinderGartenApp.Core.Entities
             ParentId = parentId;
         }
 
+        private Child(Guid id) : base(id) { }
+
         public static Child Create(Guid id, string? firstName, string? lastName, DateTime birthDate, GradeLevel gradeLevel, int parentId)
         {
             return new(id, firstName, lastName, birthDate, gradeLevel, parentId);
+        }
+
+        public bool SetParent(Parent parent)
+        {
+            if (ParentValidator.Validate(parent).isValid)
+            {
+                Parent = parent;
+                return true;
+            }
+
+            return false;
+        }
+
+        public static Child CreateNull()
+        {
+            return new(Guid.NewGuid());
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using KinderGartenApp.Core.Entities;
-using KinderGartenApp.Core.Enumarations;
 
-namespace KinderGartenApp.Tests.Core.Entities;
+namespace KinderGartenApp.Tests.Core.Entities.Parents;
 
 public partial class ParentTests
 {

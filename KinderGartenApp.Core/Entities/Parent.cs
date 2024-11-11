@@ -1,4 +1,6 @@
 using KinderGartenApp.Core.Primitives;
+using KinderGartenApp.Core.Validators;
+using System.Collections.ObjectModel;
 
 namespace KinderGartenApp.Core.Entities;
 
@@ -14,7 +16,7 @@ public class Parent : Entity
     //[RegularExpression("^[0-9]{10}$", ErrorMessage = "El número telefónico debe tener diez (10) dígitos")]
     public string? Phone { get; set; }
 
-    public List<Child>? Sons { get; set; }
+    public Collection<Child>? Sons { get; set; }
 
     private Parent(Guid id, string? firstName, string? lastName, string? email, string? password, string? phone) : base(id)
     {
@@ -25,15 +27,26 @@ public class Parent : Entity
         Phone = phone;
     }
 
+    private Parent(Guid id) : base(id) { }
+
     public static Parent Create(Guid id, string? firstName, string? lastName, string? email, string? password, string? phone)
     {
         return new(id, firstName, lastName, email, password, phone);
     }
 
-    public void AddChild(Child child)
+    public static Parent CreateNull()
+    {
+        return new(Guid.NewGuid());
+    }
+
+    public bool AddChild(Child child)
     {
         Sons ??= new();
-        if (!Sons.Any(x => x == child))
+        if (!Sons.Any(x => x == child) && ChildValidator.Validate(child).isValid)
+        {
             Sons.Add(child);
+            return true;
+        }
+        return false;
     }
 }

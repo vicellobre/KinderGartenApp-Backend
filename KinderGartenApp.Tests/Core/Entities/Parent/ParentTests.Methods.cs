@@ -1,7 +1,7 @@
 ﻿using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Enumarations;
 
-namespace KinderGartenApp.Tests.Core.Entities;
+namespace KinderGartenApp.Tests.Core.Entities.Parents;
 
 public partial class ParentTests
 {
@@ -33,15 +33,16 @@ public partial class ParentTests
     public void Parent_AddChild_WithValidData_ShouldAddChildrenCorrectly()
     {
         //Arrange
-        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "1234", "1234567890");
+        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678", "1234567890");
         Child child = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, 123);
 
         //Act
-        parent.AddChild(child);
+        bool childAdded = parent.AddChild(child);
 
         //Assert
         Assert.NotNull(parent.Sons);
         Assert.Equal(child, parent.Sons.FirstOrDefault());
+        Assert.True(childAdded);
     }
 
     [Fact]
@@ -53,13 +54,15 @@ public partial class ParentTests
         Child child2 = Child.Create(Guid.NewGuid(), "Theo", "Suarez", DateTime.Now.AddYears(-7), GradeLevel.Kinder2, 1523);
 
         //Act
-        parent.AddChild(child1);
-        parent.AddChild(child2);
+        bool childAdded1 = parent.AddChild(child1);
+        bool childAdded2 = parent.AddChild(child2);
 
         //Assert
         Assert.NotNull(parent.Sons);
         Assert.Equal(child1, parent.Sons[0]);
         Assert.Equal(child2, parent.Sons[1]);
+        Assert.True(childAdded1);
+        Assert.True(childAdded2);
     }
 
     [Fact]
@@ -72,11 +75,13 @@ public partial class ParentTests
         Child child2 = Child.Create(id, "Theo", "Suarez", DateTime.Now.AddYears(-7), GradeLevel.Kinder2, 1523);
 
         //Act
-        parent.AddChild(child1);
-        parent.AddChild(child2);
+        bool childAdded1 = parent.AddChild(child1);
+        bool childAdded2 = parent.AddChild(child2);
 
         //Assert
         Assert.NotNull(parent.Sons);
         Assert.Single(parent.Sons);
+        Assert.True(childAdded1);
+        Assert.False(childAdded2);
     }
 }

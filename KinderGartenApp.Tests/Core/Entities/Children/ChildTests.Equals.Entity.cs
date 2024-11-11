@@ -18,7 +18,7 @@ public partial class ChildTests
         var parentId = 123;
 
         //Act
-        Child nullChild = null;
+        Child nullChild = Child.CreateNull();
         Child child = Child.Create(id, firstName, lastName, birthDate, gradeLevel, parentId);
         bool childEqualsWithNullChild = child.Equals(nullChild);
 
