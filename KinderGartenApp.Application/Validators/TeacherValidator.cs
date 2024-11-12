@@ -1,6 +1,8 @@
 ﻿using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Enumarations;
-using System.Text.RegularExpressions;
+using KinderGartenApp.Core.Errors;
+using KinderGartenApp.Core.Extensions;
+using KinderGartenApp.Core.Shared;
 
 namespace KinderGartenApp.Application.Validators;
 
@@ -16,30 +18,45 @@ public static class TeacherValidator
     /// </summary>
     /// <param name="teacher">El objeto Teacher a validar.</param>
     /// <returns>True si es válido, de lo contrario, false.</returns>
-    public static bool Validate(Teacher teacher) =>
-        ValidateFirstName(teacher.FirstName) &&
-        ValidateLastName(teacher.LastName) &&
-        ValidateGradeLevel(teacher.GradeLevel);
+    public static Result<bool> Validate(Teacher teacher)
+    {
+        if (string.IsNullOrWhiteSpace(teacher.FirstName))
+        {
+            return Result<bool>.Failure(Error.FirstName.IsNullOrEmpty);
+        }
 
-    /// <summary>
-    /// Valida el nombre del maestro.
-    /// </summary>
-    /// <param name="firstName">El nombre del maestro a validar.</param>
-    /// <returns>True si es válido, de lo contrario, false.</returns>
-    private static bool ValidateFirstName(string? firstName) =>
-        !string.IsNullOrWhiteSpace(firstName) &&
-        firstName.Length <= MaxNameLength &&
-        IsAlphabetic(firstName);
+        if (teacher.FirstName.Length > MaxNameLength)
+        {
+            return Result<bool>.Failure(Error.FirstName.TooLong(MaxNameLength));
+        }
 
-    /// <summary>
-    /// Valida el apellido del maestro.
-    /// </summary>
-    /// <param name="lastName">El apellido del maestro a validar.</param>
-    /// <returns>True si es válido, de lo contrario, false.</returns>
-    private static bool ValidateLastName(string? lastName) =>
-        !string.IsNullOrWhiteSpace(lastName) &&
-        lastName.Length <= MaxNameLength &&
-        IsAlphabetic(lastName);
+        if (!teacher.FirstName.IsValidPersonName())
+        {
+            return Result<bool>.Failure(Error.FirstName.InvalidSpecialCharacters);
+        }
+
+        if (string.IsNullOrWhiteSpace(teacher.LastName))
+        {
+            return Result<bool>.Failure(Error.LastName.IsNullOrEmpty);
+        }
+
+        if (teacher.LastName.Length > MaxNameLength)
+        {
+            return Result<bool>.Failure(Error.LastName.TooLong(MaxNameLength));
+        }
+
+        if (!teacher.LastName.IsValidPersonName())
+        {
+            return Result<bool>.Failure(Error.LastName.InvalidSpecialCharacters);
+        }
+
+        if (!ValidateGradeLevel(teacher.GradeLevel))
+        {
+            return Result<bool>.Failure(Error.GradeLevel.Invalid);
+        }
+
+        return Result<bool>.Success(true);
+    }
 
     /// <summary>
     /// Valida el nivel de grado del maestro.
@@ -48,11 +65,4 @@ public static class TeacherValidator
     /// <returns>True si es válido, de lo contrario, false.</returns>
     private static bool ValidateGradeLevel(GradeLevel gradeLevel) =>
         Enum.IsDefined(typeof(GradeLevel), gradeLevel);
-
-    /// <summary>
-    /// Verifica si una cadena contiene solo caracteres alfabéticos (incluyendo acentos y caracteres especiales).
-    /// </summary>
-    /// <param name="input">Cadena a validar.</param>
-    /// <returns>True si solo contiene letras, de lo contrario, false.</returns>
-    private static bool IsAlphabetic(string input) => Regex.IsMatch(input, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$");
 }
