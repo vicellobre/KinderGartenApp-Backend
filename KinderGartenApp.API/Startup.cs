@@ -1,6 +1,8 @@
 ﻿using KinderGartenApp.API.Extensions;
 using System.Diagnostics.CodeAnalysis;
 
+namespace KinderGartenApp.API;
+
 [ExcludeFromCodeCoverage]
 public class Startup
 {

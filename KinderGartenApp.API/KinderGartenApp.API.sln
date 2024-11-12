@@ -7,7 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KinderGartenApp.API", "Kind
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KinderGartenApp.Tests", "..\KinderGartenApp.Tests\KinderGartenApp.Tests.csproj", "{47147EA2-A5EA-432E-9418-6A387BF8C7BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinderGartenApp.Core", "..\KinderGartenApp.Core\KinderGartenApp.Core.csproj", "{2C29124D-44A4-4203-91CB-1B4D7EFAF7E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KinderGartenApp.Core", "..\KinderGartenApp.Core\KinderGartenApp.Core.csproj", "{2C29124D-44A4-4203-91CB-1B4D7EFAF7E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinderGartenApp.Persistence", "..\KinderGartenApp.Persistence\KinderGartenApp.Persistence.csproj", "{A749276E-A2E6-4997-BFF1-37B8226BF188}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinderGartenApp.Application", "..\KinderGartenApp.Application\KinderGartenApp.Application.csproj", "{6B0BDE00-363D-4115-9AC6-8630E2F1829B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinderGartenApp.Infrastructure", "..\KinderGartenApp.Infrastructure\KinderGartenApp.Infrastructure.csproj", "{887521C0-224B-4CF0-A263-4EF54E8B1057}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinderGartenApp.Presentation", "..\KinderGartenApp.Presentation\KinderGartenApp.Presentation.csproj", "{5B4AC189-867B-419E-A13B-EA770DDF1F07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +35,22 @@ Global
 		{2C29124D-44A4-4203-91CB-1B4D7EFAF7E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C29124D-44A4-4203-91CB-1B4D7EFAF7E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C29124D-44A4-4203-91CB-1B4D7EFAF7E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A749276E-A2E6-4997-BFF1-37B8226BF188}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A749276E-A2E6-4997-BFF1-37B8226BF188}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A749276E-A2E6-4997-BFF1-37B8226BF188}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A749276E-A2E6-4997-BFF1-37B8226BF188}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B0BDE00-363D-4115-9AC6-8630E2F1829B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B0BDE00-363D-4115-9AC6-8630E2F1829B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B0BDE00-363D-4115-9AC6-8630E2F1829B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B0BDE00-363D-4115-9AC6-8630E2F1829B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{887521C0-224B-4CF0-A263-4EF54E8B1057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{887521C0-224B-4CF0-A263-4EF54E8B1057}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{887521C0-224B-4CF0-A263-4EF54E8B1057}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{887521C0-224B-4CF0-A263-4EF54E8B1057}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B4AC189-867B-419E-A13B-EA770DDF1F07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B4AC189-867B-419E-A13B-EA770DDF1F07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B4AC189-867B-419E-A13B-EA770DDF1F07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B4AC189-867B-419E-A13B-EA770DDF1F07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

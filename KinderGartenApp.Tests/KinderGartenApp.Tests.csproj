@@ -45,7 +45,11 @@
 	
   <ItemGroup>
     <ProjectReference Include="..\KinderGartenApp.API\KinderGartenApp.API.csproj" />
+    <ProjectReference Include="..\KinderGartenApp.Application\KinderGartenApp.Application.csproj" />
     <ProjectReference Include="..\KinderGartenApp.Core\KinderGartenApp.Core.csproj" />
+    <ProjectReference Include="..\KinderGartenApp.Infrastructure\KinderGartenApp.Infrastructure.csproj" />
+    <ProjectReference Include="..\KinderGartenApp.Persistence\KinderGartenApp.Persistence.csproj" />
+    <ProjectReference Include="..\KinderGartenApp.Presentation\KinderGartenApp.Presentation.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -53,11 +57,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="API\Adapters\" />
-    <Folder Include="API\Controllers\" />
-    <Folder Include="API\Repositories\" />
-    <Folder Include="Core\DTOs\" />
-    <Folder Include="Core\Services\" />
+    <Folder Include="API\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Presentation\" />
     <Folder Include="Scripts\" />
   </ItemGroup>
 
