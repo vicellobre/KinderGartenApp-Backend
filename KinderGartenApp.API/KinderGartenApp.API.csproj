@@ -16,7 +16,6 @@
 	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="13.0.1" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.8">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -43,13 +42,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Adapters\" />
-		<Folder Include="Contexts\" />
-		<Folder Include="Repositories\" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\KinderGartenApp.Core\KinderGartenApp.Core.csproj" />
+	  <ProjectReference Include="..\KinderGartenApp.Application\KinderGartenApp.Application.csproj" />
+	  <ProjectReference Include="..\KinderGartenApp.Infrastructure\KinderGartenApp.Infrastructure.csproj" />
+	  <ProjectReference Include="..\KinderGartenApp.Persistence\KinderGartenApp.Persistence.csproj" />
+	  <ProjectReference Include="..\KinderGartenApp.Presentation\KinderGartenApp.Presentation.csproj" />
 	</ItemGroup>
 
 </Project>

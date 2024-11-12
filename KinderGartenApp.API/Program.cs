@@ -1,4 +1,4 @@
-using KinderGartenApp.API.Utilies;
+using KinderGartenApp.API;
 using System.Diagnostics.CodeAnalysis;
 
 [ExcludeFromCodeCoverage]

@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Abstracts\" />
-    <Folder Include="Contracts\Repositories\" />
+    <Folder Include="Contracts\" />
+    <Folder Include="DTOs\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="11.10.0" />
+    <ProjectReference Include="..\KinderGartenApp.Core\KinderGartenApp.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,9 @@
-﻿using KinderGartenApp.Core.Primitives;
-using KinderGartenApp.Core.Enumarations;
-using KinderGartenApp.Core.Validators;
+﻿using KinderGartenApp.Core.Enumarations;
+using KinderGartenApp.Core.Primitives;
 
 namespace KinderGartenApp.Core.Entities
 {
-	public class Child : Entity
+    public class Child : Entity
     {
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
@@ -33,7 +32,7 @@ namespace KinderGartenApp.Core.Entities
 
         public bool SetParent(Parent parent)
         {
-            if (ParentValidator.Validate(parent).isValid)
+            if (parent is not null)
             {
                 Parent = parent;
                 return true;

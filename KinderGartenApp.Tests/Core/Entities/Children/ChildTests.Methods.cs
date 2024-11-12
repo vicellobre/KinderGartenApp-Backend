@@ -1,4 +1,3 @@
-using KinderGartenApp.Core;
 using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Enumarations;
 
@@ -48,11 +47,11 @@ public partial class ChildTests
     public void Child_SetParent_WithInvalidParent_ShouldNotSetTheParentAndReturnFalse()
     {
         //Arrange
-        Parent parent = Parent.Create(Guid.NewGuid(), "David ", " Martinez", "David@gm ail.com", "12345", "12345 67890");
+        Parent? parent = null;
         Child child = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, 123);
 
         //Act
-        bool parentSeted = child.SetParent(parent);
+        bool parentSeted = child.SetParent(parent!);
 
         //Assert
         Assert.False(parentSeted);

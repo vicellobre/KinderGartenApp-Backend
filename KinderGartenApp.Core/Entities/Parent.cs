@@ -1,5 +1,4 @@
 using KinderGartenApp.Core.Primitives;
-using KinderGartenApp.Core.Validators;
 using System.Collections.ObjectModel;
 
 namespace KinderGartenApp.Core.Entities;
@@ -35,7 +34,7 @@ public class Parent : Entity
     public bool AddChild(Child child)
     {
         Sons ??= new();
-        if (!Sons.Any(x => x == child) && ChildValidator.Validate(child).isValid)
+        if (!Sons.Any(x => x == child) && child is not null)
         {
             Sons.Add(child);
             return true;
