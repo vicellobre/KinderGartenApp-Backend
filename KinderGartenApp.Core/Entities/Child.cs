@@ -32,12 +32,22 @@ public class Child : Entity
     /// <summary>
     /// Obtiene o establece el identificador del padre/madre.
     /// </summary>
-    public int ParentId { get; set; }
+    public Guid ParentId { get; set; }
 
     /// <summary>
     /// Obtiene o establece una referencia al padre/madre del niño.
     /// </summary>
     public Parent? Parent { get; set; }
+
+    /// <summary>
+    /// Obtiene o establece el identificador del maestro asignado al niño.
+    /// </summary>
+    public Guid TeacherId { get; set; }
+
+    /// <summary>
+    /// Obtiene o establece una referencia al maestro del niño.
+    /// </summary>
+    public Teacher? Teacher { get; set; }
 
     /// <summary>
     /// Constructor privado para inicializar una nueva instancia de la clase <see cref="Child"/> 
@@ -49,13 +59,16 @@ public class Child : Entity
     /// <param name="birthDate">Fecha de nacimiento del niño.</param>
     /// <param name="gradeLevel">Nivel educativo del niño.</param>
     /// <param name="parentId">Identificador del padre/madre del niño.</param>
-    private Child(Guid id, string? firstName, string? lastName, DateTime birthDate, GradeLevel gradeLevel, int parentId) : base(id)
+    /// <param name="teacherId">Identificador del maestro del niño.</param>
+    private Child(Guid id, string? firstName, string? lastName, DateTime birthDate, GradeLevel gradeLevel,
+        Guid parentId, Guid teacherId) : base(id)
     {
         FirstName = firstName;
         LastName = lastName;
         BirthDate = birthDate;
         GradeLevel = gradeLevel;
         ParentId = parentId;
+        TeacherId = teacherId;
     }
 
     /// <summary>
@@ -67,10 +80,12 @@ public class Child : Entity
     /// <param name="birthDate">Fecha de nacimiento del niño.</param>
     /// <param name="gradeLevel">Nivel educativo del niño.</param>
     /// <param name="parentId">Identificador del padre/madre del niño.</param>
+    /// <param name="teacherId">Identificador del maestro del niño.</param>
     /// <returns>Una nueva instancia de la clase <see cref="Child"/>.</returns>
-    public static Child Create(Guid id, string? firstName, string? lastName, DateTime birthDate, GradeLevel gradeLevel, int parentId)
+    public static Child Create(Guid id, string? firstName, string? lastName, DateTime birthDate, GradeLevel gradeLevel,
+        Guid parentId, Guid teacherId)
     {
-        return new(id, firstName, lastName, birthDate, gradeLevel, parentId);
+        return new(id, firstName, lastName, birthDate, gradeLevel, parentId, teacherId);
     }
 
     /// <summary>

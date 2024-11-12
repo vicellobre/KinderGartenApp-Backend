@@ -22,6 +22,7 @@ public class Teacher : Entity
         FirstName = firstName;
         LastName = lastName;
         GradeLevel = gradeLevel;
+        Students = [];
     }
 
     /// <summary>
@@ -38,6 +39,11 @@ public class Teacher : Entity
     /// Nivel educativo o grado asignado al maestro, indicando el grupo de estudiantes a los que enseña.
     /// </summary>
     public GradeLevel GradeLevel { get; set; }
+
+    /// <summary>
+    /// Obtiene o establece la colección de niños asignados al maestro.
+    /// </summary>
+    public ICollection<Child> Students { get; set; }
 
     /// <summary>
     /// Crea una nueva instancia de la clase <see cref="Teacher"/> con los valores especificados.

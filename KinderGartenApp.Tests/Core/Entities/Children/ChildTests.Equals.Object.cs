@@ -14,10 +14,9 @@ public partial class ChildTests
         var lastName = "Quiceno";
         var birthDate = DateTime.Now.AddYears(-7);
         var gradeLevel = GradeLevel.Kinder1;
-        var parentId = 123;
 
         //Act
-        Child child = Child.Create(id, firstName, lastName, birthDate, gradeLevel, parentId);
+        Child child = Child.Create(id, firstName, lastName, birthDate, gradeLevel, new Guid(), new Guid());
         string? nullObject = null;
         bool childEqualsWithNullChild = child.Equals(nullObject);
 
@@ -34,10 +33,9 @@ public partial class ChildTests
         var lastName = "Quiceno";
         var birthDate = DateTime.Now.AddYears(-7);
         var gradeLevel = GradeLevel.Kinder1;
-        var parentId = 123;
 
         //Act
-        Child child1 = Child.Create(id, firstName, lastName, birthDate, gradeLevel, parentId);
+        Child child1 = Child.Create(id, firstName, lastName, birthDate, gradeLevel, new Guid(), new Guid());
         string? differentObject = string.Empty;
         bool childEqualsWithSameChildId = child1.Equals(differentObject);
 
@@ -54,11 +52,10 @@ public partial class ChildTests
         var lastName = "Quiceno";
         var birthDate = DateTime.Now.AddYears(-7);
         var gradeLevel = GradeLevel.Kinder1;
-        var parentId = 123;
 
         //Act
         Teacher objectWithDifferentType = Teacher.Create(id, firstName, lastName, gradeLevel);
-        Child child = Child.Create(id, firstName, lastName, birthDate, gradeLevel, parentId);
+        Child child = Child.Create(id, firstName, lastName, birthDate, gradeLevel, new Guid(), new Guid());
         bool childEqualsWithDifferentObject = child.Equals((object) objectWithDifferentType);
 
         //Assert
@@ -74,17 +71,15 @@ public partial class ChildTests
         var lastName1 = "Quiceno";
         var birthDate1 = DateTime.Now.AddYears(-7);
         var gradeLevel1 = GradeLevel.Kinder1;
-        var parentId1 = 123;
 
         var firstName2 = "David";
         var lastName2 = "Martinez";
         var birthDate2 = DateTime.Now.AddYears(-8);
         var gradeLevel2 = GradeLevel.Kinder2;
-        var parentId2 = 321;
 
         //Act
-        Child child1 = Child.Create(id, firstName1, lastName1, birthDate1, gradeLevel1, parentId1);
-        Child child2 = Child.Create(id, firstName2, lastName2, birthDate2, gradeLevel2, parentId2);
+        Child child1 = Child.Create(id, firstName1, lastName1, birthDate1, gradeLevel1, new Guid(), new Guid());
+        Child child2 = Child.Create(id, firstName2, lastName2, birthDate2, gradeLevel2, new Guid(), new Guid());
         bool childEqualsWithSameChildId = child1.Equals((object)child2);
 
         //Assert

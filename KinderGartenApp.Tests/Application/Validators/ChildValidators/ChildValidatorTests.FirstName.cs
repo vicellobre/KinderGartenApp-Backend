@@ -9,7 +9,7 @@ public partial class ChildValidatorTests
     public void ChildValidator_Validate_FirstNameNull_ShouldReturnFalseAndErrorMessage()
     {
         //Arrange
-        var validChild = Child.Create(Guid.NewGuid(), "", "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, 123);
+        var validChild = Child.Create(Guid.NewGuid(), "", "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, new Guid(), new Guid());
 
         //Act
         var childValidated = ChildValidator.Validate(validChild);
@@ -23,7 +23,7 @@ public partial class ChildValidatorTests
     public void ChildValidator_Validate_FirstNameWithWhiteSpace_ShouldReturnFalseAndErrorMessage()
     {
         //Arrange
-        var validChild = Child.Create(Guid.NewGuid(), "   ", "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, 123);
+        var validChild = Child.Create(Guid.NewGuid(), "   ", "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, new Guid(), new Guid());
 
         //Act
         var childValidated = ChildValidator.Validate(validChild);
@@ -37,7 +37,7 @@ public partial class ChildValidatorTests
     public void ChildValidator_Validate_FirstNameWithFirstSpaceBlank_ShouldReturnFalseAndErrorMessage()
     {
         //Arrange
-        var validChild = Child.Create(Guid.NewGuid(), " Mateo", "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, 123);
+        var validChild = Child.Create(Guid.NewGuid(), " Mateo", "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, new Guid(), new Guid());
 
         //Act
         var childValidated = ChildValidator.Validate(validChild);
@@ -51,7 +51,7 @@ public partial class ChildValidatorTests
     public void ChildValidator_Validate_FirstNameWithLastSpaceBlank_ShouldReturnFalseAndErrorMessage()
     {
         //Arrange
-        var validChild = Child.Create(Guid.NewGuid(), "Mateo ", "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, 123);
+        var validChild = Child.Create(Guid.NewGuid(), "Mateo ", "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, new Guid(), new Guid());
 
         //Act
         var childValidated = ChildValidator.Validate(validChild);
@@ -65,7 +65,7 @@ public partial class ChildValidatorTests
     public void ChildValidator_Validate_FirstNameLenghtMoreThenTheMax_ShouldReturnFalseAndErrorMessage()
     {
         //Arrange
-        var validChild = Child.Create(Guid.NewGuid(), new string('a', 51), "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, 123);
+        var validChild = Child.Create(Guid.NewGuid(), new string('a', 51), "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, new Guid(), new Guid());
 
         //Act
         var childValidated = ChildValidator.Validate(validChild);
@@ -79,7 +79,7 @@ public partial class ChildValidatorTests
     public void ChildValidator_Validate_FirstNameWithSpecialCharacters_ShouldReturnFalseAndErrorMessage()
     {
         //Arrange
-        var validChild = Child.Create(Guid.NewGuid(), "Mªtº*+", "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, 123);
+        var validChild = Child.Create(Guid.NewGuid(), "Mªtº*+", "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, new Guid(), new Guid());
 
         //Act
         var childValidated = ChildValidator.Validate(validChild);
