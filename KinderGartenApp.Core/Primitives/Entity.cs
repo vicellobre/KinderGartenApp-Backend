@@ -2,7 +2,7 @@
 
 /// <summary>
 /// Clase base abstracta que representa una entidad con un identificador único de tipo GUID.
-/// Implementa la interfaz IEquatable para comparar entidades.
+/// Implementa la interfaz <see cref="IEquatable{Entity}"/> para comparar entidades.
 /// </summary>
 public abstract class Entity : IEquatable<Entity>
 {
@@ -25,22 +25,22 @@ public abstract class Entity : IEquatable<Entity>
     protected Entity(Guid id) => Id = id;
 
     /// <summary>
-    /// Sobrecarga del operador == para comparar dos entidades.
+    /// Sobrecarga del operador <c>==</c> para comparar dos entidades.
     /// </summary>
     /// <param name="first">Primera entidad a comparar.</param>
     /// <param name="second">Segunda entidad a comparar.</param>
-    /// <returns>Devuelve true si ambas entidades son iguales; de lo contrario, false.</returns>
+    /// <returns>Devuelve <c>true</c> si ambas entidades son iguales; de lo contrario, <c>false</c>.</returns>
     public static bool operator ==(Entity? first, Entity? second)
     {
         return first is not null && second is not null && first.Equals(second);
     }
 
     /// <summary>
-    /// Sobrecarga del operador != para comparar dos entidades.
+    /// Sobrecarga del operador <c>!=</c> para comparar dos entidades.
     /// </summary>
     /// <param name="first">Primera entidad a comparar.</param>
     /// <param name="second">Segunda entidad a comparar.</param>
-    /// <returns>Devuelve true si las entidades son diferentes; de lo contrario, false.</returns>
+    /// <returns>Devuelve <c>true</c> si las entidades son diferentes; de lo contrario, <c>false</c>.</returns>
     public static bool operator !=(Entity? first, Entity? second)
     {
         return !(first == second);
@@ -50,7 +50,7 @@ public abstract class Entity : IEquatable<Entity>
     /// Determina si la entidad actual es igual a otra entidad del mismo tipo.
     /// </summary>
     /// <param name="other">Otra entidad para comparar con esta instancia.</param>
-    /// <returns>Devuelve true si las entidades son iguales; de lo contrario, false.</returns>
+    /// <returns>Devuelve <c>true</c> si las entidades son iguales; de lo contrario, <c>false</c>.</returns>
     public bool Equals(Entity? other)
     {
         if (other is null)
@@ -70,7 +70,7 @@ public abstract class Entity : IEquatable<Entity>
     /// Determina si la entidad actual es igual a otro objeto.
     /// </summary>
     /// <param name="obj">Objeto a comparar con esta instancia.</param>
-    /// <returns>Devuelve true si el objeto es una entidad y es igual a esta instancia; de lo contrario, false.</returns>
+    /// <returns>Devuelve <c>true</c> si el objeto es una entidad y es igual a esta instancia; de lo contrario, <c>false</c>.</returns>
     public override bool Equals(object? obj)
     {
         if (obj is null)

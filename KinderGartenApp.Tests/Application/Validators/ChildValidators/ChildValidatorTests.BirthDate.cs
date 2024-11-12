@@ -9,7 +9,7 @@ public partial class ChildValidatorTests
     public void ChildValidator_Validate_FutureBirthDate_ShouldReturnFalseAndErrorMessage()
     {
         //Arrange
-        var validChild = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Today.AddYears(-2), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, 123);
+        var validChild = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Today.AddYears(-2), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, new Guid(), new Guid());
 
         //Act
         var childValidated = ChildValidator.Validate(validChild);

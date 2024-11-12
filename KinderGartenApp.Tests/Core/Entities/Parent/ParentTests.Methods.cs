@@ -34,7 +34,7 @@ public partial class ParentTests
     {
         //Arrange
         Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678", "1234567890");
-        Child child = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, 123);
+        Child child = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, new Guid(), new Guid());
 
         //Act
         bool childAdded = parent.AddChild(child);
@@ -50,8 +50,8 @@ public partial class ParentTests
     {
         //Arrange
         Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "1234", "1234567890");
-        Child child1 = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, 123);
-        Child child2 = Child.Create(Guid.NewGuid(), "Theo", "Suarez", DateTime.Now.AddYears(-7), GradeLevel.Kinder2, 1523);
+        Child child1 = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, new Guid(), new Guid());
+        Child child2 = Child.Create(Guid.NewGuid(), "Theo", "Suarez", DateTime.Now.AddYears(-7), GradeLevel.Kinder2, new Guid(), new Guid());
 
         //Act
         bool childAdded1 = parent.AddChild(child1);
@@ -71,8 +71,8 @@ public partial class ParentTests
         //Arrange
         Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "1234", "1234567890");
         var id = Guid.NewGuid();
-        Child child1 = Child.Create(id, "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, 123);
-        Child child2 = Child.Create(id, "Theo", "Suarez", DateTime.Now.AddYears(-7), GradeLevel.Kinder2, 1523);
+        Child child1 = Child.Create(id, "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, new Guid(), new Guid());
+        Child child2 = Child.Create(id, "Theo", "Suarez", DateTime.Now.AddYears(-7), GradeLevel.Kinder2, new Guid(), new Guid());
 
         //Act
         bool childAdded1 = parent.AddChild(child1);
@@ -83,5 +83,20 @@ public partial class ParentTests
         Assert.Single(parent.Sons);
         Assert.True(childAdded1);
         Assert.False(childAdded2);
+    }
+
+    [Fact]
+    public void Parent_AddChild_CantAddNullChild_ShouldReturnFalse()
+    {
+        //Arrange
+        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "1234", "1234567890");
+        Child? child = null;
+
+        //Act
+        bool result = parent.AddChild(child!);
+
+        //Assert
+        Assert.NotNull(parent.Sons);
+        Assert.False(result);
     }
 }

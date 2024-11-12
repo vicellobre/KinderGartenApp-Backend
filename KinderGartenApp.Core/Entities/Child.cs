@@ -1,44 +1,106 @@
 ﻿using KinderGartenApp.Core.Enumarations;
 using KinderGartenApp.Core.Primitives;
 
-namespace KinderGartenApp.Core.Entities
+namespace KinderGartenApp.Core.Entities;
+
+/// <summary>
+/// Representa un niño con propiedades de nombre, fecha de nacimiento, nivel educativo, 
+/// y referencias a su padre/madre.
+/// </summary>
+public class Child : Entity
 {
-    public class Child : Entity
+    /// <summary>
+    /// Obtiene o establece el primer nombre del niño.
+    /// </summary>
+    public string? FirstName { get; set; }
+
+    /// <summary>
+    /// Obtiene o establece el apellido del niño.
+    /// </summary>
+    public string? LastName { get; set; }
+
+    /// <summary>
+    /// Obtiene o establece la fecha de nacimiento del niño.
+    /// </summary>
+    public DateTime BirthDate { get; set; }
+
+    /// <summary>
+    /// Obtiene o establece el nivel educativo del niño.
+    /// </summary>
+    public GradeLevel GradeLevel { get; set; }
+
+    /// <summary>
+    /// Obtiene o establece el identificador del padre/madre.
+    /// </summary>
+    public Guid ParentId { get; set; }
+
+    /// <summary>
+    /// Obtiene o establece una referencia al padre/madre del niño.
+    /// </summary>
+    public Parent? Parent { get; set; }
+
+    /// <summary>
+    /// Obtiene o establece el identificador del maestro asignado al niño.
+    /// </summary>
+    public Guid TeacherId { get; set; }
+
+    /// <summary>
+    /// Obtiene o establece una referencia al maestro del niño.
+    /// </summary>
+    public Teacher? Teacher { get; set; }
+
+    /// <summary>
+    /// Constructor privado para inicializar una nueva instancia de la clase <see cref="Child"/> 
+    /// con los valores especificados.
+    /// </summary>
+    /// <param name="id">Identificador único del niño.</param>
+    /// <param name="firstName">Primer nombre del niño.</param>
+    /// <param name="lastName">Apellido del niño.</param>
+    /// <param name="birthDate">Fecha de nacimiento del niño.</param>
+    /// <param name="gradeLevel">Nivel educativo del niño.</param>
+    /// <param name="parentId">Identificador del padre/madre del niño.</param>
+    /// <param name="teacherId">Identificador del maestro del niño.</param>
+    private Child(Guid id, string? firstName, string? lastName, DateTime birthDate, GradeLevel gradeLevel,
+        Guid parentId, Guid teacherId) : base(id)
     {
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
+        FirstName = firstName;
+        LastName = lastName;
+        BirthDate = birthDate;
+        GradeLevel = gradeLevel;
+        ParentId = parentId;
+        TeacherId = teacherId;
+    }
 
-        public DateTime BirthDate { get; set; }
+    /// <summary>
+    /// Crea una nueva instancia de la clase <see cref="Child"/> con los valores especificados.
+    /// </summary>
+    /// <param name="id">Identificador único del niño.</param>
+    /// <param name="firstName">Primer nombre del niño.</param>
+    /// <param name="lastName">Apellido del niño.</param>
+    /// <param name="birthDate">Fecha de nacimiento del niño.</param>
+    /// <param name="gradeLevel">Nivel educativo del niño.</param>
+    /// <param name="parentId">Identificador del padre/madre del niño.</param>
+    /// <param name="teacherId">Identificador del maestro del niño.</param>
+    /// <returns>Una nueva instancia de la clase <see cref="Child"/>.</returns>
+    public static Child Create(Guid id, string? firstName, string? lastName, DateTime birthDate, GradeLevel gradeLevel,
+        Guid parentId, Guid teacherId)
+    {
+        return new(id, firstName, lastName, birthDate, gradeLevel, parentId, teacherId);
+    }
 
-        public GradeLevel GradeLevel { get; set; }
-
-        public int ParentId { get; set; }
-
-        public Parent? Parent { get; set; }
-
-        private Child(Guid id, string? firstName, string? lastName, DateTime birthDate, GradeLevel gradeLevel, int parentId) : base(id)
+    /// <summary>
+    /// Establece el padre/madre del niño.
+    /// </summary>
+    /// <param name="parent">El padre/madre a asignar.</param>
+    /// <returns>Devuelve <c>true</c> si el padre/madre se asignó correctamente; de lo contrario, <c>false</c>.</returns>
+    public bool SetParent(Parent parent)
+    {
+        if (parent is null)
         {
-            FirstName = firstName;
-            LastName = lastName;
-            BirthDate = birthDate;
-            GradeLevel = gradeLevel;
-            ParentId = parentId;
-        }
-
-        public static Child Create(Guid id, string? firstName, string? lastName, DateTime birthDate, GradeLevel gradeLevel, int parentId)
-        {
-            return new(id, firstName, lastName, birthDate, gradeLevel, parentId);
-        }
-
-        public bool SetParent(Parent parent)
-        {
-            if (parent is not null)
-            {
-                Parent = parent;
-                return true;
-            }
-
             return false;
         }
+
+        Parent = parent;
+        return true;
     }
 }

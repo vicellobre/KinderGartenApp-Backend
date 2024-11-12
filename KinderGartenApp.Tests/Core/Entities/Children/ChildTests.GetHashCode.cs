@@ -14,8 +14,7 @@ public partial class ChildTests
         var lastName = "Quiceno";
         var birthDate = DateTime.Now.AddYears(-7);
         var gradeLevel = GradeLevel.Kinder1;
-        var parentId = 123;
-        Child child = Child.Create(id, firstName, lastName, birthDate, gradeLevel, parentId);
+        Child child = Child.Create(id, firstName, lastName, birthDate, gradeLevel, new Guid(), new Guid());
 
         //Act
         var hashCode = child.GetHashCode();
@@ -28,8 +27,8 @@ public partial class ChildTests
     public void GetHashCode_WithDifferentIds_ShouldReturnDifferentHashCodes()
     {
         // Arrange
-        var child1 = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, 123);
-        var child2 = Child.Create(Guid.NewGuid(), "David", "Martinez", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, 123);
+        var child1 = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, new Guid(), new Guid());
+        var child2 = Child.Create(Guid.NewGuid(), "David", "Martinez", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, new Guid(), new Guid());
 
         // Act
         var hashCode1 = child1.GetHashCode();

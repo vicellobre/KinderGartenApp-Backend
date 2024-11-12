@@ -1,23 +1,25 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using KinderGartenApp.Core.Contracts.UnitOfWorks;
+using KinderGartenApp.Persistence.UnitOfWorks;
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace KinderGartenApp.API.Extensions;
 
 /// <summary>
-/// Clase estática para configurar la inyección de dependencias en la aplicación.
+/// Proporciona métodos de extensión para la inyección de dependencias.
 /// </summary>
 [ExcludeFromCodeCoverage]
 public static class IoC
 {
     /// <summary>
-    /// Método de extensión para agregar las dependencias necesarias a la colección de servicios.
+    /// Agrega las dependencias necesarias al contenedor de servicios.
     /// </summary>
-    /// <param name="services">Colección de servicios de la aplicación.</param>
-    /// <returns>Colección de servicios con las nuevas dependencias agregadas.</returns>
+    /// <param name="services">La colección de servicios a la que se agregarán las dependencias.</param>
+    /// <returns>La colección de servicios con las dependencias agregadas.</returns>
     public static IServiceCollection AddDependency(this IServiceCollection services)
     {
-
         // Inyectar UnitOfWork
-        //services.AddScoped<IUnitOfWork>(p => new UnitOfWork(p.GetRequiredService<DbContext>()));
+        services.AddScoped<IUnitOfWork>(p => new UnitOfWork(p.GetRequiredService<DbContext>()));
 
         return services;
     }

@@ -9,7 +9,7 @@ public partial class ChildValidatorTests
     public void ChildValidator_Validate_IdealScenario_ShouldReturnTrue()
     {
         //Arrange
-        var validChild = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, 123);
+        var validChild = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, new Guid(), new Guid());
 
         //Act
         var childValidated = ChildValidator.Validate(validChild);

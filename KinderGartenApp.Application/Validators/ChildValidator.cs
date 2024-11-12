@@ -32,9 +32,6 @@ public static class ChildValidator
         if (child.BirthDate > DateTime.Today.AddYears(-6))
             return (false, "The birth date cannot be less than 6 years ago.");
 
-        if (child.ParentId <= 0)
-            return (false, "The parent ID cannot be less than or equal to 0.");
-
         return (true, string.Empty);
     }
 }
