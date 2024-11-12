@@ -3,27 +3,25 @@
 namespace KinderGartenApp.Core.Shared;
 
 /// <summary>
-/// Representa el resultado de una operación que puede ser exitosa o contener un error, 
+/// Representa el resultado de una operación que puede ser exitosa o contener uno o más errores,
 /// con un valor resultante.
 /// </summary>
 /// <typeparam name="TValue">El tipo del valor resultante.</typeparam>
 public readonly record struct Result<TValue>
 {
-    // Fields
     /// <summary>
     /// El valor resultante de la operación.
     /// </summary>
     private readonly TValue? _value;
-
     /// <summary>
     /// El resultado de la operación sin el valor.
     /// </summary>
     private readonly Result _result;
 
-    // Properties
     /// <summary>
     /// Obtiene el valor resultante de la operación si es exitosa; de lo contrario, lanza una excepción.
     /// </summary>
+    /// <exception cref="InvalidOperationException">Se lanza cuando se intenta acceder al valor de un resultado fallido.</exception>
     public TValue Value => IsSuccess ? _value! : throw new InvalidOperationException("The value of a failure result cannot be accessed.");
 
     /// <summary>
@@ -32,11 +30,15 @@ public readonly record struct Result<TValue>
     public bool IsSuccess => _result.IsSuccess;
 
     /// <summary>
-    /// Obtiene el error asociado con el resultado, si lo hay.
+    /// Obtiene la colección de errores asociados con el resultado, si los hay.
     /// </summary>
-    public Error Error => _result.Error;
+    public ICollection<Error> Errors => _result.Errors;
 
-    // Constructor
+    /// <summary>
+    /// Obtiene el primer error en la colección de errores.
+    /// </summary>
+    public Error FirstError => _result.FirstError;
+
     /// <summary>
     /// Inicializa una nueva instancia de la estructura <see cref="Result{TValue}"/> con el valor y error especificados.
     /// </summary>
@@ -48,7 +50,17 @@ public readonly record struct Result<TValue>
         _value = value;
     }
 
-    // Factory
+    /// <summary>
+    /// Inicializa una nueva instancia de la estructura <see cref="Result{TValue}"/> con el valor y una colección de errores especificada.
+    /// </summary>
+    /// <param name="value">El valor resultante de la operación.</param>
+    /// <param name="errors">La colección de errores asociados con el resultado.</param>
+    private Result(TValue? value, ICollection<Error> errors) : this()
+    {
+        _result = errors is null || errors.Count <= 0 ? Result.Success() : Result.Failure(errors);
+        _value = value;
+    }
+
     /// <summary>
     /// Crea una nueva instancia de la estructura <see cref="Result{TValue}"/> representando un resultado exitoso con el valor especificado.
     /// </summary>
@@ -57,11 +69,18 @@ public readonly record struct Result<TValue>
     public static Result<TValue> Success(TValue value) => new(value, Error.None);
 
     /// <summary>
-    /// Crea una nueva instancia de la estructura <see cref="Result{TValue}"/> representando un resultado fallido con el error especificado.
+    /// Crea una nueva instancia de la estructura <see cref="Result{TValue}"/> representando un resultado fallido con un único error especificado.
     /// </summary>
     /// <param name="error">El error que describe la falla.</param>
     /// <returns>Una nueva instancia de la estructura <see cref="Result{TValue}"/> con el error especificado.</returns>
     public static Result<TValue> Failure(Error error) => new(default, error);
+
+    /// <summary>
+    /// Crea una nueva instancia de la estructura <see cref="Result{TValue}"/> representando un resultado fallido con una colección de errores especificada.
+    /// </summary>
+    /// <param name="errors">La colección de errores que describen la falla.</param>
+    /// <returns>Una nueva instancia de la estructura <see cref="Result{TValue}"/> con la colección de errores especificada.</returns>
+    public static Result<TValue> Failure(ICollection<Error> errors) => new(default, errors);
 
     /// <summary>
     /// Crea una nueva instancia de la estructura <see cref="Result{TValue}"/> con el valor especificado, 
