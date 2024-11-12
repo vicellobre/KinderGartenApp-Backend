@@ -1,14 +1,15 @@
-﻿namespace KinderGartenApp.Core.Shared;
+﻿namespace KinderGartenApp.Core.Errors;
 
 /// <summary>
 /// Representa un error con un código y un mensaje descriptivo.
 /// </summary>
-public readonly record struct Error
+public readonly partial record struct Error
 {
     /// <summary>
     /// Representa la ausencia de errores.
     /// </summary>
     public readonly static Error None = new(string.Empty, string.Empty);
+
     /// <summary>
     /// Representa un error cuando el valor especificado es nulo.
     /// </summary>
@@ -18,6 +19,7 @@ public readonly record struct Error
     /// Código del error.
     /// </summary>
     public string Code { get; init; }
+
     /// <summary>
     /// Mensaje descriptivo del error.
     /// </summary>

@@ -1,4 +1,6 @@
-﻿namespace KinderGartenApp.Core.Shared;
+﻿using KinderGartenApp.Core.Errors;
+
+namespace KinderGartenApp.Core.Shared;
 
 /// <summary>
 /// Representa el resultado de una operación que puede ser exitosa o contener un error, 
