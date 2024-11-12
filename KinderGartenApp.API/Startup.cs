@@ -3,17 +3,30 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace KinderGartenApp.API;
 
+/// <summary>
+/// Configura los servicios y la canalización de solicitudes de la aplicación.
+/// </summary>
 [ExcludeFromCodeCoverage]
 public class Startup
 {
+    /// <summary>
+    /// Configuración de la aplicación.
+    /// </summary>
     private readonly IConfiguration _configuration;
 
+    /// <summary>
+    /// Inicializa una nueva instancia de la clase <see cref="Startup"/> con la configuración especificada.
+    /// </summary>
+    /// <param name="configuration">La configuración de la aplicación.</param>
     public Startup(IConfiguration configuration)
     {
         _configuration = configuration;
     }
 
-    // Configura los servicios que serán utilizados por la aplicación
+    /// <summary>
+    /// Configura los servicios de la aplicación.
+    /// </summary>
+    /// <param name="services">La colección de servicios para configurar.</param>
     public void ConfigureServices(IServiceCollection services)
     {
         // Agrega dependencias adicionales
@@ -28,10 +41,14 @@ public class Startup
         services.AddSwaggerGen();
     }
 
-    // Configura la aplicación y define cómo se procesarán las solicitudes HTTP
+    /// <summary>
+    /// Configura la canalización de solicitudes de la aplicación.
+    /// </summary>
+    /// <param name="app">La aplicación para configurar la canalización de solicitudes.</param>
+    /// <param name="env">El entorno en el que se está ejecutando la aplicación.</param>
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        // Configure the HTTP request pipeline.
+        // Configura la canalización de solicitudes HTTP.
         if (env.IsDevelopment())
         {
             // Habilita Swagger
@@ -54,3 +71,4 @@ public class Startup
         });
     }
 }
+

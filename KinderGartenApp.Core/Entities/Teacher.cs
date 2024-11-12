@@ -5,10 +5,18 @@ namespace KinderGartenApp.Core.Entities;
 
 /// <summary>
 /// Clase que representa a un maestro en el sistema.
-/// Hereda de la entidad base e incluye propiedades específicas del maestro.
+/// Hereda de la entidad base <see cref="Entity"/> e incluye propiedades específicas del maestro.
 /// </summary>
 public class Teacher : Entity
 {
+    /// <summary>
+    /// Constructor privado para inicializar una nueva instancia de la clase <see cref="Teacher"/> 
+    /// con los valores especificados.
+    /// </summary>
+    /// <param name="id">Identificador único del maestro.</param>
+    /// <param name="firstName">Nombre del maestro.</param>
+    /// <param name="lastName">Apellido del maestro.</param>
+    /// <param name="gradeLevel">Nivel educativo o grado asignado al maestro.</param>
     private Teacher(Guid id, string? firstName, string? lastName, GradeLevel gradeLevel) : base(id)
     {
         FirstName = firstName;
@@ -32,9 +40,12 @@ public class Teacher : Entity
     public GradeLevel GradeLevel { get; set; }
 
     /// <summary>
-    /// Colección de estudiantes (niños) asignados al maestro.
+    /// Crea una nueva instancia de la clase <see cref="Teacher"/> con los valores especificados.
     /// </summary>
-    //public ICollection<Children> Students { get; set; }
-
+    /// <param name="id">Identificador único del maestro.</param>
+    /// <param name="firstName">Nombre del maestro.</param>
+    /// <param name="lastName">Apellido del maestro.</param>
+    /// <param name="gradeLevel">Nivel educativo o grado asignado al maestro.</param>
+    /// <returns>Una nueva instancia de la clase <see cref="Teacher"/>.</returns>
     public static Teacher Create(Guid id, string? firstName, string? lastName, GradeLevel gradeLevel) => new(id, firstName, lastName, gradeLevel);
 }

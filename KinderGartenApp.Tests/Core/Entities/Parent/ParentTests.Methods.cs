@@ -84,4 +84,19 @@ public partial class ParentTests
         Assert.True(childAdded1);
         Assert.False(childAdded2);
     }
+
+    [Fact]
+    public void Parent_AddChild_CantAddNullChild_ShouldReturnFalse()
+    {
+        //Arrange
+        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "1234", "1234567890");
+        Child? child = null;
+
+        //Act
+        bool result = parent.AddChild(child!);
+
+        //Assert
+        Assert.NotNull(parent.Sons);
+        Assert.False(result);
+    }
 }
