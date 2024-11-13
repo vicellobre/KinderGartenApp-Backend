@@ -19,7 +19,7 @@ public partial class TeacherValidatorTests
         var result = TeacherValidator.Validate(teacher);
 
         // Assert
-        Assert.False(result);
+        Assert.False(result.IsSuccess);
     }
 
     [Theory]
@@ -34,7 +34,7 @@ public partial class TeacherValidatorTests
         var result = TeacherValidator.Validate(teacher);
 
         // Assert
-        Assert.False(result);
+        Assert.False(result.IsSuccess);
     }
 
     [Theory]
@@ -48,6 +48,6 @@ public partial class TeacherValidatorTests
         var result = TeacherValidator.Validate(teacher);
 
         // Assert
-        Assert.False(result);
+        Assert.False(result.IsSuccess);
     }
 }

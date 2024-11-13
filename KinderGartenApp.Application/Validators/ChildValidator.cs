@@ -5,7 +5,7 @@ namespace KinderGartenApp.Application.Validators;
 
 public static class ChildValidator
 {
-    private const int maxNamesLenght = 50;
+    private const int MaxNamesLenght = 50;
 
     public static (bool isValid, string? message) Validate(Child child)
     {
@@ -14,8 +14,8 @@ public static class ChildValidator
         if (string.IsNullOrWhiteSpace(child.FirstName) || child.FirstName.StartsWith(' ') || child.FirstName.EndsWith(' '))
             return (false, "The name cannot be empty or start or end with a blank space.");
 
-        if (child.FirstName.Length > maxNamesLenght)
-            return (false, $"The name cannot exceed {maxNamesLenght} characters.");
+        if (child.FirstName.Length > MaxNamesLenght)
+            return (false, $"The name cannot exceed {MaxNamesLenght} characters.");
 
         if (!regex.IsMatch(child.FirstName))
             return (false, "The name cannot contain special characters.");
@@ -23,8 +23,8 @@ public static class ChildValidator
         if (string.IsNullOrWhiteSpace(child.LastName) || child.LastName.StartsWith(' ') || child.LastName.EndsWith(' '))
             return (false, "The last name cannot be empty or start or end with a blank space.");
 
-        if (child.LastName.Length > maxNamesLenght)
-            return (false, $"The last name cannot exceed {maxNamesLenght} characters.");
+        if (child.LastName.Length > MaxNamesLenght)
+            return (false, $"The last name cannot exceed {MaxNamesLenght} characters.");
 
         if (!regex.IsMatch(child.LastName))
             return (false, "The last name cannot contain special characters.");

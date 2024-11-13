@@ -16,6 +16,6 @@ public partial class TeacherValidatorTests
         var result = TeacherValidator.Validate(teacher);
 
         // Assert
-        Assert.True(result);
+        Assert.True(result.Value);
     }
 }
