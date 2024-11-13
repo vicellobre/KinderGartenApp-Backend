@@ -45,7 +45,7 @@ public partial class UnitOfWorkTests
 
         // Act
         // Verificamos que la excepción se maneje al llamar a Dispose
-        var exception = Record.Exception(() => unitOfWork.Dispose());
+        var exception = Record.Exception(unitOfWork.Dispose);
 
         // Assert
         Assert.Null(exception); // No debería lanzar ninguna excepción

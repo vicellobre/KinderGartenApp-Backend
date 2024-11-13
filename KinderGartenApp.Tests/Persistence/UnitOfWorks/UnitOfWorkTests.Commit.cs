@@ -36,6 +36,6 @@ public partial class UnitOfWorkTests
         var unitOfWork = new UnitOfWork(mockDbContext.Object);
 
         // Act & Assert
-        Assert.Throws<DbUpdateException>(() => unitOfWork.Commit());
+        Assert.Throws<DbUpdateException>(unitOfWork.Commit);
     }
 }
