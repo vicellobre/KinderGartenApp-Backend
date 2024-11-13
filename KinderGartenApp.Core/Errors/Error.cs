@@ -1,8 +1,11 @@
-﻿namespace KinderGartenApp.Core.Errors;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace KinderGartenApp.Core.Errors;
 
 /// <summary>
 /// Representa un error con un código y un mensaje descriptivo.
 /// </summary>
+[ExcludeFromCodeCoverage]
 public readonly partial record struct Error
 {
     /// <summary>
@@ -13,7 +16,12 @@ public readonly partial record struct Error
     /// <summary>
     /// Representa un error cuando el valor especificado es nulo.
     /// </summary>
-    public static readonly Error NullValue = new("Error.NullValue", "The specified result value is null.");
+    public readonly static Error NullValue = new("Error.NullValue", "The specified result value is null.");
+
+    /// <summary>
+    /// Representa una colección de errores vacía.
+    /// </summary>
+    public static ICollection<Error> EmptyErrors { get; } = [];
 
     /// <summary>
     /// Código del error.

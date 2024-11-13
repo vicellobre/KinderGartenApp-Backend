@@ -20,42 +20,48 @@ public static class TeacherValidator
     /// <returns>True si es válido, de lo contrario, false.</returns>
     public static Result<bool> Validate(Teacher teacher)
     {
+        List<Error> errors = [];
+
         if (string.IsNullOrWhiteSpace(teacher.FirstName))
         {
-            return Result<bool>.Failure(Error.FirstName.IsNullOrEmpty);
+            errors.Add(Error.FirstName.IsNullOrEmpty);
         }
-
-        if (teacher.FirstName.Length > MaxNameLength)
+        else
         {
-            return Result<bool>.Failure(Error.FirstName.TooLong(MaxNameLength));
-        }
+            if (teacher.FirstName.Length > MaxNameLength)
+            {
+                errors.Add(Error.FirstName.TooLong(MaxNameLength));
+            }
 
-        if (!teacher.FirstName.IsValidPersonName())
-        {
-            return Result<bool>.Failure(Error.FirstName.InvalidSpecialCharacters);
+            if (!teacher.FirstName.IsValidPersonName())
+            {
+                errors.Add(Error.FirstName.InvalidSpecialCharacters);
+            }
         }
 
         if (string.IsNullOrWhiteSpace(teacher.LastName))
         {
-            return Result<bool>.Failure(Error.LastName.IsNullOrEmpty);
+            errors.Add(Error.LastName.IsNullOrEmpty);
         }
-
-        if (teacher.LastName.Length > MaxNameLength)
+        else
         {
-            return Result<bool>.Failure(Error.LastName.TooLong(MaxNameLength));
-        }
+            if (teacher.LastName.Length > MaxNameLength)
+            {
+                errors.Add(Error.LastName.TooLong(MaxNameLength));
+            }
 
-        if (!teacher.LastName.IsValidPersonName())
-        {
-            return Result<bool>.Failure(Error.LastName.InvalidSpecialCharacters);
+            if (!teacher.LastName.IsValidPersonName())
+            {
+                errors.Add(Error.LastName.InvalidSpecialCharacters);
+            }
         }
 
         if (!ValidateGradeLevel(teacher.GradeLevel))
         {
-            return Result<bool>.Failure(Error.GradeLevel.Invalid);
+            errors.Add(Error.GradeLevel.Invalid);
         }
 
-        return Result<bool>.Success(true);
+        return errors.IsEmpty() ? Result<bool>.Success(true) : Result<bool>.Failure(errors);
     }
 
     /// <summary>
