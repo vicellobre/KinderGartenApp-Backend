@@ -1,4 +1,6 @@
 ﻿using KinderGartenApp.API.Extensions;
+using KinderGartenApp.Persistence.Contexts;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 
 namespace KinderGartenApp.API;
@@ -20,7 +22,7 @@ public class Startup
     /// <param name="configuration">La configuración de la aplicación.</param>
     public Startup(IConfiguration configuration)
     {
-        _configuration = configuration;
+        _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration), "message");
     }
 
     /// <summary>
@@ -29,6 +31,9 @@ public class Startup
     /// <param name="services">La colección de servicios para configurar.</param>
     public void ConfigureServices(IServiceCollection services)
     {
+        // Configuración del contexto de la base de datos
+        services.AddDbContext<KinderGartenContext>();
+
         // Agrega dependencias adicionales
         services.AddDependency();
 

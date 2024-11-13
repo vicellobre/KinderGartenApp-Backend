@@ -1,6 +1,8 @@
-﻿using KinderGartenApp.Core.Contracts.UnitOfWorks;
+﻿using KinderGartenApp.Core.Contracts.Repositories;
+using KinderGartenApp.Core.Contracts.UnitOfWorks;
+using KinderGartenApp.Persistence.Contexts;
+using KinderGartenApp.Persistence.Repositories;
 using KinderGartenApp.Persistence.UnitOfWorks;
-using Microsoft.EntityFrameworkCore;
 using System.Diagnostics.CodeAnalysis;
 
 namespace KinderGartenApp.API.Extensions;
@@ -19,7 +21,10 @@ public static class IoC
     public static IServiceCollection AddDependency(this IServiceCollection services)
     {
         // Inyectar UnitOfWork
-        services.AddScoped<IUnitOfWork>(p => new UnitOfWork(p.GetRequiredService<DbContext>()));
+        services.AddScoped<IUnitOfWork>(p => new UnitOfWork(p.GetRequiredService<KinderGartenContext>()));
+
+        // Inyectar los servicios específicos de Parent, Teacher y Child
+        services.AddScoped<ITeacherRepository>(p => new TeacherRepository(p.GetRequiredService<KinderGartenContext>()));
 
         return services;
     }
