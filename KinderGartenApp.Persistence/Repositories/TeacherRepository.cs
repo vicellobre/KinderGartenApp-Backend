@@ -18,6 +18,8 @@ public class TeacherRepository : RepositoryBase<Teacher>, ITeacherRepository
     /// Inicializa una nueva instancia de la clase <see cref="TeacherRepository"/>.
     /// </summary>
     /// <param name="context">El contexto de base de datos utilizado para gestionar el conjunto de entidades.</param>
+    /// <exception cref="ArgumentNullException">Lanzada si <paramref name="context"/> es null.</exception>
+    /// <exception cref="InvalidOperationException">Lanzada si no se puede obtener el conjunto de entidades del contexto.</exception>
     public TeacherRepository(KinderGartenContext context) : base(context) { }
 
     /// <summary>

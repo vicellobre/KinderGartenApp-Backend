@@ -14,6 +14,7 @@ public sealed class UnitOfWork : IUnitOfWork
     /// Inicializa una nueva instancia de la clase <see cref="UnitOfWork"/> con el contexto de base de datos proporcionado.
     /// </summary>
     /// <param name="dbContext">El contexto de base de datos utilizado para las operaciones.</param>
+    /// <exception cref="ArgumentNullException">Se produce cuando <paramref name="dbContext"/> es null.</exception>
     public UnitOfWork(DbContext? dbContext)
     {
         Context = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
