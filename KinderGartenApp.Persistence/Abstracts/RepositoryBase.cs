@@ -23,6 +23,8 @@ public abstract class RepositoryBase<TEntity> where TEntity : class
     /// <exception cref="InvalidOperationException">Lanzada si no se puede obtener el conjunto de entidades del contexto.</exception>
     public RepositoryBase(KinderGartenContext context)
     {
+        ArgumentNullException.ThrowIfNull(context);
+
         Set = context.Set<TEntity>() ?? throw new InvalidOperationException($"The DbSet for '{nameof(TEntity)}' could not be obtained from the context.");
     }
 }

@@ -22,7 +22,7 @@ public abstract class Entity : IEquatable<Entity>
     /// Constructor protegido que permite inicializar la entidad con un identificador específico.
     /// </summary>
     /// <param name="id">Identificador único de la entidad.</param>
-    protected Entity(Guid id) => Id = id;
+    protected Entity(Guid id) : base() => Id = id;
 
     /// <summary>
     /// Sobrecarga del operador <c>==</c> para comparar dos entidades.

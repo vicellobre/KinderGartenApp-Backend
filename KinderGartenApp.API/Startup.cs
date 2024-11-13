@@ -22,7 +22,7 @@ public class Startup
     /// <param name="configuration">La configuración de la aplicación.</param>
     public Startup(IConfiguration configuration)
     {
-        _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration), "message");
+        _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
     }
 
     /// <summary>

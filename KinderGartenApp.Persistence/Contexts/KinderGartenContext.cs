@@ -21,7 +21,7 @@ public class KinderGartenContext : DbContext
     public KinderGartenContext(DbContextOptions<KinderGartenContext> options, IConfiguration configuration)
         : base(options)
     {
-        _configuration = configuration;
+        _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
     }
 
     /// <summary>
