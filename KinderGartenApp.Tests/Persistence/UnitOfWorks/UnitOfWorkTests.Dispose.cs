@@ -7,7 +7,7 @@ namespace KinderGartenApp.Tests.Persistence.UnitOfWorks;
 public partial class UnitOfWorkTests
 {
     [Fact]
-    public void Dispose_WhenCalled_DisposesContext()
+    public void UnitOfWork_Dispose_WhenCalled_DisposesContext()
     {
         // Arrange
         var mockDbContext = new Mock<DbContext>();
@@ -21,7 +21,7 @@ public partial class UnitOfWorkTests
     }
 
     [Fact]
-    public void Dispose_WhenCalledMultipleTimes_DisposesContextOnlyOnce()
+    public void UnitOfWork_Dispose_WhenCalledMultipleTimes_DisposesContextOnlyOnce()
     {
         // Arrange
         var mockDbContext = new Mock<DbContext>();
@@ -36,7 +36,7 @@ public partial class UnitOfWorkTests
     }
 
     [Fact]
-    public void Dispose_WhenDbContextThrowsException_HandlesExceptionGracefully()
+    public void UnitOfWork_Dispose_WhenDbContextThrowsException_HandlesExceptionGracefully()
     {
         // Arrange
         var mockDbContext = new Mock<DbContext>();

@@ -1,7 +1,5 @@
-﻿using KinderGartenApp.Persistence.Contexts;
-using KinderGartenApp.Persistence.UnitOfWorks;
+﻿using KinderGartenApp.Persistence.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Moq;
 
 namespace KinderGartenApp.Tests.Persistence.UnitOfWorks;
@@ -9,7 +7,7 @@ namespace KinderGartenApp.Tests.Persistence.UnitOfWorks;
 public partial class UnitOfWorkTests
 {
     [Fact]
-    public void Constructor_ValidDbContext_ShouldCreateInstance()
+    public void UnitOfWork_Constructor_ValidDbContext_ShouldCreateInstance()
     {
         // Arrange
         var context = new Mock<DbContext>();
@@ -22,7 +20,7 @@ public partial class UnitOfWorkTests
     }
 
     [Fact]
-    public void Constructor_NullDbContext_ShouldThrowArgumentNullException()
+    public void UnitOfWork_Constructor_NullDbContext_ShouldThrowArgumentNullException()
     {
         // Arrange
         DbContext? context = null;
