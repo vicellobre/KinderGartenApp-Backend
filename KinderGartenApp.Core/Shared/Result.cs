@@ -61,6 +61,7 @@ public readonly record struct Result<TValue>
     /// <param name="errors">La colección de errores resultantes de la operación.</param>
     private Result(ICollection<Error> errors) : this()
     {
+        //Evaluar cuando la colection HasOne y es None o todos son None
         Errors = !errors.IsNullOrEmpty() ? errors : [Error.NullValue];
     }
 

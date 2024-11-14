@@ -1,7 +1,4 @@
-﻿using KinderGartenApp.Core.Errors;
-using KinderGartenApp.Core.Shared;
-
-namespace KinderGartenApp.Core.Extensions;
+﻿namespace KinderGartenApp.Core.Extensions;
 
 public static class CollectionExtensions
 {
