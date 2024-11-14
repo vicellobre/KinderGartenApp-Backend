@@ -30,9 +30,19 @@ public class Startup
     /// </summary>
     /// <param name="services">La colección de servicios para configurar.</param>
     public void ConfigureServices(IServiceCollection services)
-    {
+    {   
+        // Obetener la cadena de conexión
+        string? connectionString = _configuration.GetConnectionString("ConnectionKinderGarten");
+        if (string.IsNullOrWhiteSpace(connectionString))
+        {
+            throw new ArgumentNullException(connectionString);
+        }
+
         // Configuración del contexto de la base de datos
-        services.AddDbContext<KinderGartenContext>();
+        services.AddDbContext<KinderGartenContext>(options =>
+        {
+            options.UseSqlServer(connectionString);
+        });
 
         // Agrega dependencias adicionales
         services.AddDependency();
