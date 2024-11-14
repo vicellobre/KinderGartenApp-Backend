@@ -7,7 +7,7 @@ namespace KinderGartenApp.Tests.Persistence.UnitOfWorks;
 public partial class UnitOfWorkTests
 {
     [Fact]
-    public void Commit_Should_SaveChanges_OnDbContext()
+    public void UnitOfWork_Commit_Should_SaveChanges_OnDbContext()
     {
         // Arrange
         var dbContextMock = new Mock<DbContext>();
@@ -25,7 +25,7 @@ public partial class UnitOfWorkTests
     }
 
     [Fact]
-    public void Commit_FailedCommit()
+    public void UnitOfWork_Commit_FailedCommit()
     {
         // Arrange
         var mockDbContext = new Mock<DbContext>();
@@ -36,6 +36,6 @@ public partial class UnitOfWorkTests
         var unitOfWork = new UnitOfWork(mockDbContext.Object);
 
         // Act & Assert
-        Assert.Throws<DbUpdateException>(() => unitOfWork.Commit());
+        Assert.Throws<DbUpdateException>(unitOfWork.Commit);
     }
 }

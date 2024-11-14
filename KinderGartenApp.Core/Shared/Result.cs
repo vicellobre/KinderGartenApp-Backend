@@ -1,6 +1,5 @@
 ﻿using KinderGartenApp.Core.Errors;
 using KinderGartenApp.Core.Extensions;
-using System.Diagnostics.CodeAnalysis;
 
 namespace KinderGartenApp.Core.Shared;
 
@@ -9,7 +8,6 @@ namespace KinderGartenApp.Core.Shared;
 /// con un valor resultante.
 /// </summary>
 /// <typeparam name="TValue">El tipo del valor resultante.</typeparam>
-[ExcludeFromCodeCoverage]
 public readonly record struct Result<TValue>
 {
     /// <summary>
@@ -54,8 +52,7 @@ public readonly record struct Result<TValue>
     /// <param name="error">El error resultante de la operación.</param>
     private Result(Error error) : this()
     {
-        Errors = !error.Equals(Error.None) ? [error] : Error.EmptyErrors;
-        _value = default;
+        Errors = !error.Equals(Error.None) ? [error] : [Error.NullValue];
     }
 
     /// <summary>
@@ -64,8 +61,8 @@ public readonly record struct Result<TValue>
     /// <param name="errors">La colección de errores resultantes de la operación.</param>
     private Result(ICollection<Error> errors) : this()
     {
-        Errors = errors is not null && !errors.IsEmpty() ? errors : [Error.NullValue];
-        _value = default;
+        //Evaluar cuando la colection HasOne y es None o todos son None
+        Errors = !errors.IsNullOrEmpty() ? errors : [Error.NullValue];
     }
 
     /// <summary>

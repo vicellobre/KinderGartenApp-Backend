@@ -6,7 +6,7 @@ namespace KinderGartenApp.Tests.Core.Entities.Teachers;
 public partial class TeacherTests
 {
     [Fact]
-    public void GetHashCode_ShouldReturnConsistentHashCode()
+    public void Teacher_GetHashCode_ShouldReturnConsistentHashCode()
     {
         // Arrange
         var id = Guid.NewGuid();
@@ -20,7 +20,7 @@ public partial class TeacherTests
     }
 
     [Fact]
-    public void GetHashCode_WithDifferentIds_ShouldReturnDifferentHashCodes()
+    public void Teacher_GetHashCode_WithDifferentIds_ShouldReturnDifferentHashCodes()
     {
         // Arrange
         var teacher1 = Teacher.Create(Guid.NewGuid(), "Juan", "Perez", GradeLevel.Kinder3);

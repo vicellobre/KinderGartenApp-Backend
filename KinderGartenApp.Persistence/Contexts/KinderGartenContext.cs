@@ -1,28 +1,19 @@
 ﻿using KinderGartenApp.Core.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.Diagnostics.CodeAnalysis;
 
 namespace KinderGartenApp.Persistence.Contexts;
 
 /// <summary>
 /// El contexto de la base de datos para la aplicación KinderGartenApp.
 /// </summary>
-[ExcludeFromCodeCoverage]
 public class KinderGartenContext : DbContext
 {
-    private readonly IConfiguration _configuration;
-
     /// <summary>
     /// Inicializa una nueva instancia de la clase <see cref="KinderGartenContext"/> con las opciones especificadas.
     /// </summary>
     /// <param name="options">Las opciones de configuración del contexto.</param>
     /// <param name="configuration">La configuración de la aplicación.</param>
-    public KinderGartenContext(DbContextOptions<KinderGartenContext> options, IConfiguration configuration)
-        : base(options)
-    {
-        _configuration = configuration;
-    }
+    public KinderGartenContext(DbContextOptions<KinderGartenContext> options) : base(options) { }
 
     /// <summary>
     /// Obtiene o establece la colección de niños en el contexto.
@@ -38,16 +29,6 @@ public class KinderGartenContext : DbContext
     /// Obtiene o establece la colección de maestros en el contexto.
     /// </summary>
     public DbSet<Teacher> Teachers { get; set; }
-
-    /// <summary>
-    /// Configura las opciones del contexto.
-    /// </summary>
-    /// <param name="optionsBuilder">El constructor de opciones del contexto.</param>
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var connectionString = _configuration.GetConnectionString("ConnectionKinderGarten");
-        optionsBuilder.UseSqlServer(connectionString);
-    }
 
     /// <summary>
     /// Configura el modelo de datos para el contexto.

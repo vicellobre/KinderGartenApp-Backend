@@ -1,5 +1,5 @@
-﻿using KinderGartenApp.Core.Enumarations;
-using KinderGartenApp.Core.Entities;
+﻿using KinderGartenApp.Core.Entities;
+using KinderGartenApp.Core.Enumarations;
 
 namespace KinderGartenApp.Tests.Core.Entities.Teachers;
 
