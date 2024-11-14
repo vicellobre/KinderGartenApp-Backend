@@ -1,6 +1,6 @@
 ﻿using KinderGartenApp.Core.Extensions;
 
-namespace KinderGartenApp.Tests.Core.Extensions;
+namespace KinderGartenApp.Tests.Core.Extensions.Strings;
 
 public class StringExtensionsTests
 {

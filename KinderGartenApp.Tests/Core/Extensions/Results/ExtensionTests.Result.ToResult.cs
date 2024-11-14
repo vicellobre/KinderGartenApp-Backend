@@ -1,7 +1,7 @@
 ﻿using KinderGartenApp.Core.Errors;
 using KinderGartenApp.Core.Extensions;
 
-namespace KinderGartenApp.Tests.Core.Extensions;
+namespace KinderGartenApp.Tests.Core.Extensions.Results;
 
 public class ResultExtensionsTests
 {
@@ -58,7 +58,7 @@ public class ResultExtensionsTests
     {
         // Arrange
         List<Error> errors = [Error.Create("Error1.Code", "Error 1 message"), Error.Create("Error2.Code", "Error 2 message")];
-        
+
         // Act
         var result = errors.ToResult<string>();
 
