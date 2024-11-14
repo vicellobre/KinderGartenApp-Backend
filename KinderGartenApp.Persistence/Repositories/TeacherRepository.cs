@@ -4,14 +4,12 @@ using KinderGartenApp.Core.Enumarations;
 using KinderGartenApp.Persistence.Abstracts;
 using KinderGartenApp.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.CodeAnalysis;
 
 namespace KinderGartenApp.Persistence.Repositories;
 
 /// <summary>
 /// Implementa el repositorio de maestros, proporcionando métodos para CRUD y consultas específicas.
 /// </summary>
-[ExcludeFromCodeCoverage]
 public class TeacherRepository : RepositoryBase<Teacher>, ITeacherRepository
 {
     /// <summary>
