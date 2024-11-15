@@ -11,7 +11,7 @@ namespace KinderGartenApp.Tests.Persistence.Contexts
         public async Task Can_Add_Parent()
         {
             // Crear el contexto con datos simulados
-            var context = await TestContextFactory.InitializeDataAsync();
+            var context = await TestContextFactory.CreateWithTracker();
 
             // Agregar un nuevo padre
             var newParent = Parent.Create(Guid.NewGuid(), "Mark", "Taylor", "mark.taylor@example.com", "password789", "456-789-0123");
@@ -29,7 +29,7 @@ namespace KinderGartenApp.Tests.Persistence.Contexts
         public async Task Can_Add_Teacher()
         {
             // Crear el contexto con datos simulados
-            var context = await TestContextFactory.InitializeDataAsync();
+            var context = await TestContextFactory.CreateWithTracker();
 
             // Agregar un nuevo maestro
             var newTeacher = Teacher.Create(Guid.NewGuid(), "Emma", "Wilson", GradeLevel.Kinder2);
@@ -47,7 +47,7 @@ namespace KinderGartenApp.Tests.Persistence.Contexts
         public async Task Can_Add_Child()
         {
             // Crear el contexto con datos simulados
-            var context = await TestContextFactory.InitializeDataAsync();
+            var context = await TestContextFactory.CreateWithTracker();
 
             // Obtener un padre y un maestro existentes
             var parent = await context.Parents.FirstAsync();

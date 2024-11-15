@@ -12,92 +12,46 @@ namespace KinderGartenApp.Persistence.Repositories;
 /// </summary>
 public class TeacherRepository : RepositoryBase<Teacher>, ITeacherRepository
 {
-    /// <summary>
-    /// Inicializa una nueva instancia de la clase <see cref="TeacherRepository"/>.
-    /// </summary>
-    /// <param name="context">El contexto de base de datos utilizado para gestionar el conjunto de entidades.</param>
-    /// <exception cref="ArgumentNullException">Lanzada si <paramref name="context"/> es null.</exception>
-    /// <exception cref="InvalidOperationException">Lanzada si no se puede obtener el conjunto de entidades del contexto.</exception>
+    /// <inheritdoc />
     public TeacherRepository(KinderGartenContext context) : base(context) { }
 
-    /// <summary>
-    /// Obtiene un maestro por su identificador de manera asíncrona.
-    /// </summary>
-    /// <param name="id">El identificador único del maestro.</param>
-    /// <param name="cancellationToken">Un token de cancelación opcional.</param>
-    /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene el maestro si se encuentra, de lo contrario, null.</returns>
-    public async Task<Teacher?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
-    {
-        return await Set.FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
-    }
+    /// <inheritdoc />
+    public async Task<Teacher?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default) =>
+            await Set.FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
 
-    /// <summary>
-    /// Obtiene un maestro por su identificador sin realizar seguimiento de cambios, de manera asíncrona.
-    /// </summary>
-    /// <param name="id">El identificador único del maestro.</param>
-    /// <param name="cancellationToken">Un token de cancelación opcional.</param>
-    /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene el maestro si se encuentra, de lo contrario, null.</returns>
-    public async Task<Teacher?> GetByIdAsNoTrackingAsync(Guid id, CancellationToken cancellationToken = default)
-    {
-        return await Set.AsNoTracking().FirstOrDefaultAsync(teacher => teacher.Id == id, cancellationToken);
-    }
+    /// <inheritdoc />
+    public async Task<Teacher?> GetByIdAsNoTrackingAsync(Guid id, CancellationToken cancellationToken = default) =>
+        await Set
+            .AsNoTracking()
+            .FirstOrDefaultAsync(teacher => teacher.Id == id, cancellationToken);
 
-    /// <summary>
-    /// Obtiene todos los maestros de manera asíncrona.
-    /// </summary>
-    /// <param name="cancellationToken">Un token de cancelación opcional.</param>
-    /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene una colección de todos los maestros.</returns>
-    public async Task<IEnumerable<Teacher>> GetAllAsync(CancellationToken cancellationToken = default)
-    {
-        return await Set.ToListAsync(cancellationToken);
-    }
+    /// <inheritdoc />
+    public async Task<Teacher?> GetByIdWithStudentsAsNoTrackingAsync(Guid teacherId, CancellationToken cancellationToken = default) =>
+        await Set
+            .AsNoTracking()
+            .Include(t => t.Students)
+            .FirstOrDefaultAsync(t => t.Id == teacherId, cancellationToken: cancellationToken);
 
-    /// <summary>
-    /// Comprueba si un maestro con el identificador especificado existe en el repositorio.
-    /// </summary>
-    /// <param name="id">El identificador único del maestro.</param>
-    /// <param name="cancellationToken">Un token de cancelación opcional.</param>
-    /// <returns>Una tarea que representa la operación asíncrona. El resultado indica si el maestro existe en el repositorio.</returns>
-    public async Task<bool> Contains(Guid id, CancellationToken cancellationToken = default)
-    {
-        return await Set.AnyAsync(t => t.Id == id, cancellationToken);
-    }
+    /// <inheritdoc />
+    public async Task<IEnumerable<Teacher>> GetAllAsync(CancellationToken cancellationToken = default) =>
+        await Set.ToListAsync(cancellationToken);
 
-    /// <summary>
-    /// Obtiene todos los maestros por nivel educativo de manera asíncrona.
-    /// </summary>
-    /// <param name="gradeLevel">El nivel educativo de los maestros a buscar.</param>
-    /// <param name="cancellationToken">Un token de cancelación opcional.</param>
-    /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene una colección de maestros filtrados por nivel educativo.</returns>
-    public async Task<IEnumerable<Teacher>> GetAllByGradeLevel(GradeLevel gradeLevel, CancellationToken cancellationToken = default)
-    {
-        return await Set.Where(t => t.GradeLevel == gradeLevel).ToListAsync(cancellationToken);
-    }
+    /// <inheritdoc />
+    public async Task<IEnumerable<Teacher>> GetAllByGradeLevel(GradeLevel gradeLevel, CancellationToken cancellationToken = default) =>
+        await Set
+            .Where(t => t.GradeLevel == gradeLevel)
+            .ToListAsync(cancellationToken);
 
-    /// <summary>
-    /// Agrega un nuevo maestro al repositorio.
-    /// </summary>
-    /// <param name="teacher">El maestro a agregar.</param>
-    public void Add(Teacher teacher)
-    {
-        Set.Add(teacher);
-    }
+    /// <inheritdoc />
+    public async Task<bool> Contains(Guid id, CancellationToken cancellationToken = default) =>
+        await Set.AnyAsync(t => t.Id == id, cancellationToken);
 
-    /// <summary>
-    /// Actualiza un maestro existente en el repositorio.
-    /// </summary>
-    /// <param name="teacher">El maestro a actualizar.</param>
-    public void Update(Teacher teacher)
-    {
-        Set.Update(teacher);
-    }
+    /// <inheritdoc />
+    public void Add(Teacher teacher) => Set.Add(teacher);
 
-    /// <summary>
-    /// Elimina un maestro del repositorio.
-    /// </summary>
-    /// <param name="teacher">El maestro a eliminar.</param>
-    public void Delete(Teacher teacher)
-    {
-        Set.Remove(teacher);
-    }
+    /// <inheritdoc />
+    public void Update(Teacher teacher) => Set.Update(teacher);
+
+    /// <inheritdoc />
+    public void Delete(Teacher teacher) => Set.Remove(teacher);
 }

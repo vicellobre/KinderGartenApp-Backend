@@ -12,7 +12,7 @@ public partial class TeacherRepositoryTests
     public async Task Can_Add_Teacher()
     {
         // Crear el contexto con datos simulados
-        var context = await TestContextFactory.InitializeDataAsync();
+        var context = await TestContextFactory.CreateWithTracker();
         var repository = new TeacherRepository(context);
 
         // Agregar un nuevo maestro
@@ -31,7 +31,7 @@ public partial class TeacherRepositoryTests
     public async Task Cant_Add_Null_Teacher()
     {
         // Crear el contexto con datos simulados
-        var context = await TestContextFactory.InitializeDataAsync();
+        var context = await TestContextFactory.CreateWithTracker();
         var repository = new TeacherRepository(context);
 
         // Contar maestros antes de intentar eliminar un maestro nulo
@@ -53,10 +53,35 @@ public partial class TeacherRepositoryTests
     }
 
     [Fact]
+    public async Task Cant_Add_Null_Teacher2()
+    {
+        // Crear el contexto con datos simulados
+        var context = await TestContextFactory.CreateWithCleanTranker();
+        var repository = new TeacherRepository(context);
+
+        // Contar maestros antes de intentar eliminar un maestro nulo
+        var initialCount = await context.Teachers.CountAsync();
+
+        // Intentar agregar un maestro nulo
+        Teacher? nullTeacher = null;
+
+        // Se espera una excepción al intentar agregar un maestro nulo
+        await Assert.ThrowsAsync<NullReferenceException>(() => {
+            repository.Add(nullTeacher!);
+            return context.SaveChangesAsync();
+        });
+
+        // Contar maestros después de intentar agregar un maestro nulo
+        var finalCount = await context.Teachers.CountAsync();
+        // Verificar que la cantidad de maestros no haya cambiado
+        Assert.Equal(initialCount, finalCount);
+    }
+
+    [Fact]
     public async Task Cant_Add_Duplicate_Teacher()
     {
         // Crear el contexto con datos simulados
-        var context = await TestContextFactory.InitializeDataAsync();
+        var context = await TestContextFactory.CreateWithTracker();
         var repository = new TeacherRepository(context);
 
         // Obtener un maestro existente
