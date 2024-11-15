@@ -25,6 +25,14 @@ public interface ITeacherRepository
     Task<Teacher?> GetByIdAsNoTrackingAsync(Guid id, CancellationToken cancellationToken = default);
 
     /// <summary>
+    /// Obtiene un maestro por su identificador junto con sus estudiantes, sin realizar seguimiento de cambios, de manera asíncrona.
+    /// </summary>
+    /// <param name="teacherId">El identificador único del maestro.</param>
+    /// <param name="cancellationToken">Un token de cancelación opcional.</param>
+    /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene el maestro con sus estudiantes si se encuentra; de lo contrario, null.</returns>
+    Task<Teacher?> GetByIdWithStudentsAsNoTrackingAsync(Guid teacherId, CancellationToken cancellationToken = default);
+
+    /// <summary>
     /// Obtiene todos los maestros de manera asíncrona.
     /// </summary>
     /// <param name="cancellationToken">Un token de cancelación opcional.</param>

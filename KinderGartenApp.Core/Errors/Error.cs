@@ -1,6 +1,4 @@
-﻿using KinderGartenApp.Core.Shared;
-
-namespace KinderGartenApp.Core.Errors;
+﻿namespace KinderGartenApp.Core.Errors;
 
 /// <summary>
 /// Representa un error con un código y un mensaje descriptivo.

@@ -7,14 +7,14 @@
 public interface IUnitOfWork : IDisposable
 {
     /// <summary>
-    /// Guarda los cambios en la base de datos de manera asincrónica.
+    /// Guarda los cambios realizados en el contexto de la base de datos de manera asincrónica.
     /// </summary>
     /// <param name="cancellationToken">Token de cancelación opcional para cancelar la operación asincrónica.</param>
     /// <returns>Una tarea que representa la operación asincrónica de guardado de cambios.</returns>
     Task CommitAsync(CancellationToken cancellationToken = default);
 
     /// <summary>
-    /// Guarda los cambios en la base de datos.
+    /// Guarda los cambios realizados en el contexto de la base de datos.
     /// </summary>
     void Commit();
 }

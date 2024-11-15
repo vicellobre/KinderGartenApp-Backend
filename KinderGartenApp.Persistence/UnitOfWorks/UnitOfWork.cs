@@ -25,19 +25,13 @@ public sealed class UnitOfWork : IUnitOfWork
     /// </summary>
     public DbContext Context { get; }
 
-    /// <summary>
-    /// Confirma los cambios realizados en el contexto de la base de datos de manera asincrónica.
-    /// </summary>
-    /// <param name="cancellationToken">Token de cancelación opcional para cancelar la operación asincrónica.</param>
-    /// <returns>Una tarea asincrónica que representa la operación de confirmación.</returns>
+    /// <inheritdoc />
     public async Task CommitAsync(CancellationToken cancellationToken = default)
     {
         await Context.SaveChangesAsync(cancellationToken);
     }
 
-    /// <summary>
-    /// Confirma los cambios realizados en el contexto de la base de datos.
-    /// </summary>
+    /// <inheritdoc />
     public void Commit()
     {
         Context.SaveChanges();
