@@ -2,7 +2,6 @@
 using KinderGartenApp.Core.Enumarations;
 using KinderGartenApp.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 
 namespace KinderGartenApp.Tests.Scripts;
 
@@ -15,7 +14,7 @@ public static class TestContextFactory
     /// Crea y devuelve una instancia de KinderGartenContext configurada para usar una base de datos en memoria.
     /// </summary>
     /// <returns>Instancia de KinderGartenContext configurada para pruebas.</returns>
-    public static KinderGartenContext CreateContext()
+    public static KinderGartenContext Create()
     {
         // Configura las opciones del contexto de base de datos en memoria
         var options = new DbContextOptionsBuilder<KinderGartenContext>()
@@ -37,9 +36,10 @@ public static class TestContextFactory
 
     /// <summary>
     /// Inicializa datos simulados en el contexto de base de datos para el jardín de infantes.
+    /// SIN entidades rastreadas
     /// </summary>
     /// <returns>Instancia del contexto de base de datos con datos simulados.</returns>
-    public static async Task<KinderGartenContext> InitializeDataAsync()
+    public static async Task<KinderGartenContext> CreateWithTracker()
     {
         // Crear una lista de padres simulados
         var parents = new List<Parent>
@@ -63,7 +63,7 @@ public static class TestContextFactory
         };
 
         // Crear el contexto de base de datos en memoria
-        var context = CreateContext();
+        var context = Create();
 
         // Agregar los padres simulados al contexto
         await context.Parents.AddRangeAsync(parents);
@@ -78,6 +78,18 @@ public static class TestContextFactory
         await context.SaveChangesAsync();
 
         // Devolver el contexto configurado con datos simulados
+        return context;
+    }
+
+    /// <summary>
+    /// Inicializa datos simulados en el contexto de base de datos para el jardín de infantes.
+    /// CON entidades rastreadas
+    /// </summary>
+    /// <returns>Instancia del contexto de base de datos con datos simulados.</returns>
+    public static async Task<KinderGartenContext> CreateWithCleanTranker()
+    {
+        var context = await CreateWithTracker();
+        context.ChangeTracker.Clear();
         return context;
     }
 }

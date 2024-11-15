@@ -9,7 +9,7 @@ public partial class TeacherRepositoryTests
     public async Task Can_Get_All_Teachers()
     {
         // Crear el contexto con datos simulados
-        var context = await TestContextFactory.InitializeDataAsync();
+        var context = await TestContextFactory.CreateWithTracker();
         var repository = new TeacherRepository(context);
 
         // Obtener todos los maestros
@@ -24,7 +24,7 @@ public partial class TeacherRepositoryTests
     public async Task Cant_Get_All_Teachers()
     {
         // Crear el contexto sin datos simulados (vacío)
-        var context = TestContextFactory.CreateContext();
+        var context = TestContextFactory.Create();
         var repository = new TeacherRepository(context);
 
         // Obtener todos los maestros en un contexto vacío

@@ -13,7 +13,7 @@ public partial class TeacherRepositoryTests
     public void Constructor_With_Valid_Context_Should_Create_Instance()
     {
         // Crear el contexto con datos simulados
-        var context = TestContextFactory.CreateContext();
+        var context = TestContextFactory.Create();
 
         // Crear una instancia de TeacherRepository con un contexto válido
         var repository = new TeacherRepository(context);

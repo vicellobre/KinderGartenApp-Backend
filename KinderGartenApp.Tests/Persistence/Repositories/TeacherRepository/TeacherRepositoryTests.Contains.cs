@@ -10,7 +10,7 @@ public partial class TeacherRepositoryTests
     public async Task Can_Check_If_Teacher_Exists()
     {
         // Crear el contexto con datos simulados
-        var context = await TestContextFactory.InitializeDataAsync();
+        var context = await TestContextFactory.CreateWithTracker();
         var repository = new TeacherRepository(context);
 
         // Obtener un maestro existente
@@ -25,7 +25,7 @@ public partial class TeacherRepositoryTests
     public async Task Can_Check_If_Teacher_NotExists()
     {
         // Crear el contexto con datos simulados
-        var context = await TestContextFactory.InitializeDataAsync();
+        var context = await TestContextFactory.CreateWithTracker();
         var repository = new TeacherRepository(context);
 
         // Verificar que un maestro inexistente no existe

@@ -10,7 +10,7 @@ public partial class TeacherRepositoryTests
     public async Task Can_Get_All_Teachers_By_GradeLevel()
     {
         // Crear el contexto con datos simulados
-        var context = await TestContextFactory.InitializeDataAsync();
+        var context = await TestContextFactory.CreateWithTracker();
         var repository = new TeacherRepository(context);
 
         // Obtener maestros por nivel educativo
@@ -26,7 +26,7 @@ public partial class TeacherRepositoryTests
     public async Task Cant_Get_All_Teachers_By_GradeLevel_When_Empty()
     {
         // Crear el contexto sin datos simulados (vacío)
-        var context = TestContextFactory.CreateContext();
+        var context = TestContextFactory.Create();
         var repository = new TeacherRepository(context);
 
         // Probar obtener maestros para un nivel educativo sin maestros

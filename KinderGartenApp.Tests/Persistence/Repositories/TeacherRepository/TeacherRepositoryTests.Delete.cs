@@ -15,7 +15,7 @@ namespace KinderGartenApp.Tests.Persistence.Repositories
         public async Task Can_Delete_Teacher()
         {
             // Crear el contexto con datos simulados
-            var context = await TestContextFactory.InitializeDataAsync();
+            var context = await TestContextFactory.CreateWithTracker();
             var repository = new TeacherRepository(context);
 
             // Obtener un maestro existente
@@ -34,7 +34,7 @@ namespace KinderGartenApp.Tests.Persistence.Repositories
         public async Task Cant_Delete_Null_Teacher()
         {
             // Crear el contexto con datos simulados
-            var context = await TestContextFactory.InitializeDataAsync();
+            var context = await TestContextFactory.CreateWithTracker();
             var repository = new TeacherRepository(context);
 
             // Contar maestros antes de intentar eliminar un maestro nulo
@@ -60,7 +60,7 @@ namespace KinderGartenApp.Tests.Persistence.Repositories
         public async Task Cant_Delete_NonExistent_Teacher()
         {
             // Crear el contexto con datos simulados
-            var context = await TestContextFactory.InitializeDataAsync();
+            var context = await TestContextFactory.CreateWithTracker();
             var repository = new TeacherRepository(context);
 
             // Contar maestros antes de intentar eliminar un maestro inexistente
