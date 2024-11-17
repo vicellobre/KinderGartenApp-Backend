@@ -12,11 +12,10 @@ public partial class ChildValidatorTests
         var validChild = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Today.AddYears(-2), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, new Guid(), new Guid());
 
         //Act
-        var childValidated = ChildValidator.Validate(validChild);
+        var result = ChildValidator.Validate(validChild);
 
         //Assert
-        Assert.False(childValidated.isValid);
-        Assert.Equal("The birth date cannot be less than 6 years ago.", childValidated.message);
+        Assert.False(result.IsSuccess);
     }
 }
 

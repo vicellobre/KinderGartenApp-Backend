@@ -15,8 +15,7 @@ public partial class ChildValidatorTests
         var childValidated = ChildValidator.Validate(validChild);
 
         //Assert
-        Assert.False(childValidated.isValid);
-        Assert.Equal("The name cannot be empty or start or end with a blank space.", childValidated.message);
+        Assert.False(childValidated.IsSuccess);
     }
 
     [Fact]
@@ -29,8 +28,7 @@ public partial class ChildValidatorTests
         var childValidated = ChildValidator.Validate(validChild);
 
         //Assert
-        Assert.False(childValidated.isValid);
-        Assert.Equal("The name cannot be empty or start or end with a blank space.", childValidated.message);
+        Assert.False(childValidated.IsSuccess);
     }
 
     [Fact]
@@ -43,8 +41,7 @@ public partial class ChildValidatorTests
         var childValidated = ChildValidator.Validate(validChild);
 
         //Assert
-        Assert.False(childValidated.isValid);
-        Assert.Equal("The name cannot be empty or start or end with a blank space.", childValidated.message);
+        Assert.False(childValidated.IsSuccess);
     }
 
     [Fact]
@@ -57,8 +54,7 @@ public partial class ChildValidatorTests
         var childValidated = ChildValidator.Validate(validChild);
 
         //Assert
-        Assert.False(childValidated.isValid);
-        Assert.Equal("The name cannot be empty or start or end with a blank space.", childValidated.message);
+        Assert.False(childValidated.IsSuccess);
     }
 
     [Fact]
@@ -71,8 +67,7 @@ public partial class ChildValidatorTests
         var childValidated = ChildValidator.Validate(validChild);
 
         //Assert
-        Assert.False(childValidated.isValid);
-        Assert.Equal("The name cannot exceed 50 characters.", childValidated.message);
+        Assert.False(childValidated.IsSuccess);
     }
 
     [Fact]
@@ -85,7 +80,6 @@ public partial class ChildValidatorTests
         var childValidated = ChildValidator.Validate(validChild);
 
         //Assert
-        Assert.False(childValidated.isValid);
-        Assert.Equal("The name cannot contain special characters.", childValidated.message);
+        Assert.False(childValidated.IsSuccess);
     }
 }

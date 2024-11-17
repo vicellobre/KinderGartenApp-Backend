@@ -12,9 +12,9 @@ public partial class ChildValidatorTests
         var validChild = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), KinderGartenApp.Core.Enumarations.GradeLevel.PreKinder, new Guid(), new Guid());
 
         //Act
-        var childValidated = ChildValidator.Validate(validChild);
+        var result = ChildValidator.Validate(validChild);
 
         //Assert
-        Assert.True(childValidated.isValid);
+        Assert.True(result.Value);
     }
 }
