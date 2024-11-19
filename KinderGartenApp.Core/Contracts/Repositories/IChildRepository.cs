@@ -6,7 +6,7 @@ namespace KinderGartenApp.Core.Contracts.Repositories;
 /// <summary>
 /// Define la interfaz para el repositorio de niños, proporcionando métodos para CRUD y consultas específicas.
 /// </summary>
-internal interface IChildRepository
+public interface IChildRepository
 {
     /// <summary>
     /// Obtiene un niño por su identificador de manera asíncrona.
@@ -58,18 +58,18 @@ internal interface IChildRepository
     /// <summary>
     /// Agrega un nuevo niño al repositorio.
     /// </summary>
-    /// <param name="teacher">El niño a agregar.</param>
-    void Add(Child teacher);
+    /// <param name="child">El niño a agregar.</param>
+    void Add(Child child);
 
     /// <summary>
     /// Actualiza un niño existente en el repositorio.
     /// </summary>
-    /// <param name="teacher">El niño a actualizar.</param>
-    void Update(Child teacher);
+    /// <param name="child">El niño a actualizar.</param>
+    void Update(Child child);
 
     /// <summary>
     /// Elimina un niño del repositorio.
     /// </summary>
-    /// <param name="teacher">El niño a eliminar.</param>
-    void Delete(Child teacher);
+    /// <param name="child">El niño a eliminar.</param>
+    void Delete(Child child);
 }
