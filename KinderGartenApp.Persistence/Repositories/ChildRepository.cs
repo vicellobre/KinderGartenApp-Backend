@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KinderGartenApp.Persistence.Repositories;
 
-internal class ChildRepository : RepositoryBase<Child>, IChildRepository
+public class ChildRepository : RepositoryBase<Child>, IChildRepository
 {
     public ChildRepository(KinderGartenContext context) : base(context) { }
 
