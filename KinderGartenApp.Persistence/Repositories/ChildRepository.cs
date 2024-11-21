@@ -47,7 +47,7 @@ public class ChildRepository : RepositoryBase<Child>, IChildRepository
 
     public async Task<Child?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
     {
-        return await Set.FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
+        return await Set.FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
     }
 
     public async Task<Child?> GetByIdWithParentAsNoTrackingAsync(Guid childId, CancellationToken cancellationToken = default)
@@ -55,7 +55,7 @@ public class ChildRepository : RepositoryBase<Child>, IChildRepository
         return await Set
             .AsNoTracking()
             .Include(x => x.Parent)
-            .FirstOrDefaultAsync(t => t.Id == childId, cancellationToken: cancellationToken);
+            .FirstOrDefaultAsync(c => c.Id == childId, cancellationToken: cancellationToken);
     }
 
     public void Update(Child child)

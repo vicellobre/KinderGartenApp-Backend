@@ -42,10 +42,10 @@ public interface IParentRepository
     /// <summary>
     /// Obtiene todos los padres por nivel educativo de manera asíncrona.
     /// </summary>
-    /// <param name="gradeLevel">El nivel educativo de los padres a buscar.</param>
+    /// <param name="email">El nivel educativo de los padres a buscar.</param>
     /// <param name="cancellationToken">Un token de cancelación opcional.</param>
     /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene el padre por email si se encuentra, de lo contrario, null.</returns>
-    Task<Parent?> GetByEmailAsync(GradeLevel gradeLevel, CancellationToken cancellationToken = default);
+    Task<Parent?> GetByEmailAsNoTrackingAsync(string email, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Comprueba si un padre con el identificador especificado existe en el repositorio.
