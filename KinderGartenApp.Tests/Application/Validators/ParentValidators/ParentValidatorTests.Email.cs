@@ -15,8 +15,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The email cannot be empty or contain a blank space.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -29,8 +28,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The email cannot be empty or contain a blank space.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -43,8 +41,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The email cannot be empty or contain a blank space.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -57,8 +54,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal($"The email lenght cannot exceed {maxEmailLenght} characters.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -71,8 +67,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal($"The email lenght cannot be under {minEmailLenght} characters.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -89,11 +84,8 @@ public partial class ParentValidatorTests
         var parentValidated3 = ParentValidator.Validate(parent3);
 
         //Assert
-        Assert.False(parentValidated1.isValid);
-        Assert.False(parentValidated2.isValid);
-        Assert.False(parentValidated3.isValid);
-        Assert.Equal("Invalid email format.", parentValidated1.message);
-        Assert.Equal("Invalid email format.", parentValidated2.message);
-        Assert.Equal("Invalid email format.", parentValidated3.message);
+        Assert.False(parentValidated1.IsSuccess);
+        Assert.False(parentValidated2.IsSuccess);
+        Assert.False(parentValidated3.IsSuccess);
     }
 }

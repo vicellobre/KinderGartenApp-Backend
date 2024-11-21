@@ -1,7 +1,6 @@
 using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Shared;
 using KinderGartenApp.Core.Errors;
-using System.Text.RegularExpressions;
 using KinderGartenApp.Core.Extensions;
 
 namespace KinderGartenApp.Application.Validators;

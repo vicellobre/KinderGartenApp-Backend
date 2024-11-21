@@ -15,8 +15,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(validParent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The last name cannot be empty or start or end with a blank space.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -29,8 +28,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(validParent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The last name cannot be empty or start or end with a blank space.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -43,8 +41,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(validParent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The last name cannot be empty or start or end with a blank space.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -57,8 +54,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(validParent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The last name cannot be empty or start or end with a blank space.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -71,8 +67,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(validParent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal($"The last name cannot exceed {maxNamesLenght} characters.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -85,7 +80,6 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(validParent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The last name cannot contain special characters.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 }

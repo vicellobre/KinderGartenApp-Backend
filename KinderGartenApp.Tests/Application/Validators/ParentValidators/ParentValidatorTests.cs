@@ -27,6 +27,6 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(validParent);
 
         //Assert
-        Assert.True(parentValidated.isValid);
+        Assert.True(parentValidated.Value);
     }
 }

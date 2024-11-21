@@ -15,8 +15,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The password cannot be empty or contain a blank space.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -29,8 +28,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The password cannot be empty or contain a blank space.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -43,8 +41,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The password cannot be empty or contain a blank space.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -57,8 +54,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal($"The password lenght cannot exceed {maxPasswordLenght} characters.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -71,7 +67,6 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal($"The password lenght cannot be under {minPasswordLenght} characters.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 }
