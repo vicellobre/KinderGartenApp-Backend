@@ -29,8 +29,8 @@ public interface IParentRepository
     /// </summary>
     /// <param name="parentId">El identificador único del padre.</param>
     /// <param name="cancellationToken">Un token de cancelación opcional.</param>
-    /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene el padre con sus estudiantes si se encuentra; de lo contrario, null.</returns>
-    Task<Parent?> GetByIdWithParentAsNoTrackingAsync(Guid parentId, CancellationToken cancellationToken = default);
+    /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene el padre con sus hijos si se encuentra; de lo contrario, null.</returns>
+    Task<Parent?> GetByIdWithSonsAsNoTrackingAsync(Guid parentId, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Obtiene todos los padres de manera asíncrona.
@@ -44,8 +44,8 @@ public interface IParentRepository
     /// </summary>
     /// <param name="gradeLevel">El nivel educativo de los padres a buscar.</param>
     /// <param name="cancellationToken">Un token de cancelación opcional.</param>
-    /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene una colección de padres filtrados por nivel educativo.</returns>
-    Task<IEnumerable<Parent>> GetAllByGradeLevel(GradeLevel gradeLevel, CancellationToken cancellationToken = default);
+    /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene el padre por email si se encuentra, de lo contrario, null.</returns>
+    Task<Parent?> GetByEmailAsync(GradeLevel gradeLevel, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Comprueba si un padre con el identificador especificado existe en el repositorio.

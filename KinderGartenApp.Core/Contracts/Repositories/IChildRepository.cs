@@ -29,7 +29,7 @@ public interface IChildRepository
     /// </summary>
     /// <param name="childId">El identificador único del niño.</param>
     /// <param name="cancellationToken">Un token de cancelación opcional.</param>
-    /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene el niño con sus estudiantes si se encuentra; de lo contrario, null.</returns>
+    /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene el niño con su padre si se encuentra; de lo contrario, null.</returns>
     Task<Child?> GetByIdWithParentAsNoTrackingAsync(Guid childId, CancellationToken cancellationToken = default);
 
     /// <summary>
