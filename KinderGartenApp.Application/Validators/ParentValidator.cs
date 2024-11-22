@@ -65,7 +65,7 @@ public class ParentValidator
         }
 
         //Validaciones de Password
-        if (string.IsNullOrWhiteSpace(parent.Password) || parent.Password.Contains(' '))
+        if (string.IsNullOrWhiteSpace(parent.Password))
         {
             errors.Add(Error.Password.IsNullOrEmpty);
         }

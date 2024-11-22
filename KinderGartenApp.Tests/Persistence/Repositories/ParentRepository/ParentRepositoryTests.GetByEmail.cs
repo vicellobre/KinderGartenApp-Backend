@@ -1,5 +1,4 @@
 ﻿using KinderGartenApp.Core.Entities;
-using KinderGartenApp.Core.Enumarations;
 using KinderGartenApp.Persistence.Repositories;
 using KinderGartenApp.Tests.Scripts;
 
