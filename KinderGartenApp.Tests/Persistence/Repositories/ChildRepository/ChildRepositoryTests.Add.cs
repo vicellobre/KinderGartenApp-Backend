@@ -66,7 +66,7 @@ public partial class ChildRepositoryTests
 
         // Assert
         var children = await repository.GetAllAsync();
-        var count = await context.Children.CountAsync(t => t.Id == existingChild.Id);
+        var count = await context.Children.CountAsync(c => c.Id == existingChild.Id);
         Assert.Equal(1, count);
     }
 }
