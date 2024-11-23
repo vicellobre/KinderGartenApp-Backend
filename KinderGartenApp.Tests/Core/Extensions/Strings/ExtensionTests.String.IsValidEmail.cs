@@ -18,6 +18,19 @@ public partial class StringExtensionsTests
     }
 
     [Fact]
+    public void IsValidEmail_ShouldReturnFalse_Empty()
+    {
+        // Arrange
+        var validEmail = " ";
+
+        // Act
+        var result = validEmail.IsValidEmail();
+
+        // Assert
+        Assert.False(result);
+    }
+
+    [Fact]
     public void IsValidEmail_ShouldReturnFalse_NoNameFirst()
     {
         // Arrange

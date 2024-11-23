@@ -31,6 +31,19 @@ public partial class StringExtensionsTests
     }
 
     [Fact]
+    public void IsValidPassword_ShouldReturnFalse_EmptyPassword()
+    {
+        // Arrange
+        var validEmail = " ";
+
+        // Act
+        var result = validEmail.IsValidPassword();
+
+        // Assert
+        Assert.False(result);
+    }
+
+    [Fact]
     public void IsValidPassword_ShouldReturnFalse_NoNumbers()
     {
         // Arrange

@@ -18,10 +18,23 @@ public partial class StringExtensionsTests
     }
 
     [Fact]
-    public void IsValidPhone_ShouldReturnFalse_noNumbers()
+    public void IsValidPhone_ShouldReturnFalse_NoNumbers()
     {
         // Arrange
         var validEmail = "asdfghjklñ";
+
+        // Act
+        var result = validEmail.IsValidPhone();
+
+        // Assert
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void IsValidPhone_ShouldReturnFalse_EmptyPhone()
+    {
+        // Arrange
+        var validEmail = " ";
 
         // Act
         var result = validEmail.IsValidPhone();
