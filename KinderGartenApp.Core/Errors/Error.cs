@@ -36,7 +36,8 @@ public readonly partial record struct Error
     public string Message { get; init; }
 
     /// <summary>
-    /// Inicializa una nueva instancia de la estructura <see cref="Error"/> con valores predeterminados.
+    /// Constructor por defecto que lanza una excepción. 
+    /// Use el método estático Create para instanciar <see cref="Error"/>.
     /// </summary>
     public Error()
     {
