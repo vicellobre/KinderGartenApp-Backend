@@ -25,6 +25,7 @@ public static class IoC
 
         // Inyectar los servicios específicos de Parent, Teacher y Child
         services.AddScoped<ITeacherRepository>(p => new TeacherRepository(p.GetRequiredService<KinderGartenContext>()));
+        services.AddScoped<IChildRepository>(c => new ChildRepository(c.GetRequiredService<KinderGartenContext>()));
 
         return services;
     }
