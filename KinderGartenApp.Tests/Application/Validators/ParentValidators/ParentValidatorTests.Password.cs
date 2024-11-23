@@ -32,16 +32,16 @@ public partial class ParentValidatorTests
     }
 
     [Fact]
-    public void ParentValidator_Validate_PasswordMidBlankSpace_ShouldReturnFalseAndErrorMessage()
+    public void ParentValidator_Validate_PasswordMidBlankSpace_ShouldReturnTrue()
     {
         //Arrange
-        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12 345678", "1234567890");
+        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "123456 78mM*", "1234567890");
 
         //Act
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.IsSuccess);
+        Assert.True(parentValidated.IsSuccess);
     }
 
     [Fact]

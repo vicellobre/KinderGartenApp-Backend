@@ -29,7 +29,7 @@ public static class StringExtensions
 
     public static bool IsValidPassword(this string input)
     {
-        return !string.IsNullOrWhiteSpace(input) && Regex.IsMatch(input, @"^(?=(.*[a-z]))(?=(.*[A-Z]))(?=(.*\d))(?=(.*[!@#$%^&*(),.?"":{}|<>]))[a-zA-Z\d!@#$%^&*(),.?"":{}|<>]+$");
+        return !string.IsNullOrWhiteSpace(input) && Regex.IsMatch(input, @"^(?=(.*[a-z]))(?=(.*[A-Z]))(?=(.*\d))(?=(.*[!@#$%^&*(),.?"":{}|<>]))[a-zA-Z\d!@#$%^&*(),.?"":{}|<> ]*$");
     }
 }
 
