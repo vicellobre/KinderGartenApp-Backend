@@ -8,7 +8,7 @@ public readonly partial record struct Error
     /// <summary>
     /// Representa la ausencia de errores.
     /// </summary>
-    public readonly static Error None = new();
+    public readonly static Error None = new(string.Empty, string.Empty);
 
     /// <summary>
     /// Representa un error cuando el valor especificado es nulo.
@@ -36,12 +36,12 @@ public readonly partial record struct Error
     public string Message { get; init; }
 
     /// <summary>
-    /// Inicializa una nueva instancia de la estructura <see cref="Error"/> con valores predeterminados.
+    /// Constructor por defecto que lanza una excepción. 
+    /// Use el método estático Create para instanciar <see cref="Error"/>.
     /// </summary>
     public Error()
     {
-        Code = string.Empty;
-        Message = string.Empty;
+        throw new InvalidOperationException("Use the static Create method to instantiate Error");
     }
 
     /// <summary>
@@ -50,7 +50,7 @@ public readonly partial record struct Error
     /// <param name="code">El código del error.</param>
     /// <param name="message">El mensaje descriptivo del error.</param>
     /// <exception cref="ArgumentNullException">Se produce cuando el código o el mensaje son nulos.</exception>
-    private Error(string? code, string? message) : this()
+    private Error(string? code, string? message)
     {
         if (code is null)
         {
@@ -62,8 +62,8 @@ public readonly partial record struct Error
             throw new ArgumentNullException(nameof(message), "Error message cannot be null.");
         }
 
-        Code = !string.IsNullOrWhiteSpace(code) ? code : None.Code;
-        Message = !string.IsNullOrWhiteSpace(message) ? message : None.Message;
+        Code = !string.IsNullOrWhiteSpace(code) ? code : string.Empty;
+        Message = !string.IsNullOrWhiteSpace(message) ? message : string.Empty;
     }
 
     /// <summary>
