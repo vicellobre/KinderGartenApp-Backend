@@ -78,7 +78,7 @@ public partial class ParentRepositoryTests
         var repository = new ParentRepository(context);
 
         // Act
-        var nonExistentParent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678", "1234567890");
+        var nonExistentParent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
 
         nonExistentParent.FirstName = "UpdatedName";
         repository.Update(nonExistentParent);

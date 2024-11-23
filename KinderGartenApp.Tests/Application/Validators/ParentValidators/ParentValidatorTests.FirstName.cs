@@ -9,7 +9,7 @@ public partial class ParentValidatorTests
     public void ParentValidator_Validate_FirstNameEmpty_ShouldReturnFalseAndErrorMessage()
     {
         //Arrange
-        Parent validParent = Parent.Create(Guid.NewGuid(), "", "Martinez", "David@gmail.com", "12345678", "1234567890");
+        Parent validParent = Parent.Create(Guid.NewGuid(), "", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
 
         //Act
         var parentValidated = ParentValidator.Validate(validParent);
@@ -22,7 +22,7 @@ public partial class ParentValidatorTests
     public void ParentValidator_Validate_FirstNameBlankSpaces_ShouldReturnFalseAndErrorMessage()
     {
         //Arrange
-        Parent validParent = Parent.Create(Guid.NewGuid(), "   ", "Martinez", "David@gmail.com", "12345678", "1234567890");
+        Parent validParent = Parent.Create(Guid.NewGuid(), "   ", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
 
         //Act
         var parentValidated = ParentValidator.Validate(validParent);
@@ -35,7 +35,7 @@ public partial class ParentValidatorTests
     public void ParentValidator_Validate_FirstNameStartsWithBlankSpace_ShouldReturnFalseAndErrorMessage()
     {
         //Arrange
-        Parent validParent = Parent.Create(Guid.NewGuid(), " David", "Martinez", "David@gmail.com", "12345678", "1234567890");
+        Parent validParent = Parent.Create(Guid.NewGuid(), " David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
 
         //Act
         var parentValidated = ParentValidator.Validate(validParent);
@@ -48,7 +48,7 @@ public partial class ParentValidatorTests
     public void ParentValidator_Validate_FirstNameEndsWithBlankSpace_ShouldReturnFalseAndErrorMessage()
     {
         //Arrange
-        Parent validParent = Parent.Create(Guid.NewGuid(), "David ", "Martinez", "David@gmail.com", "12345678", "1234567890");
+        Parent validParent = Parent.Create(Guid.NewGuid(), "David ", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
 
         //Act
         var parentValidated = ParentValidator.Validate(validParent);
@@ -61,7 +61,7 @@ public partial class ParentValidatorTests
     public void ParentValidator_Validate_FirstNameLenghtMoreThenTheMax_ShouldReturnFalseAndErrorMessage()
     {
         //Arrange
-        Parent validParent = Parent.Create(Guid.NewGuid(), new string('a', maxNamesLenght + 1), "Martinez", "David@gmail.com", "12345678", "1234567890");
+        Parent validParent = Parent.Create(Guid.NewGuid(), new string('a', maxNamesLenght + 1), "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
 
         //Act
         var parentValidated = ParentValidator.Validate(validParent);
@@ -74,7 +74,7 @@ public partial class ParentValidatorTests
     public void ParentValidator_Validate_FirstNameWithSpecialCharacters_ShouldReturnFalseAndErrorMessage()
     {
         //Arrange
-        Parent validParent = Parent.Create(Guid.NewGuid(), "D4v1d", "Martinez", "David@gmail.com", "12345678", "1234567890");
+        Parent validParent = Parent.Create(Guid.NewGuid(), "D4v1d", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
 
         //Act
         var parentValidated = ParentValidator.Validate(validParent);

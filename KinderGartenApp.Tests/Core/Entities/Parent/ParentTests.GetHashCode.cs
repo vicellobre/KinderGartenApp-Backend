@@ -12,7 +12,7 @@ public partial class ParentTests
         var firstName = "David";
         var lastName = "Martinez";
         var email = "david@gmail.com";
-        var password = "password";
+        var password = "passwordmM*123456";
         var phone = "1234567890";
         Parent parent = Parent.Create(id, firstName, lastName, email, password, phone);
 
@@ -27,8 +27,8 @@ public partial class ParentTests
     public void GetHashCode_WithDifferentIds_ShouldReturnDifferentHashCodes()
     {
         // Arrange
-        Parent parent1 = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "1234", "1234567890");
-        Parent parent2 = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "1234", "1234567890");
+        Parent parent1 = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
+        Parent parent2 = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
 
         // Act
         var hashCode1 = parent1.GetHashCode();

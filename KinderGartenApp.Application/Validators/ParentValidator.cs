@@ -75,6 +75,9 @@ public class ParentValidator
                 errors.Add(Error.Password.TooLong(MaxPasswordLenght));
             else if (parent.Password.Length < MinPasswordLenght)
                 errors.Add(Error.Password.TooShort(MinPasswordLenght));
+
+            if (!parent.Password.IsValidPassword())
+                errors.Add(Error.Password.InvalidFormat);
         }
 
         //Validaciones para Phone

@@ -58,7 +58,7 @@ public partial class ParentRepositoryTests
         // Act
         var initialCount = await context.Parents.CountAsync();
 
-        var nonExistentParent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678", "1234567890");
+        var nonExistentParent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
 
         await Assert.ThrowsAsync<DbUpdateConcurrencyException>(() => {
             repository.Delete(nonExistentParent);

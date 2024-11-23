@@ -14,7 +14,7 @@ namespace KinderGartenApp.Tests.Persistence.Contexts
             var context = await TestContextFactory.CreateWithTracker();
 
             // Agregar un nuevo padre
-            var newParent = Parent.Create(Guid.NewGuid(), "Mark", "Taylor", "mark.taylor@example.com", "password789", "456-789-0123");
+            var newParent = Parent.Create(Guid.NewGuid(), "Mark", "Taylor", "mark.taylor@example.com", "12345678mM*", "456-789-0123");
             await context.Parents.AddAsync(newParent);
             await context.SaveChangesAsync();
 

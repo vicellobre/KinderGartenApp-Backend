@@ -69,4 +69,17 @@ public partial class ParentValidatorTests
         //Assert
         Assert.False(parentValidated.IsSuccess);
     }
+
+    [Fact]
+    public void ParentValidator_Validate_PasswordWithAllRequirements_ShouldReturnTrue()
+    {
+        //Arrange
+        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
+
+        //Act
+        var parentValidated = ParentValidator.Validate(parent);
+
+        //Assert
+        Assert.True(parentValidated.IsSuccess);
+    }
 }

@@ -67,7 +67,7 @@ public partial class TeacherTests
     {
         // Arrange
         Teacher teacher1 = Teacher.Create(Guid.NewGuid(), "Juan", "Perez", GradeLevel.Kinder2);
-        object? teacher2 = Parent.Create(Guid.NewGuid(), "Carlos", "Herrera", "carlos@email.com", "0123", "+012225454");
+        object? teacher2 = Parent.Create(Guid.NewGuid(), "Carlos", "Herrera", "carlos@email.com", "12345678mM*", "+012225454");
 
         // Act
         var result = teacher1.Equals(teacher2);

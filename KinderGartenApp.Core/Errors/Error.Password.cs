@@ -16,6 +16,11 @@ public readonly partial record struct Error
         public static readonly Error IsNullOrEmpty = new("Password.IsNullOrEmpty", "The password cannot be empty.");
 
         /// <summary>
+        /// Indica que el password debe de seguir el formato establecido.
+        /// </summary>
+        public static readonly Error InvalidFormat = new("Password.InvalidFormat", "The password does not meet the formatting guidelines");
+
+        /// <summary>
         /// Indica que el password no puede exceder la longitud especificada.
         /// </summary>
         /// <param name="length">La longitud máxima permitida para el password.</param>

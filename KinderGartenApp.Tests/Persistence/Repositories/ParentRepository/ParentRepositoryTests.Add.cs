@@ -15,7 +15,7 @@ public partial class ParentRepositoryTests
         var repository = new ParentRepository(context);
 
         // Act
-        var newParent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678", "1234567890");
+        var newParent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
         repository.Add(newParent);
         await context.SaveChangesAsync();
 

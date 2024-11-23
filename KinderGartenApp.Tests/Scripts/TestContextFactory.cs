@@ -44,8 +44,8 @@ public static class TestContextFactory
         // Crear una lista de padres simulados
         var parents = new List<Parent>
         {
-            Parent.Create(Guid.NewGuid(), "John", "Doe", "john.doe@example.com", "password123", "123-456-7890"),
-            Parent.Create(Guid.NewGuid(), "Jane", "Smith", "jane.smith@example.com", "password456", "098-765-4321")
+            Parent.Create(Guid.NewGuid(), "John", "Doe", "john.doe@example.com", "12345678mM*", "123-456-7890"),
+            Parent.Create(Guid.NewGuid(), "Jane", "Smith", "jane.smith@example.com", "12345678mM*", "098-765-4321")
         };
 
         // Crear una lista de maestros simulados
