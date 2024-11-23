@@ -2,7 +2,7 @@
 
 namespace KinderGartenApp.Tests.Core.Extensions.Strings;
 
-public class StringExtensionsTests
+public partial class StringExtensionsTests
 {
     [Fact]
     public void IsValidPersonName_ShouldReturnTrue_ForValidName()
