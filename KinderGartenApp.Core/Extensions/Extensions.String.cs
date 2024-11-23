@@ -16,6 +16,21 @@ public static class StringExtensions
     {
         return !string.IsNullOrWhiteSpace(input) && Regex.IsMatch(input, @"^[a-zA-ZáéíóúÁÉÍÓÚñÑçÇüÜàÀèÈìÌòÒùÙâêÊîôûäëïöüß]+(?:\s[a-zA-ZáéíóúÁÉÍÓÚñÑçÇüÜàÀèÈìÌòÒùÙâêÊîôûäëïöüß]+)*$");
     }
+
+    public static bool IsValidEmail(this string input)
+    {
+        return !string.IsNullOrWhiteSpace(input) && Regex.IsMatch(input, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
+    }
+
+    public static bool IsValidPhone(this string input)
+    {
+        return !string.IsNullOrWhiteSpace(input) && Regex.IsMatch(input, @"^\d{10}$");
+    }
+
+    public static bool IsValidPassword(this string input)
+    {
+        return !string.IsNullOrWhiteSpace(input) && Regex.IsMatch(input, @"^(?=(.*[a-z]))(?=(.*[A-Z]))(?=(.*\d))(?=(.*[!@#$%^&*(),.?"":{}|<>]))[a-zA-Z\d!@#$%^&*(),.?"":{}|<> ]*$");
+    }
 }
 
 

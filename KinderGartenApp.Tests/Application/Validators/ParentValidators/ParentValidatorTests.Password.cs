@@ -15,8 +15,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The password cannot be empty or contain a blank space.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -29,22 +28,20 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The password cannot be empty or contain a blank space.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
-    public void ParentValidator_Validate_PasswordMidBlankSpace_ShouldReturnFalseAndErrorMessage()
+    public void ParentValidator_Validate_PasswordMidBlankSpace_ShouldReturnTrue()
     {
         //Arrange
-        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12 345678", "1234567890");
+        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "123456 78mM*", "1234567890");
 
         //Act
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal("The password cannot be empty or contain a blank space.", parentValidated.message);
+        Assert.True(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -57,8 +54,7 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal($"The password lenght cannot exceed {maxPasswordLenght} characters.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
     }
 
     [Fact]
@@ -71,7 +67,19 @@ public partial class ParentValidatorTests
         var parentValidated = ParentValidator.Validate(parent);
 
         //Assert
-        Assert.False(parentValidated.isValid);
-        Assert.Equal($"The password lenght cannot be under {minPasswordLenght} characters.", parentValidated.message);
+        Assert.False(parentValidated.IsSuccess);
+    }
+
+    [Fact]
+    public void ParentValidator_Validate_PasswordWithAllRequirements_ShouldReturnTrue()
+    {
+        //Arrange
+        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
+
+        //Act
+        var parentValidated = ParentValidator.Validate(parent);
+
+        //Assert
+        Assert.True(parentValidated.IsSuccess);
     }
 }

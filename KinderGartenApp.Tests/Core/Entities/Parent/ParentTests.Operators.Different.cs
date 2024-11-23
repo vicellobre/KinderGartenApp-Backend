@@ -9,8 +9,8 @@ public partial class ParentTests
     {
         //Arrange
         var id = Guid.NewGuid();
-        Parent parent1 = Parent.Create(id, "David", "Martinez", "David@gmail.com", "1234", "1234567890");
-        Parent parent2 = Parent.Create(id, "Omar", "Montenegro", "Omar@Gmail.com", "123456", "0987654321");
+        Parent parent1 = Parent.Create(id, "David", "Martinez", "David@gmail.com", "12112334mM*", "1234567890");
+        Parent parent2 = Parent.Create(id, "Omar", "Montenegro", "Omar@Gmail.com", "1232222456mM*", "0987654321");
 
         //Act
         bool parent1EqualsToParent2 = parent1 != parent2;
@@ -23,8 +23,8 @@ public partial class ParentTests
     public void Entity_DifferentOperator_ParentsWithDifferentID_ShouldReturnTrue()
     {
         //Arrange
-        Parent parent1 = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "1234", "1234567890");
-        Parent parent2 = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "1234", "1234567890");
+        Parent parent1 = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
+        Parent parent2 = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
 
         //Act
         bool parent1EqualsToParent2 = parent1 != parent2;

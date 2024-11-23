@@ -9,7 +9,7 @@ public partial class ChildTests
     public void Child_SetParent_WithValidParent_ShouldSetTheParentCorrectly()
     {
         //Arrange
-        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678", "1234567890");
+        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
         Child child = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, new Guid(), new Guid());
 
         //Act

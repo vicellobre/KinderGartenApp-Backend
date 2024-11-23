@@ -1,5 +1,7 @@
 using KinderGartenApp.Core.Entities;
-using System.Text.RegularExpressions;
+using KinderGartenApp.Core.Shared;
+using KinderGartenApp.Core.Errors;
+using KinderGartenApp.Core.Extensions;
 
 namespace KinderGartenApp.Application.Validators;
 
@@ -11,62 +13,83 @@ public class ParentValidator
     private const int MaxPasswordLenght = 100;
     private const int MinPasswordLenght = 8;
 
-    public static (bool isValid, string? message) Validate(Parent parent)
+    public static Result<bool> Validate(Parent parent)
     {
-        Regex spetialCharacters = new(@"^[a-zA-Z\s]+$");
-        Regex email = new(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$");
-        Regex phone = new(@"^\d{10}$");
+        /// <summary>
+        /// Lista para almacenar los errores encontrados durante la validación.
+        /// </summary>
+        List<Error> errors = [];
 
         //Validaciones de FirstName
-        if (string.IsNullOrWhiteSpace(parent.FirstName) || parent.FirstName.StartsWith(' ') || parent.FirstName.EndsWith(' '))
-            return (false, "The name cannot be empty or start or end with a blank space.");
+        if (string.IsNullOrWhiteSpace(parent.FirstName))
+        {
+            errors.Add(Error.FirstName.IsNullOrEmpty);
+        }
+        else
+        {
+            if (parent.FirstName.Length > MaxNamesLenght)
+                errors.Add(Error.FirstName.TooLong(MaxNamesLenght));
 
-        if (parent.FirstName.Length > MaxNamesLenght)
-            return (false, $"The name cannot exceed {MaxNamesLenght} characters.");
-
-        if (!spetialCharacters.IsMatch(parent.FirstName))
-            return (false, "The name cannot contain special characters.");
+            if (!parent.FirstName.IsValidPersonName())
+                errors.Add(Error.FirstName.InvalidSpecialCharacters);
+        }
 
         //Validaciones de LastName
-        if (string.IsNullOrWhiteSpace(parent.LastName) || parent.LastName.StartsWith(' ') || parent.LastName.EndsWith(' '))
-            return (false, "The last name cannot be empty or start or end with a blank space.");
+        if (string.IsNullOrWhiteSpace(parent.LastName))
+        {
+            errors.Add(Error.FirstName.IsNullOrEmpty);
+        }
+        else
+        {
+            if (parent.LastName.Length > MaxNamesLenght)
+                errors.Add(Error.FirstName.TooLong(MaxNamesLenght));
 
-        if (parent.LastName.Length > MaxNamesLenght)
-            return (false, $"The last name cannot exceed {MaxNamesLenght} characters.");
-
-        if (!spetialCharacters.IsMatch(parent.LastName))
-            return (false, "The last name cannot contain special characters.");
+            if (!parent.LastName.IsValidPersonName())
+                errors.Add(Error.FirstName.InvalidSpecialCharacters);
+        }
 
         //Validaciones de Email
         if (string.IsNullOrWhiteSpace(parent.Email) || parent.Email.Contains(' '))
-            return (false, "The email cannot be empty or contain a blank space.");
+        {
+            errors.Add(Error.Email.IsNullOrEmpty);
+        }
+        else
+        {
+            if (parent.Email.Length > MaxEmailLenght)
+                errors.Add(Error.Email.TooLong(MaxEmailLenght));
+            else if (parent.Email.Length < MinEmailLenght)
+                errors.Add(Error.Email.TooShort(MinEmailLenght));
 
-        if (parent.Email.Length > MaxEmailLenght)
-            return (false, $"The email lenght cannot exceed {MaxEmailLenght} characters.");
-
-        if (parent.Email.Length < MinEmailLenght)
-            return (false, $"The email lenght cannot be under {MinEmailLenght} characters.");
-
-        if (!email.IsMatch(parent.Email))
-            return (false, "Invalid email format.");
+            if (!parent.Email.IsValidEmail())
+                errors.Add(Error.Email.InvalidFormat);
+        }
 
         //Validaciones de Password
-        if (string.IsNullOrWhiteSpace(parent.Password) || parent.Password.Contains(' '))
-            return (false, "The password cannot be empty or contain a blank space.");
+        if (string.IsNullOrWhiteSpace(parent.Password))
+        {
+            errors.Add(Error.Password.IsNullOrEmpty);
+        }
+        else
+        {
+            if (parent.Password.Length > MaxPasswordLenght)
+                errors.Add(Error.Password.TooLong(MaxPasswordLenght));
+            else if (parent.Password.Length < MinPasswordLenght)
+                errors.Add(Error.Password.TooShort(MinPasswordLenght));
 
-        if (parent.Password.Length > MaxPasswordLenght)
-            return (false, $"The password lenght cannot exceed {MaxPasswordLenght} characters.");
-
-        if (parent.Password.Length < MinPasswordLenght)
-            return (false, $"The password lenght cannot be under {MinPasswordLenght} characters.");
+            if (!parent.Password.IsValidPassword())
+                errors.Add(Error.Password.InvalidFormat);
+        }
 
         //Validaciones para Phone
         if (string.IsNullOrWhiteSpace(parent.Phone) || parent.Phone.Contains(' '))
-            return (false, "The phone cannot be empty or contain a blank space.");
+        {
+            errors.Add(Error.Phone.IsNullOrEmpty);
+        }
+        else if (!parent.Phone.IsValidPhone())
+        {
+            errors.Add(Error.Phone.InvalidFormat);
+        }
 
-        if (!phone.IsMatch(parent.Phone))
-            return (false, "Invalid phone format.");
-
-        return (true, string.Empty);
+        return errors.IsEmpty() ? Result<bool>.Success(true) : Result<bool>.Failure(errors);
     }
 }

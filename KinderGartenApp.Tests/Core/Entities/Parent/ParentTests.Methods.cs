@@ -13,7 +13,7 @@ public partial class ParentTests
         var firstName = "David";
         var lastName = "Martinez";
         var email = "david@gmail.com";
-        var password = "password";
+        var password = "passwordmM*";
         var phone = "1234567890";
 
 
@@ -33,7 +33,7 @@ public partial class ParentTests
     public void Parent_AddChild_WithValidData_ShouldAddChildrenCorrectly()
     {
         //Arrange
-        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678", "1234567890");
+        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
         Child child = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, new Guid(), new Guid());
 
         //Act
@@ -49,7 +49,7 @@ public partial class ParentTests
     public void Parent_AddChild_CanAddMoreThanOneSon_ShouldAddChildrenCorrectly()
     {
         //Arrange
-        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "1234", "1234567890");
+        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
         Child child1 = Child.Create(Guid.NewGuid(), "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, new Guid(), new Guid());
         Child child2 = Child.Create(Guid.NewGuid(), "Theo", "Suarez", DateTime.Now.AddYears(-7), GradeLevel.Kinder2, new Guid(), new Guid());
 
@@ -69,7 +69,7 @@ public partial class ParentTests
     public void Parent_AddChild_CantAddTheSameChildren_ShouldAddJustOneChild()
     {
         //Arrange
-        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "1234", "1234567890");
+        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
         var id = Guid.NewGuid();
         Child child1 = Child.Create(id, "Mateo", "Quiceno", DateTime.Now.AddYears(-7), GradeLevel.Kinder3, new Guid(), new Guid());
         Child child2 = Child.Create(id, "Theo", "Suarez", DateTime.Now.AddYears(-7), GradeLevel.Kinder2, new Guid(), new Guid());
@@ -89,7 +89,7 @@ public partial class ParentTests
     public void Parent_AddChild_CantAddNullChild_ShouldReturnFalse()
     {
         //Arrange
-        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "1234", "1234567890");
+        Parent parent = Parent.Create(Guid.NewGuid(), "David", "Martinez", "David@gmail.com", "12345678mM*", "1234567890");
         Child? child = null;
 
         //Act

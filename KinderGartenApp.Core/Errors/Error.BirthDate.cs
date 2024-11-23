@@ -6,7 +6,7 @@
 public readonly partial record struct Error
 {
     /// <summary>
-    /// Errores relacionados con el primer nombre.
+    /// Errores relacionados con la fecha de nacimiento.
     /// </summary>
     public static class BirthDate
     {
