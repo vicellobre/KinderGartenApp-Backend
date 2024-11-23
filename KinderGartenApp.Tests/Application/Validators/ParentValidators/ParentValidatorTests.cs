@@ -19,7 +19,7 @@ public partial class ParentValidatorTests
         var firstName = "David";
         var lastName = "Martinez";
         var email = "david@gmail.com";
-        var password = "passwordmM*";
+        var password = "12345678mM*";
         var phone = "1234567890";
         Parent validParent = Parent.Create(id, firstName, lastName, email, password, phone);
 
