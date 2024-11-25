@@ -91,4 +91,48 @@ public partial class ResultTests
         Assert.Contains(Error.NullValue, result.Errors);
         Assert.Equal(Error.NullValue, result.FirstError);
     }
+
+    [Fact]
+    public void Failure_ShouldCreateFailureResult_WithException()
+    {
+        // Arrange
+        var exception = new InvalidOperationException("Invalid operation occurred");
+
+        // Act
+        var result = Result<string>.Failure(exception);
+
+        // Assert
+        Assert.False(result.IsSuccess);
+        Assert.Single(result.Errors);
+        var error = result.FirstError;
+        Assert.Equal("InvalidOperationException", error.Code);
+        Assert.Equal("Invalid operation occurred", error.Message);
+    }
+
+    [Fact]
+    public void Failure_ShouldCreateFailureResult_WithExceptionType()
+    {
+        // Arrange
+        var exception = new ArgumentNullException("paramName", "Parameter cannot be null");
+
+        // Act
+        var result = Result<string>.Failure(exception);
+
+        // Assert
+        Assert.False(result.IsSuccess);
+        Assert.Single(result.Errors);
+        var error = result.FirstError;
+        Assert.Equal("ArgumentNullException", error.Code);
+        Assert.Equal("Parameter cannot be null (Parameter 'paramName')", error.Message);
+    }
+
+    [Fact]
+    public void Failure_ShouldCreateFailureResult_WithNullException()
+    {
+        // Arrange
+        Exception? exception = null;
+
+        // Act & Assert
+        Assert.Throws<NullReferenceException>(() => Result<string>.Failure(exception!));
+    }
 }
