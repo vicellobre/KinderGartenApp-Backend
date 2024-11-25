@@ -80,7 +80,7 @@ public static class StringExtensions
     /// <param name="input">La cadena de texto a capitalizar.</param>
     /// <returns>Una nueva cadena con las palabras capitalizadas.</returns>
     /// <exception cref="ArgumentNullException">Se lanza cuando el parámetro input es nulo o vacío.</exception>
-    public static string CapitalizeWords(this string input)
+    public static string CapitalizeWords(this string? input)
     {
         ArgumentNullException.ThrowIfNull(input);
 
