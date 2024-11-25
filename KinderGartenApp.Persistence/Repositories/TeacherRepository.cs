@@ -53,5 +53,5 @@ public class TeacherRepository : RepositoryBase<Teacher>, ITeacherRepository
     public void Update(Teacher teacher) => Set.Update(teacher);
 
     /// <inheritdoc />
-    public void Delete(Teacher teacher) => Set.Remove(teacher);
+    public void Remove(Teacher teacher) => Set.Remove(teacher);
 }

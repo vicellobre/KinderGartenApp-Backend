@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\KinderGartenApp.Application\KinderGartenApp.Application.csproj" />
     <ProjectReference Include="..\KinderGartenApp.Persistence\KinderGartenApp.Persistence.csproj" />
   </ItemGroup>

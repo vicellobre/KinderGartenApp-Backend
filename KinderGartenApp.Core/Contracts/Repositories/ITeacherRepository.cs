@@ -71,5 +71,5 @@ public interface ITeacherRepository
     /// Elimina un maestro del repositorio.
     /// </summary>
     /// <param name="teacher">El maestro a eliminar.</param>
-    void Delete(Teacher teacher);
+    void Remove(Teacher teacher);
 }

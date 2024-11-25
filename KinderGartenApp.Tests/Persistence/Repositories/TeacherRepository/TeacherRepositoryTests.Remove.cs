@@ -1,18 +1,15 @@
-﻿using System;
-using System.Threading.Tasks;
-using KinderGartenApp.Core.Entities;
+﻿using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Enumarations;
 using KinderGartenApp.Persistence.Repositories;
 using KinderGartenApp.Tests.Scripts;
 using Microsoft.EntityFrameworkCore;
-using Xunit;
 
 namespace KinderGartenApp.Tests.Persistence.Repositories
 {
     public partial class TeacherRepositoryTests
     {
         [Fact]
-        public async Task Can_Delete_Teacher()
+        public async Task Can_Remove_Teacher()
         {
             // Crear el contexto con datos simulados
             var context = await TestContextFactory.CreateWithTracker();
@@ -22,16 +19,16 @@ namespace KinderGartenApp.Tests.Persistence.Repositories
             var teacher = await context.Teachers.FirstAsync();
 
             // Eliminar el maestro
-            repository.Delete(teacher);
+            repository.Remove(teacher);
             await context.SaveChangesAsync();
 
             // Verificar que el maestro se haya eliminado correctamente
-            var deletedTeacher = await repository.GetByIdAsync(teacher.Id);
-            Assert.Null(deletedTeacher);
+            var removedTeacher = await repository.GetByIdAsync(teacher.Id);
+            Assert.Null(removedTeacher);
         }
 
         [Fact]
-        public async Task Cant_Delete_Null_Teacher()
+        public async Task Cant_Remove_Null_Teacher()
         {
             // Crear el contexto con datos simulados
             var context = await TestContextFactory.CreateWithTracker();
@@ -45,7 +42,7 @@ namespace KinderGartenApp.Tests.Persistence.Repositories
 
             // Se espera una excepción al intentar eliminar un maestro nulo
             await Assert.ThrowsAsync<ArgumentNullException>(() => {
-                repository.Delete(nullTeacher!);
+                repository.Remove(nullTeacher!);
                 return context.SaveChangesAsync();
             });
 
@@ -57,7 +54,7 @@ namespace KinderGartenApp.Tests.Persistence.Repositories
         }
 
         [Fact]
-        public async Task Cant_Delete_NonExistent_Teacher()
+        public async Task Cant_Remove_NonExistent_Teacher()
         {
             // Crear el contexto con datos simulados
             var context = await TestContextFactory.CreateWithTracker();
@@ -71,7 +68,7 @@ namespace KinderGartenApp.Tests.Persistence.Repositories
 
             // Intentar eliminar el maestro inexistente y manejar la excepción
             await Assert.ThrowsAsync<DbUpdateConcurrencyException>(() => {
-                repository.Delete(nonExistentTeacher);
+                repository.Remove(nonExistentTeacher);
                 return context.SaveChangesAsync();
             });
 
