@@ -29,7 +29,7 @@ public record class RegisterTeacherMessage
     /// <param name="teacher">El objeto <see cref="RegisterTeacherMessage"/> a convertir.</param>
     /// <returns>Un nuevo objeto <see cref="Teacher"/>.</returns>
     /// <exception cref="ArgumentNullException">Se lanza cuando el parámetro <paramref name="teacher"/> es nulo.</exception>
-    public static explicit operator Teacher(RegisterTeacherMessage teacher)
+    public static explicit operator Teacher(RegisterTeacherMessage? teacher)
     {
         if (teacher is null)
         {

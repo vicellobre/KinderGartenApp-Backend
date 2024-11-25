@@ -5,7 +5,7 @@ using Moq;
 
 namespace KinderGartenApp.Tests.Infrastructure.Services;
 
-public class TeacherServiceTests_Constructor
+public partial class TeacherServiceTests
 {
     [Fact]
     public void Constructor_ShouldThrowArgumentNullException_WhenUnitOfWorkIsNull()
