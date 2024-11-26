@@ -13,9 +13,10 @@ public partial class TeacherServiceTests
         // Arrange
         IUnitOfWork? unitOfWork = null;
         var mockTeacherRepository = new Mock<ITeacherRepository>();
+        var mockStudentRepository = new Mock<IChildRepository>();
 
         // Act & Assert
-        var exception = Assert.Throws<ArgumentNullException>(() => new TeacherService(unitOfWork, mockTeacherRepository.Object));
+        var exception = Assert.Throws<ArgumentNullException>(() => new TeacherService(unitOfWork, mockTeacherRepository.Object, mockStudentRepository.Object));
         Assert.Equal("unitOfWork", exception.ParamName);
     }
 
@@ -25,10 +26,24 @@ public partial class TeacherServiceTests
         // Arrange
         var mockUnitOfWork = new Mock<IUnitOfWork>();
         ITeacherRepository? teacherRepository = null;
+        var mockStudentRepository = new Mock<IChildRepository>();
 
         // Act & Assert
-        var exception = Assert.Throws<ArgumentNullException>(() => new TeacherService(mockUnitOfWork.Object, teacherRepository));
+        var exception = Assert.Throws<ArgumentNullException>(() => new TeacherService(mockUnitOfWork.Object, teacherRepository, mockStudentRepository.Object));
         Assert.Equal("teacherRepository", exception.ParamName);
+    }
+
+    [Fact]
+    public void Constructor_ShouldThrowArgumentNullException_WhenStudentRepositoryIsNull()
+    {
+        // Arrange
+        var mockUnitOfWork = new Mock<IUnitOfWork>();
+        var mockTeacherRepository = new Mock<ITeacherRepository>();
+        IChildRepository? studentRepository = null;
+
+        // Act & Assert
+        var exception = Assert.Throws<ArgumentNullException>(() => new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object, studentRepository));
+        Assert.Equal("studentRepository", exception.ParamName);
     }
 
     [Fact]
@@ -37,9 +52,10 @@ public partial class TeacherServiceTests
         // Arrange
         var mockUnitOfWork = new Mock<IUnitOfWork>();
         var mockTeacherRepository = new Mock<ITeacherRepository>();
+        var mockStudentRepository = new Mock<IChildRepository>();
 
         // Act
-        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object);
+        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object, mockStudentRepository.Object);
 
         // Assert
         Assert.NotNull(service);

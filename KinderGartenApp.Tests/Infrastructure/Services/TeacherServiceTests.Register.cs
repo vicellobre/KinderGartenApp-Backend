@@ -17,6 +17,7 @@ public partial class TeacherServiceTests
         // Arrange
         var mockUnitOfWork = new Mock<IUnitOfWork>();
         var mockTeacherRepository = new Mock<ITeacherRepository>();
+        var mockStudentRepository = new Mock<IChildRepository>();
 
         var message = new RegisterTeacherMessage
         {
@@ -30,7 +31,7 @@ public partial class TeacherServiceTests
         mockTeacherRepository.Setup(repo => repo.Add(It.IsAny<Teacher>()));
         mockUnitOfWork.Setup(uow => uow.CommitAsync(It.IsAny<CancellationToken>())).Returns(Task.FromResult(1));
 
-        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object);
+        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object, mockStudentRepository.Object);
 
         // Act
         var result = await service.Register(message);
@@ -49,6 +50,7 @@ public partial class TeacherServiceTests
         // Arrange
         var mockUnitOfWork = new Mock<IUnitOfWork>();
         var mockTeacherRepository = new Mock<ITeacherRepository>();
+        var mockStudentRepository = new Mock<IChildRepository>();
 
         var message = new RegisterTeacherMessage
         {
@@ -57,8 +59,8 @@ public partial class TeacherServiceTests
             GradeLevel = GradeLevel.Kinder2
         };
 
-        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object);
-        
+        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object, mockStudentRepository.Object);
+
         // Act
         var result = await service.Register(message);
 
@@ -74,6 +76,7 @@ public partial class TeacherServiceTests
         // Arrange
         var mockUnitOfWork = new Mock<IUnitOfWork>();
         var mockTeacherRepository = new Mock<ITeacherRepository>();
+        var mockStudentRepository = new Mock<IChildRepository>();
 
         var message = new RegisterTeacherMessage
         {
@@ -86,7 +89,7 @@ public partial class TeacherServiceTests
 
         mockTeacherRepository.Setup(repo => repo.Add(It.IsAny<Teacher>())).Throws(new InvalidOperationException("Database error"));
 
-        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object);
+        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object, mockStudentRepository.Object);
 
         // Act
         var result = await service.Register(message);

@@ -17,6 +17,7 @@ public partial class TeacherServiceTests
         // Arrange
         var mockUnitOfWork = new Mock<IUnitOfWork>();
         var mockTeacherRepository = new Mock<ITeacherRepository>();
+        var mockStudentRepository = new Mock<IChildRepository>();
 
         var existingTeacher = Teacher.Create(Guid.NewGuid(), "John", "Doe", GradeLevel.Kinder1);
         var message = new UpdateTeacherMessage
@@ -30,7 +31,8 @@ public partial class TeacherServiceTests
         mockTeacherRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>())).ReturnsAsync(existingTeacher);
         mockUnitOfWork.Setup(uow => uow.CommitAsync(It.IsAny<CancellationToken>())).Returns(Task.FromResult(1));
 
-        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object);
+
+        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object, mockStudentRepository.Object);
 
         // Act
         var result = await service.Update(message);
@@ -49,10 +51,11 @@ public partial class TeacherServiceTests
         // Arrange
         var mockUnitOfWork = new Mock<IUnitOfWork>();
         var mockTeacherRepository = new Mock<ITeacherRepository>();
+        var mockStudentRepository = new Mock<IChildRepository>();
 
         mockTeacherRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>())).ReturnsAsync((Teacher?)null);
 
-        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object);
+        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object, mockStudentRepository.Object);
 
         var message = new UpdateTeacherMessage
         {
@@ -77,6 +80,7 @@ public partial class TeacherServiceTests
         // Arrange
         var mockUnitOfWork = new Mock<IUnitOfWork>();
         var mockTeacherRepository = new Mock<ITeacherRepository>();
+        var mockStudentRepository = new Mock<IChildRepository>();
 
         var existingTeacher = Teacher.Create(Guid.NewGuid(), "John", "Doe", GradeLevel.Kinder1);
         var message = new UpdateTeacherMessage
@@ -89,7 +93,7 @@ public partial class TeacherServiceTests
 
         mockTeacherRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>())).ReturnsAsync(existingTeacher);
 
-        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object);
+        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object, mockStudentRepository.Object);
 
         // Act
         var result = await service.Update(message);
@@ -106,6 +110,7 @@ public partial class TeacherServiceTests
         // Arrange
         var mockUnitOfWork = new Mock<IUnitOfWork>();
         var mockTeacherRepository = new Mock<ITeacherRepository>();
+        var mockStudentRepository = new Mock<IChildRepository>();
 
         var existingTeacher = Teacher.Create(Guid.NewGuid(), "John", "Doe", GradeLevel.PreKinder);
         var message = new UpdateTeacherMessage
@@ -119,7 +124,7 @@ public partial class TeacherServiceTests
         mockTeacherRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>())).ReturnsAsync(existingTeacher);
         mockUnitOfWork.Setup(uow => uow.CommitAsync(It.IsAny<CancellationToken>())).Throws(new InvalidOperationException("Database error"));
 
-        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object);
+        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object, mockStudentRepository.Object);
 
         // Act
         var result = await service.Update(message);

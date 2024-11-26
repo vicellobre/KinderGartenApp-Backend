@@ -1,4 +1,5 @@
 ﻿using KinderGartenApp.Application.Contracts.Services;
+using KinderGartenApp.Application.DTOs.Teachers.AddStudent;
 using KinderGartenApp.Application.DTOs.Teachers.Deletes;
 using KinderGartenApp.Application.DTOs.Teachers.Get;
 using KinderGartenApp.Application.DTOs.Teachers.Register;
@@ -10,6 +11,7 @@ using KinderGartenApp.Core.Contracts.UnitOfWorks;
 using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Errors;
 using KinderGartenApp.Core.Shared;
+using KinderGartenApp.Persistence.Repositories;
 
 namespace KinderGartenApp.Infrastructure.Services;
 
@@ -20,11 +22,13 @@ public class TeacherService : ITeacherService
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly ITeacherRepository _teacherRepository;
+    private readonly IChildRepository _studentRepository;
 
-    public TeacherService(IUnitOfWork? unitOfWork, ITeacherRepository? teacherRepository)
+    public TeacherService(IUnitOfWork? unitOfWork, ITeacherRepository? teacherRepository, IChildRepository? studentRepository)
     {
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
         _teacherRepository = teacherRepository ?? throw new ArgumentNullException(nameof(teacherRepository));
+        _studentRepository = studentRepository ?? throw new ArgumentNullException(nameof(studentRepository));
     }
 
     /// <summary>
@@ -149,6 +153,55 @@ public class TeacherService : ITeacherService
         catch (Exception ex)
         {
             return Result<DeleteTeacherResponse>.Failure(ex);
+        }
+    }
+
+    /// <summary>
+    /// Añade un estudiante a un maestro.
+    /// </summary>
+    /// <param name="message">El mensaje que contiene los detalles del estudiante a añadir.</param>
+    /// <returns>Un resultado que contiene la respuesta del estudiante añadido.</returns>
+    public async Task<Result<AddStudentResponse>> AddStudent(AddStudentMessage message)
+    {
+        try
+        {
+            var teacher = await _teacherRepository.GetByIdAsync(message.TeacherId);
+            if (teacher is null)
+            {
+                return Result<AddStudentResponse>.Failure(Error.Create("NotFound", "Teacher not found"));
+            }
+
+            var student = await _studentRepository.GetByIdAsync(message.StudentId);
+            if (student is null)
+            {
+                return Result<AddStudentResponse>.Failure(Error.Create("NotFound", "Student not found"));
+            }
+
+            if (teacher.GradeLevel != student.GradeLevel)
+            {
+                return Result<AddStudentResponse>.Failure(Error.Create("GradeLevelMismatch", "Teacher and student must be in the same grade level"));
+            }
+
+            // Asignar el estudiante al maestro
+            student.TeacherId = message.TeacherId;
+
+            await _unitOfWork.CommitAsync();
+
+            var response = new AddStudentResponse
+            {
+                StudentId = student.Id,
+                StudentFirstName = student.FirstName,
+                StudentLastName = student.LastName,
+                TeacherId = teacher.Id,
+                TeacherFirstName = teacher.FirstName,
+                TeacherLastName = teacher.LastName
+            };
+
+            return Result<AddStudentResponse>.Success(response);
+        }
+        catch (Exception ex)
+        {
+            return Result<AddStudentResponse>.Failure(ex);
         }
     }
 

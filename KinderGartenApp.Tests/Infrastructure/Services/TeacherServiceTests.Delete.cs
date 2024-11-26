@@ -16,11 +16,12 @@ public partial class TeacherServiceTests
         // Arrange
         var mockUnitOfWork = new Mock<IUnitOfWork>();
         var mockTeacherRepository = new Mock<ITeacherRepository>();
+        var mockStudentRepository = new Mock<IChildRepository>();
 
         var teacher = Teacher.Create(Guid.NewGuid(), "John", "Doe", GradeLevel.Kinder3);
         mockTeacherRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>())).ReturnsAsync(teacher);
 
-        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object);
+        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object, mockStudentRepository.Object);
 
         var message = new DeleteTeacherMessage { Id = teacher.Id };
 
@@ -41,10 +42,11 @@ public partial class TeacherServiceTests
         // Arrange
         var mockUnitOfWork = new Mock<IUnitOfWork>();
         var mockTeacherRepository = new Mock<ITeacherRepository>();
+        var mockStudentRepository = new Mock<IChildRepository>();
 
         mockTeacherRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>())).ReturnsAsync((Teacher?)null);
 
-        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object);
+        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object, mockStudentRepository.Object);
 
         var message = new DeleteTeacherMessage { Id = Guid.NewGuid() };
 
@@ -63,12 +65,13 @@ public partial class TeacherServiceTests
         // Arrange
         var mockUnitOfWork = new Mock<IUnitOfWork>();
         var mockTeacherRepository = new Mock<ITeacherRepository>();
+        var mockStudentRepository = new Mock<IChildRepository>();
 
         var teacher = Teacher.Create(Guid.NewGuid(), "John", "Doe", GradeLevel.Kinder2);
         mockTeacherRepository.Setup(repo => repo.GetByIdAsync(It.IsAny<Guid>(), It.IsAny<CancellationToken>())).ReturnsAsync(teacher);
         mockUnitOfWork.Setup(uow => uow.CommitAsync(It.IsAny<CancellationToken>())).Throws(new InvalidOperationException("Database error"));
 
-        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object);
+        var service = new TeacherService(mockUnitOfWork.Object, mockTeacherRepository.Object, mockStudentRepository.Object);
 
         var message = new DeleteTeacherMessage { Id = teacher.Id };
 

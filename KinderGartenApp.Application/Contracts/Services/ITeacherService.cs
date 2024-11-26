@@ -1,4 +1,5 @@
-﻿using KinderGartenApp.Application.DTOs.Teachers.Deletes;
+﻿using KinderGartenApp.Application.DTOs.Teachers.AddStudent;
+using KinderGartenApp.Application.DTOs.Teachers.Deletes;
 using KinderGartenApp.Application.DTOs.Teachers.Get;
 using KinderGartenApp.Application.DTOs.Teachers.Register;
 using KinderGartenApp.Application.DTOs.Teachers.Update;
@@ -38,4 +39,11 @@ public interface ITeacherService
     /// <param name="message">El mensaje que contiene los detalles del maestro a eliminar.</param>
     /// <returns>Un resultado que contiene la respuesta del maestro eliminado.</returns>
     Task<Result<DeleteTeacherResponse>> Delete(DeleteTeacherMessage message);
+
+    /// <summary>
+    /// Añade un estudiante a un maestro.
+    /// </summary>
+    /// <param name="message">El mensaje que contiene los detalles del estudiante a añadir.</param>
+    /// <returns>Un resultado que contiene la respuesta del estudiante añadido.</returns>
+    Task<Result<AddStudentResponse>> AddStudent(AddStudentMessage message);
 }
