@@ -80,6 +80,15 @@ public readonly record struct Result<TValue>
     public static Result<TValue> Failure(Error error) => new(error);
 
     /// <summary>
+    /// Crea una nueva instancia de la estructura <see cref="Result{TValue}"/> con la excepción especificada,
+    /// utilizando el tipo de la excepción como código de error y el mensaje de la excepción como descripción.
+    /// </summary>
+    /// <param name="exception">La excepción resultante de la operación.</param>
+    /// <returns>Una nueva instancia de la estructura <see cref="Result{TValue}"/>.</returns>
+    public static Result<TValue> Failure(Exception exception) =>
+        Failure(Error.Create(exception.GetType().Name, exception.Message));
+
+    /// <summary>
     /// Crea una nueva instancia de la estructura <see cref="Result{TValue}"/> con la colección de errores especificada.
     /// </summary>
     /// <param name="errors">La colección de errores resultantes de la operación.</param>
