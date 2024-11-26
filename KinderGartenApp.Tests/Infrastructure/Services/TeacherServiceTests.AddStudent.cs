@@ -3,6 +3,7 @@ using KinderGartenApp.Core.Contracts.Repositories;
 using KinderGartenApp.Core.Contracts.UnitOfWorks;
 using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Enumarations;
+using KinderGartenApp.Core.Errors;
 using KinderGartenApp.Infrastructure.Services;
 using Moq;
 
@@ -70,8 +71,8 @@ public partial class TeacherServiceTests
 
         // Assert
         Assert.False(result.IsSuccess);
-        Assert.Equal("NotFound", result.FirstError.Code);
-        Assert.Equal("Teacher not found", result.FirstError.Message);
+        Assert.Equal(Error.Teacher.NotFound.Code, result.FirstError.Code);
+        Assert.Equal(Error.Teacher.NotFound.Message, result.FirstError.Message);
     }
 
     [Fact]
@@ -99,8 +100,8 @@ public partial class TeacherServiceTests
 
         // Assert
         Assert.False(result.IsSuccess);
-        Assert.Equal("NotFound", result.FirstError.Code);
-        Assert.Equal("Student not found", result.FirstError.Message);
+        Assert.Equal(Error.Child.NotFound.Code, result.FirstError.Code);
+        Assert.Equal(Error.Child.NotFound.Message, result.FirstError.Message);
     }
 
     [Fact]
@@ -130,8 +131,8 @@ public partial class TeacherServiceTests
 
         // Assert
         Assert.False(result.IsSuccess);
-        Assert.Equal("GradeLevelMismatch", result.FirstError.Code);
-        Assert.Equal("Teacher and student must be in the same grade level", result.FirstError.Message);
+        Assert.Equal(Error.Teacher.GradeLevelMismatch(teacher.GradeLevel).Code, result.FirstError.Code);
+        Assert.Equal(Error.Teacher.GradeLevelMismatch(teacher.GradeLevel).Message, result.FirstError.Message);
     }
 
     [Fact]

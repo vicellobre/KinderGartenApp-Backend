@@ -1,5 +1,6 @@
 ﻿using KinderGartenApp.Core.Enumarations;
 using KinderGartenApp.Core.Entities;
+using KinderGartenApp.Core.Errors;
 
 namespace KinderGartenApp.Application.DTOs.Teachers.Register;
 
@@ -33,7 +34,7 @@ public record class RegisterTeacherMessage
     {
         if (teacher is null)
         {
-            throw new ArgumentNullException(nameof(teacher), "RegisterTeacherMessage cannot be null");
+            throw new ArgumentNullException(nameof(teacher), Error.TeacherRequest.RegisterIsNull.Message);
         }
 
         return Teacher.Create(Guid.NewGuid(), teacher.FirstName, teacher.LastName, teacher.GradeLevel);

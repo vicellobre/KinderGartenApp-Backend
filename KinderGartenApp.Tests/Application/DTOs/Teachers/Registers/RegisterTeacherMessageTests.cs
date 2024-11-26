@@ -1,6 +1,7 @@
 ﻿using KinderGartenApp.Application.DTOs.Teachers.Register;
 using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Enumarations;
+using KinderGartenApp.Core.Errors;
 
 namespace KinderGartenApp.Tests.Application.DTOs.Teachers.Registers;
 
@@ -35,6 +36,6 @@ public class RegisterTeacherMessageTests
 
         // Act & Assert
         var exception = Assert.Throws<ArgumentNullException>(() => (Teacher?)message);
-        Assert.Equal("RegisterTeacherMessage cannot be null (Parameter 'teacher')", exception.Message);
+        Assert.Contains(Error.TeacherRequest.RegisterIsNull.Message, exception.Message);
     }
 }

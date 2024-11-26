@@ -1,5 +1,6 @@
 ﻿using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Enumarations;
+using KinderGartenApp.Core.Errors;
 
 namespace KinderGartenApp.Application.DTOs.Teachers.Update;
 
@@ -38,7 +39,7 @@ public record class UpdateTeacherMessage
     {
         if (message is null)
         {
-            throw new ArgumentNullException(nameof(message), "UpdateTeacherMessage cannot be null");
+            throw new ArgumentNullException(nameof(message), Error.TeacherRequest.UpdateIsNull.Message);
         }
 
         return Teacher.Create(message.Id, message.FirstName, message.LastName, message.GradeLevel);

@@ -1,4 +1,5 @@
 ﻿using KinderGartenApp.Core.Entities;
+using KinderGartenApp.Core.Errors;
 
 namespace KinderGartenApp.Application.DTOs.Teachers.Deletes;
 
@@ -32,7 +33,7 @@ public record class DeleteTeacherResponse
     {
         if (teacher is null)
         {
-            throw new ArgumentNullException(nameof(teacher), "Teacher cannot be null");
+            throw new ArgumentNullException(nameof(teacher), Error.Teacher.IsNull.Message);
         }
 
         return new DeleteTeacherResponse

@@ -1,6 +1,7 @@
 ﻿using KinderGartenApp.Application.DTOs.Teachers.Update;
 using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Enumarations;
+using KinderGartenApp.Core.Errors;
 
 namespace KinderGartenApp.Tests.Application.DTOs.Teachers.Updates;
 
@@ -37,6 +38,6 @@ public class UpdateTeacherMessageTests
 
         // Act & Assert
         var exception = Assert.Throws<ArgumentNullException>(() => (Teacher?)message);
-        Assert.Equal("UpdateTeacherMessage cannot be null (Parameter 'message')", exception.Message);
+        Assert.Contains(Error.TeacherRequest.UpdateIsNull.Message, exception.Message);
     }
 }

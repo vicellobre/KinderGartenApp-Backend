@@ -1,6 +1,7 @@
 ﻿using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Extensions;
 using KinderGartenApp.Core.Exceptions;
+using KinderGartenApp.Core.Errors;
 
 namespace KinderGartenApp.Application.Filters;
 
@@ -20,7 +21,7 @@ public class TeacherFilter
     {
         if (teacher is null)
         {
-            throw new ArgumentNullException(nameof(teacher), "Teacher cannot be null");
+            throw new ArgumentNullException(nameof(teacher), Error.Teacher.IsNull.Message);
         }
 
         return new TeacherFilter()
@@ -53,7 +54,7 @@ public class TeacherFilter
     /// <exception cref="ArgumentNullException">Se lanza cuando el parámetro teacher es nulo.</exception>
     public TeacherFilter Set(Teacher teacher)
     {
-        _teacher = teacher ?? throw new ArgumentNullException(nameof(teacher), "Teacher cannot be null");
+        _teacher = teacher ?? throw new ArgumentNullException(nameof(teacher), Error.Teacher.IsNull.Message);
         return this;
     }
 

@@ -11,7 +11,6 @@ using KinderGartenApp.Core.Contracts.UnitOfWorks;
 using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Errors;
 using KinderGartenApp.Core.Shared;
-using KinderGartenApp.Persistence.Repositories;
 
 namespace KinderGartenApp.Infrastructure.Services;
 
@@ -74,7 +73,7 @@ public class TeacherService : ITeacherService
 
             if (teacher is null)
             {
-                return Result<GetTeacherResponse>.Failure(Error.Create("NotFound", "Teacher not found"));
+                return Result<GetTeacherResponse>.Failure(Error.Teacher.NotFound);
             }
 
             var response = (GetTeacherResponse)teacher;
@@ -99,7 +98,7 @@ public class TeacherService : ITeacherService
             var existingTeacher = await _teacherRepository.GetByIdAsync(message.Id);
             if (existingTeacher is null)
             {
-                return Result<UpdateTeacherResponse>.Failure(Error.Create("NotFound", "Teacher not found"));
+                return Result<UpdateTeacherResponse>.Failure(Error.Teacher.NotFound);
             }
 
             var teacher = (Teacher)message;
@@ -140,7 +139,7 @@ public class TeacherService : ITeacherService
             var existingTeacher = await _teacherRepository.GetByIdAsync(message.Id);
             if (existingTeacher is null)
             {
-                return Result<DeleteTeacherResponse>.Failure(Error.Create("NotFound", "Teacher not found"));
+                return Result<DeleteTeacherResponse>.Failure(Error.Teacher.NotFound);
             }
 
             _teacherRepository.Remove(existingTeacher);
@@ -168,18 +167,18 @@ public class TeacherService : ITeacherService
             var teacher = await _teacherRepository.GetByIdAsync(message.TeacherId);
             if (teacher is null)
             {
-                return Result<AddStudentResponse>.Failure(Error.Create("NotFound", "Teacher not found"));
+                return Result<AddStudentResponse>.Failure(Error.Teacher.NotFound);
             }
 
             var student = await _studentRepository.GetByIdAsync(message.StudentId);
             if (student is null)
             {
-                return Result<AddStudentResponse>.Failure(Error.Create("NotFound", "Student not found"));
+                return Result<AddStudentResponse>.Failure(Error.Child.NotFound);
             }
 
             if (teacher.GradeLevel != student.GradeLevel)
             {
-                return Result<AddStudentResponse>.Failure(Error.Create("GradeLevelMismatch", "Teacher and student must be in the same grade level"));
+                return Result<AddStudentResponse>.Failure(Error.Teacher.GradeLevelMismatch(teacher.GradeLevel));
             }
 
             // Asignar el estudiante al maestro

@@ -70,8 +70,8 @@ public partial class TeacherServiceTests
 
         // Assert
         Assert.False(result.IsSuccess);
-        Assert.Equal("NotFound", result.FirstError.Code);
-        Assert.Equal("Teacher not found", result.FirstError.Message);
+        Assert.Equal(Error.Teacher.NotFound.Code, result.FirstError.Code);
+        Assert.Equal(Error.Teacher.NotFound.Message, result.FirstError.Message);
     }
 
     [Fact]
