@@ -5,10 +5,19 @@ using KinderGartenApp.Core.Errors;
 
 namespace KinderGartenApp.Application.Filters;
 
+/// <summary>
+/// Clase para aplicar filtros y normalizar propiedades de objetos Teacher.
+/// </summary>
 public class TeacherFilter
 {
+    /// <summary>
+    /// Instancia privada del objeto Teacher.
+    /// </summary>
     private Teacher? _teacher;
 
+    /// <summary>
+    /// Constructor por defecto de la clase TeacherFilter.
+    /// </summary>
     public TeacherFilter() { }
 
     /// <summary>
