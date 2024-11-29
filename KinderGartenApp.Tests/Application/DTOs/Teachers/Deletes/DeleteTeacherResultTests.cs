@@ -4,10 +4,10 @@ using KinderGartenApp.Core.Enumarations;
 
 namespace KinderGartenApp.Tests.Application.DTOs.Teachers.Deletes;
 
-public class DeleteTeacherResponseTests
+public class DeleteTeacherResultTests
 {
     [Fact]
-    public void DeleteTeacherResponse_ShouldInitializeProperly()
+    public void DeleteTeacherResult_ShouldInitializeProperly()
     {
         // Arrange
         var id = Guid.NewGuid();
@@ -15,7 +15,7 @@ public class DeleteTeacherResponseTests
         var lastName = "Doe";
 
         // Act
-        var response = new DeleteTeacherResponse
+        var response = new DeleteTeacherResult
         {
             Id = id,
             FirstName = firstName,
@@ -29,13 +29,13 @@ public class DeleteTeacherResponseTests
     }
 
     [Fact]
-    public void ExplicitConversion_ShouldConvertToDeleteTeacherResponse_WhenTeacherIsValid()
+    public void ExplicitConversion_ShouldConvertToDeleteTeacherResult_WhenTeacherIsValid()
     {
         // Arrange
         var teacher = Teacher.Create(Guid.NewGuid(), "John", "Doe", GradeLevel.PreKinder);
 
         // Act
-        var response = (DeleteTeacherResponse)teacher;
+        var response = (DeleteTeacherResult)teacher;
 
         // Assert
         Assert.NotNull(response);
@@ -51,7 +51,7 @@ public class DeleteTeacherResponseTests
         Teacher? teacher = null;
 
         // Act & Assert
-        var exception = Assert.Throws<ArgumentNullException>(() => (DeleteTeacherResponse)teacher);
+        var exception = Assert.Throws<ArgumentNullException>(() => (DeleteTeacherResult)teacher);
         Assert.Equal("Teacher cannot be null (Parameter 'teacher')", exception.Message);
     }
 }

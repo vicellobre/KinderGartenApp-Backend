@@ -7,7 +7,7 @@ namespace KinderGartenApp.Application.DTOs.Teachers.Register;
 /// <summary>
 /// DTO para la respuesta del registro de un maestro (Teacher).
 /// </summary>
-public record RegisterTeacherResponse
+public record RegisterTeacherResult
 {
     /// <summary>
     /// Identificador único del maestro.
@@ -30,19 +30,19 @@ public record RegisterTeacherResponse
     public GradeLevel GradeLevel { get; init; }
 
     /// <summary>
-    /// Operador explícito para convertir un objeto <see cref="Teacher"/> a <see cref="RegisterTeacherResponse"/>.
+    /// Operador explícito para convertir un objeto <see cref="Teacher"/> a <see cref="RegisterTeacherResult"/>.
     /// </summary>
     /// <param name="teacher">El objeto <see cref="Teacher"/> a convertir.</param>
-    /// <returns>Un nuevo objeto <see cref="RegisterTeacherResponse"/>.</returns>
+    /// <returns>Un nuevo objeto <see cref="RegisterTeacherResult"/>.</returns>
     /// <exception cref="ArgumentNullException">Se lanza cuando el parámetro <paramref name="teacher"/> es nulo.</exception>
-    public static explicit operator RegisterTeacherResponse(Teacher? teacher)
+    public static explicit operator RegisterTeacherResult(Teacher? teacher)
     {
         if (teacher is null)
         {
             throw new ArgumentNullException(nameof(teacher), Error.Teacher.IsNull.Message);
         }
 
-        return new RegisterTeacherResponse
+        return new RegisterTeacherResult
         {
             Id = teacher.Id,
             FirstName = teacher.FirstName,

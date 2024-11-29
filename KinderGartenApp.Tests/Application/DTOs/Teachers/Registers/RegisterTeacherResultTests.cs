@@ -1,19 +1,19 @@
-﻿using KinderGartenApp.Application.DTOs.Teachers.Get;
+﻿using KinderGartenApp.Application.DTOs.Teachers.Register;
 using KinderGartenApp.Core.Entities;
 using KinderGartenApp.Core.Enumarations;
 
-namespace KinderGartenApp.Tests.Application.DTOs.Teachers.Gets;
+namespace KinderGartenApp.Tests.Application.DTOs.Teachers.Registers;
 
-public class GetTeacherResponseTests
+public class RegisterTeacherResultTests
 {
     [Fact]
-    public void ExplicitConversion_ShouldConvertToGetTeacherResponse_WhenTeacherIsValid()
+    public void ExplicitConversion_ShouldConvertToRegisterTeacherResult_WhenTeacherIsValid()
     {
         // Arrange
         var teacher = Teacher.Create(Guid.NewGuid(), "John", "Doe", GradeLevel.Kinder1);
 
         // Act
-        var response = (GetTeacherResponse?)teacher;
+        var response = (RegisterTeacherResult?)teacher;
 
         // Assert
         Assert.NotNull(response);
@@ -30,7 +30,7 @@ public class GetTeacherResponseTests
         Teacher? teacher = null;
 
         // Act & Assert
-        var exception = Assert.Throws<ArgumentNullException>(() => (GetTeacherResponse?)teacher);
+        var exception = Assert.Throws<ArgumentNullException>(() => (RegisterTeacherResult?)teacher);
         Assert.Equal("Teacher cannot be null (Parameter 'teacher')", exception.Message);
     }
 }

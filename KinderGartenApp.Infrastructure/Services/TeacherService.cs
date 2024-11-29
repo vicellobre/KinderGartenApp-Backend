@@ -23,6 +23,13 @@ public class TeacherService : ITeacherService
     private readonly ITeacherRepository _teacherRepository;
     private readonly IChildRepository _studentRepository;
 
+    /// <summary>
+    /// Constructor para inicializar el servicio de maestros.
+    /// </summary>
+    /// <param name="unitOfWork">Unidad de trabajo para las transacciones de base de datos.</param>
+    /// <param name="teacherRepository">Repositorio de maestros.</param>
+    /// <param name="studentRepository">Repositorio de estudiantes.</param>
+    /// <exception cref="ArgumentNullException">Se lanza cuando alguno de los parámetros es nulo.</exception>
     public TeacherService(IUnitOfWork? unitOfWork, ITeacherRepository? teacherRepository, IChildRepository? studentRepository)
     {
         _unitOfWork = unitOfWork ?? throw new ArgumentNullException(nameof(unitOfWork));
@@ -35,7 +42,7 @@ public class TeacherService : ITeacherService
     /// </summary>
     /// <param name="message">El mensaje que contiene los detalles del maestro a registrar.</param>
     /// <returns>Un resultado que contiene la respuesta del registro del maestro.</returns>
-    public async Task<Result<RegisterTeacherResponse>> Register(RegisterTeacherMessage message)
+    public async Task<Result<RegisterTeacherResult>> Register(RegisterTeacherMessage message)
     {
         try
         {
@@ -43,20 +50,20 @@ public class TeacherService : ITeacherService
             var validationResult = TeacherValidator.Validate(teacher);
             if (!validationResult.IsSuccess)
             {
-                return Result<RegisterTeacherResponse>.Failure(validationResult.Errors);
+                return Result<RegisterTeacherResult>.Failure(validationResult.Errors);
             }
 
             teacher = TeacherFilter.Normalize(teacher);
             _teacherRepository.Add(teacher);
             await _unitOfWork.CommitAsync();
 
-            var response = (RegisterTeacherResponse)teacher;
+            var response = (RegisterTeacherResult)teacher;
 
-            return Result<RegisterTeacherResponse>.Success(response);
+            return Result<RegisterTeacherResult>.Success(response);
         }
         catch (Exception ex)
         {
-            return Result<RegisterTeacherResponse>.Failure(ex);
+            return Result<RegisterTeacherResult>.Failure(ex);
         }
     }
 
@@ -65,24 +72,24 @@ public class TeacherService : ITeacherService
     /// </summary>
     /// <param name="message">El mensaje que contiene el identificador del maestro a obtener.</param>
     /// <returns>Un resultado que contiene la respuesta del maestro obtenido.</returns>
-    public async Task<Result<GetTeacherResponse>> Get(GetTeacherMessage message)
+    public async Task<Result<GetTeacherResult>> Get(GetTeacherMessage message)
     {
         try
         {
-            var teacher = await _teacherRepository.GetByIdAsync(message.Id);
+            var teacher = await _teacherRepository.GetByIdAsNoTrackingAsync(message.Id);
 
             if (teacher is null)
             {
-                return Result<GetTeacherResponse>.Failure(Error.Teacher.NotFound);
+                return Result<GetTeacherResult>.Failure(Error.Teacher.NotFound);
             }
 
-            var response = (GetTeacherResponse)teacher;
+            var response = (GetTeacherResult)teacher;
 
-            return Result<GetTeacherResponse>.Success(response);
+            return Result<GetTeacherResult>.Success(response);
         }
         catch (Exception ex)
         {
-            return Result<GetTeacherResponse>.Failure(ex);
+            return Result<GetTeacherResult>.Failure(ex);
         }
     }
 
@@ -91,25 +98,24 @@ public class TeacherService : ITeacherService
     /// </summary>
     /// <param name="message">El mensaje que contiene los detalles del maestro a actualizar.</param>
     /// <returns>Un resultado que contiene la respuesta del maestro actualizado.</returns>
-    public async Task<Result<UpdateTeacherResponse>> Update(UpdateTeacherMessage message)
+    public async Task<Result<UpdateTeacherResult>> Update(UpdateTeacherMessage message)
     {
         try
         {
-            var existingTeacher = await _teacherRepository.GetByIdAsync(message.Id);
-            if (existingTeacher is null)
-            {
-                return Result<UpdateTeacherResponse>.Failure(Error.Teacher.NotFound);
-            }
-
             var teacher = (Teacher)message;
             var validationResult = TeacherValidator.Validate(teacher);
             if (!validationResult.IsSuccess)
             {
-                return Result<UpdateTeacherResponse>.Failure(validationResult.Errors);
+                return Result<UpdateTeacherResult>.Failure(validationResult.Errors);
             }
             
-            teacher = TeacherFilter.Normalize(teacher);
+            var existingTeacher = await _teacherRepository.GetByIdAsync(message.Id);
+            if (existingTeacher is null)
+            {
+                return Result<UpdateTeacherResult>.Failure(Error.Teacher.NotFound);
+            }
 
+            teacher = TeacherFilter.Normalize(teacher);
             // Actualizar los campos de existingTeacher con los valores de teacher
             existingTeacher.FirstName = teacher.FirstName;
             existingTeacher.LastName = teacher.LastName;
@@ -117,13 +123,13 @@ public class TeacherService : ITeacherService
 
             await _unitOfWork.CommitAsync();
 
-            var response = (UpdateTeacherResponse)teacher;
+            var response = (UpdateTeacherResult)teacher;
 
-            return Result<UpdateTeacherResponse>.Success(response);
+            return Result<UpdateTeacherResult>.Success(response);
         }
         catch (Exception ex)
         {
-            return Result<UpdateTeacherResponse>.Failure(ex);
+            return Result<UpdateTeacherResult>.Failure(ex);
         }
     }
 
@@ -132,26 +138,26 @@ public class TeacherService : ITeacherService
     /// </summary>
     /// <param name="message">El mensaje que contiene los detalles del maestro a eliminar.</param>
     /// <returns>Un resultado que contiene la respuesta del maestro eliminado.</returns>
-    public async Task<Result<DeleteTeacherResponse>> Delete(DeleteTeacherMessage message)
+    public async Task<Result<DeleteTeacherResult>> Delete(DeleteTeacherMessage message)
     {
         try
         {
             var existingTeacher = await _teacherRepository.GetByIdAsync(message.Id);
             if (existingTeacher is null)
             {
-                return Result<DeleteTeacherResponse>.Failure(Error.Teacher.NotFound);
+                return Result<DeleteTeacherResult>.Failure(Error.Teacher.NotFound);
             }
 
             _teacherRepository.Remove(existingTeacher);
             await _unitOfWork.CommitAsync();
 
-            var response = (DeleteTeacherResponse)existingTeacher;
+            var response = (DeleteTeacherResult)existingTeacher;
 
-            return Result<DeleteTeacherResponse>.Success(response);
+            return Result<DeleteTeacherResult>.Success(response);
         }
         catch (Exception ex)
         {
-            return Result<DeleteTeacherResponse>.Failure(ex);
+            return Result<DeleteTeacherResult>.Failure(ex);
         }
     }
 
@@ -160,48 +166,38 @@ public class TeacherService : ITeacherService
     /// </summary>
     /// <param name="message">El mensaje que contiene los detalles del estudiante a añadir.</param>
     /// <returns>Un resultado que contiene la respuesta del estudiante añadido.</returns>
-    public async Task<Result<AddStudentResponse>> AddStudent(AddStudentMessage message)
+    public async Task<Result<AddStudentResult>> AddStudent(AddStudentMessage message)
     {
         try
         {
             var teacher = await _teacherRepository.GetByIdAsync(message.TeacherId);
             if (teacher is null)
             {
-                return Result<AddStudentResponse>.Failure(Error.Teacher.NotFound);
+                return Result<AddStudentResult>.Failure(Error.Teacher.NotFound);
             }
 
             var student = await _studentRepository.GetByIdAsync(message.StudentId);
             if (student is null)
             {
-                return Result<AddStudentResponse>.Failure(Error.Child.NotFound);
+                return Result<AddStudentResult>.Failure(Error.Child.NotFound);
             }
 
             if (teacher.GradeLevel != student.GradeLevel)
             {
-                return Result<AddStudentResponse>.Failure(Error.Teacher.GradeLevelMismatch(teacher.GradeLevel));
+                return Result<AddStudentResult>.Failure(Error.Teacher.GradeLevelMismatch(teacher.GradeLevel));
             }
-
             // Asignar el estudiante al maestro
             student.TeacherId = message.TeacherId;
 
             await _unitOfWork.CommitAsync();
 
-            var response = new AddStudentResponse
-            {
-                StudentId = student.Id,
-                StudentFirstName = student.FirstName,
-                StudentLastName = student.LastName,
-                TeacherId = teacher.Id,
-                TeacherFirstName = teacher.FirstName,
-                TeacherLastName = teacher.LastName
-            };
+            var response = AddStudentResult.CreateFrom(teacher, student);
 
-            return Result<AddStudentResponse>.Success(response);
+            return Result<AddStudentResult>.Success(response);
         }
         catch (Exception ex)
         {
-            return Result<AddStudentResponse>.Failure(ex);
+            return Result<AddStudentResult>.Failure(ex);
         }
     }
-
 }

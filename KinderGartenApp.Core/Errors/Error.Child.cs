@@ -14,5 +14,10 @@ public readonly partial record struct Error
         /// Error que se produce cuando no se encuentra un niño.
         /// </summary>
         public static readonly Error NotFound = new("Child.NotFound", "Child not found");
+
+        /// <summary>
+        /// Error que se produce cuando un niño es nulo.
+        /// </summary>
+        public static readonly Error IsNull = new("Child.IsNull", "Child cannot be null");
     }
 }
