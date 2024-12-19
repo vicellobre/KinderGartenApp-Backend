@@ -17,7 +17,7 @@ public partial class ChildRepositoryTests
         var child = await context.Children.FirstAsync();
 
         // Assert
-        var exists = await repository.Contains(child.Id);
+        var exists = await repository.ContainsAsync(child.Id);
         Assert.True(exists);
     }
 
@@ -29,7 +29,7 @@ public partial class ChildRepositoryTests
         var repository = new ChildRepository(context);
 
         // Act & Assert
-        var nonExists = await repository.Contains(Guid.NewGuid());
+        var nonExists = await repository.ContainsAsync(Guid.NewGuid());
         Assert.False(nonExists);
     }
 }

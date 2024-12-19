@@ -20,7 +20,7 @@ public class ParentRepository : RepositoryBase<Parent>, IParentRepository
         Set.Remove(parent);
     }
 
-    public async Task<bool> Contains(Guid id, CancellationToken cancellationToken = default)
+    public async Task<bool> ContainsAsync(Guid id, CancellationToken cancellationToken = default)
     {
         return await Set.AnyAsync(x => x.Id == id, cancellationToken);
     }

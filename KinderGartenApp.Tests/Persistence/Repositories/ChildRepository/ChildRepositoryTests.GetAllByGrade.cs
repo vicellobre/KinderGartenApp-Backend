@@ -15,7 +15,7 @@ public partial class ChildRepositoryTests
 
         // Act
         var gradeLevel = GradeLevel.Kinder3;
-        var children = await repository.GetAllByGradeLevel(gradeLevel);
+        var children = await repository.GetAllByGradeLevelAsync(gradeLevel);
 
         // Assert
         Assert.NotNull(children);
@@ -31,7 +31,7 @@ public partial class ChildRepositoryTests
 
         // Act
         var emptyGradeLevel = GradeLevel.PreKinder;
-        var emptyChildren = await repository.GetAllByGradeLevel(emptyGradeLevel);
+        var emptyChildren = await repository.GetAllByGradeLevelAsync(emptyGradeLevel);
 
         // Assert
         Assert.NotNull(emptyChildren);
