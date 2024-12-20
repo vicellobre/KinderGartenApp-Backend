@@ -21,7 +21,7 @@ public class ChildRepository : RepositoryBase<Child>, IChildRepository
         Set.Remove(child);
     }
 
-    public async Task<bool> Contains(Guid id, CancellationToken cancellationToken = default)
+    public async Task<bool> ContainsAsync(Guid id, CancellationToken cancellationToken = default)
     {
         return await Set.AnyAsync(x => x.Id == id, cancellationToken);
     }
@@ -31,7 +31,7 @@ public class ChildRepository : RepositoryBase<Child>, IChildRepository
         return await Set.ToListAsync(cancellationToken);
     }
 
-    public async Task<IEnumerable<Child>> GetAllByGradeLevel(GradeLevel gradeLevel, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<Child>> GetAllByGradeLevelAsync(GradeLevel gradeLevel, CancellationToken cancellationToken = default)
     {
         return await Set
             .Where(x => x.GradeLevel == gradeLevel)
