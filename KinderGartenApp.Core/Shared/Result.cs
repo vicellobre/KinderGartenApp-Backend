@@ -37,10 +37,26 @@ public readonly record struct Result<TValue>
     public Error FirstError => Errors.IsEmpty() ? Error.None : Errors.First();
 
     /// <summary>
+    /// Constructor por defecto que lanza una excepción.
+    /// Use los métodos estáticos para instanciar <see cref="Result{TValue}"/>:
+    /// <list type="bullet">
+    /// <item><description><see cref="Success(TValue)"/> para crear un resultado exitoso con un valor.</description></item>
+    /// <item><description><see cref="Failure(Error)"/> para crear un resultado fallido con un error.</description></item>
+    /// <item><description><see cref="Failure(Exception)"/> para crear un resultado fallido con una excepción.</description></item>
+    /// <item><description><see cref="Failure(ICollection{Error})"/> para crear un resultado fallido con una colección de errores.</description></item>
+    /// <item><description><see cref="Create(TValue?)"/> para crear un resultado dependiendo si el valor es nulo.</description></item>
+    /// </list></summary>
+    /// <exception cref="InvalidOperationException">Se lanza cuando se intenta usar el constructor sin parámetros.</exception>
+    public Result()
+    {
+        throw new InvalidOperationException();
+    }
+
+    /// <summary>
     /// Inicializa una nueva instancia de la estructura <see cref="Result{TValue}"/> con el valor especificado.
     /// </summary>
     /// <param name="value">El valor resultante de la operación.</param>
-    private Result(TValue? value) : this()
+    private Result(TValue? value)
     {
         Errors = value is not null ? Error.EmptyErrors : [Error.NullValue];
         _value = value;
@@ -50,7 +66,7 @@ public readonly record struct Result<TValue>
     /// Inicializa una nueva instancia de la estructura <see cref="Result{TValue}"/> con el error especificado.
     /// </summary>
     /// <param name="error">El error resultante de la operación.</param>
-    private Result(Error error) : this()
+    private Result(Error error)
     {
         Errors = !error.Equals(Error.None) ? [error] : [Error.NullValue];
     }
@@ -59,7 +75,7 @@ public readonly record struct Result<TValue>
     /// Inicializa una nueva instancia de la estructura <see cref="Result{TValue}"/> con la colección de errores especificada.
     /// </summary>
     /// <param name="errors">La colección de errores resultantes de la operación.</param>
-    private Result(ICollection<Error> errors) : this()
+    private Result(ICollection<Error> errors)
     {
         //Evaluar cuando la colection HasOne y es None o todos son None
         Errors = !errors.IsNullOrEmpty() ? errors : [Error.NullValue];
