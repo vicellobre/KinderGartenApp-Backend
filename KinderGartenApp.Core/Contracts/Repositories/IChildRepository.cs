@@ -45,7 +45,7 @@ public interface IChildRepository
     /// <param name="gradeLevel">El nivel educativo de los niños a buscar.</param>
     /// <param name="cancellationToken">Un token de cancelación opcional.</param>
     /// <returns>Una tarea que representa la operación asíncrona. El resultado contiene una colección de niños filtrados por nivel educativo.</returns>
-    Task<IEnumerable<Child>> GetAllByGradeLevel(GradeLevel gradeLevel, CancellationToken cancellationToken = default);
+    Task<IEnumerable<Child>> GetAllByGradeLevelAsync(GradeLevel gradeLevel, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Comprueba si un niño con el identificador especificado existe en el repositorio.
@@ -53,7 +53,7 @@ public interface IChildRepository
     /// <param name="id">El identificador único del niño.</param>
     /// <param name="cancellationToken">Un token de cancelación opcional.</param>
     /// <returns>Una tarea que representa la operación asíncrona. El resultado indica si el niño existe en el repositorio.</returns>
-    Task<bool> Contains(Guid id, CancellationToken cancellationToken = default);
+    Task<bool> ContainsAsync(Guid id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Agrega un nuevo niño al repositorio.

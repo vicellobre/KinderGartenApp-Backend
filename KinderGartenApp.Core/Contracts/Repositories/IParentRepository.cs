@@ -53,7 +53,7 @@ public interface IParentRepository
     /// <param name="id">El identificador único del padre.</param>
     /// <param name="cancellationToken">Un token de cancelación opcional.</param>
     /// <returns>Una tarea que representa la operación asíncrona. El resultado indica si el padre existe en el repositorio.</returns>
-    Task<bool> Contains(Guid id, CancellationToken cancellationToken = default);
+    Task<bool> ContainsAsync(Guid id, CancellationToken cancellationToken = default);
 
     /// <summary>
     /// Agrega un nuevo padre al repositorio.
