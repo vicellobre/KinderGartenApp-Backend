@@ -8,7 +8,7 @@ public readonly partial record struct Error
     /// <summary>
     /// Errores relacionados con el nivel educativo.
     /// </summary>
-    public static class GradeLevel
+    public static class GradeLevels
     {
         /// <summary>
         /// Indica que el nivel educativo proporcionado es inválido.

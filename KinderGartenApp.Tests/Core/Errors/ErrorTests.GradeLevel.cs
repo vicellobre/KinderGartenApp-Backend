@@ -12,7 +12,7 @@ public partial class ErrorTests
         var expectedMessage = "The grade level provided is invalid.";
 
         // Act
-        var error = Error.GradeLevel.Invalid;
+        var error = Error.GradeLevels.Invalid;
 
         // Assert
         Assert.Equal(expectedCode, error.Code);
