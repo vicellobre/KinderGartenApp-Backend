@@ -1,7 +1,7 @@
-﻿namespace KinderGartenApp.Application.DTOs.Children.AddStudent;
+﻿namespace KinderGartenApp.Application.DTOs.Children.AddTeacher;
 
 /// <summary>
-/// DTO para el mensaje de añadir un estudiante a un maestro.
+/// DTO para el mensaje de añadir un maestro a un niño.
 /// </summary>
 public record class AddTeacherMessage
 {

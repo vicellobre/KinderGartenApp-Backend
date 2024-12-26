@@ -1,27 +1,27 @@
-﻿namespace KinderGartenApp.Application.DTOs.Children.AddTeacher;
+﻿namespace KinderGartenApp.Application.DTOs.Children.AddParent;
 
 /// <summary>
-/// DTO para la respuesta de añadir un maestro a un niño.
+/// DTO para la respuesta de añadir un padre a un niño.
 /// </summary>
-public record class AddTeacherResponse
+public record class AddParentResponse
 {
     /// <summary>
-    /// Identificador único del profesor añadido.
+    /// Identificador único del padre añadido.
     /// </summary>
     public Guid TeacherId { get; init; }
 
     /// <summary>
-    /// Nombre del profesor añadido.
+    /// Nombre del padre añadido.
     /// </summary>
     public string? TeacherFirstName { get; init; }
 
     /// <summary>
-    /// Apellido del profesor añadido.
+    /// Apellido del padre añadido.
     /// </summary>
     public string? TeacherLastName { get; init; }
 
     /// <summary>
-    /// Identificador único del niño al que se añadió el profesor.
+    /// Identificador único del niño al que se añadió el padre.
     /// </summary>
     public Guid ChildId { get; init; }
 
