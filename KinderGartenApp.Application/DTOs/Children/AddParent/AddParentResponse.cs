@@ -8,17 +8,17 @@ public record class AddParentResponse
     /// <summary>
     /// Identificador único del padre añadido.
     /// </summary>
-    public Guid TeacherId { get; init; }
+    public Guid ParentId { get; init; }
 
     /// <summary>
     /// Nombre del padre añadido.
     /// </summary>
-    public string? TeacherFirstName { get; init; }
+    public string? ParentFirstName { get; init; }
 
     /// <summary>
     /// Apellido del padre añadido.
     /// </summary>
-    public string? TeacherLastName { get; init; }
+    public string? ParentLastName { get; init; }
 
     /// <summary>
     /// Identificador único del niño al que se añadió el padre.
