@@ -179,7 +179,7 @@ public class TeacherService : ITeacherService
             var student = await _studentRepository.GetByIdAsync(message.StudentId);
             if (student is null)
             {
-                return Result<AddStudentResponse>.Failure(Error.Children.NotFound);
+                return Result<AddStudentResult>.Failure(Error.Children.NotFound);
             }
 
             if (teacher.GradeLevel != student.GradeLevel)
