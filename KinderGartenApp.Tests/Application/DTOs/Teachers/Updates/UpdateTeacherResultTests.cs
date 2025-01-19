@@ -4,16 +4,16 @@ using KinderGartenApp.Core.Enumarations;
 
 namespace KinderGartenApp.Tests.Application.DTOs.Teachers.Updates;
 
-public class UpdateTeacherResponseTests
+public class UpdateTeacherResultTests
 {
     [Fact]
-    public void ExplicitConversion_ShouldConvertToUpdateTeacherResponse_WhenTeacherIsValid()
+    public void ExplicitConversion_ShouldConvertToUpdateTeacherResult_WhenTeacherIsValid()
     {
         // Arrange
         var teacher = Teacher.Create(Guid.NewGuid(), "John", "Doe", GradeLevel.Kinder1);
 
         // Act
-        var response = (UpdateTeacherResponse?)teacher;
+        var response = (UpdateTeacherResult?)teacher;
 
         // Assert
         Assert.NotNull(response);
@@ -30,7 +30,7 @@ public class UpdateTeacherResponseTests
         Teacher? teacher = null;
 
         // Act & Assert
-        var exception = Assert.Throws<ArgumentNullException>(() => (UpdateTeacherResponse)teacher!);
+        var exception = Assert.Throws<ArgumentNullException>(() => (UpdateTeacherResult)teacher!);
         Assert.Equal("Teacher cannot be null (Parameter 'teacher')", exception.Message);
     }
 }

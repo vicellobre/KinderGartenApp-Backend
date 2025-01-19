@@ -17,33 +17,33 @@ public interface ITeacherService
     /// </summary>
     /// <param name="message">El mensaje que contiene los detalles del maestro a registrar.</param>
     /// <returns>Un resultado que contiene la respuesta del registro del maestro.</returns>
-    Task<Result<RegisterTeacherResponse>> Register(RegisterTeacherMessage message);
+    Task<Result<RegisterTeacherResult>> Register(RegisterTeacherMessage message);
 
     /// <summary>
     /// Obtiene un maestro (Teacher) por su identificador.
     /// </summary>
     /// <param name="message">El mensaje que contiene el identificador del maestro a obtener.</param>
     /// <returns>Un resultado que contiene la respuesta del maestro obtenido.</returns>
-    Task<Result<GetTeacherResponse>> Get(GetTeacherMessage message);
+    Task<Result<GetTeacherResult>> Get(GetTeacherMessage message);
 
     /// <summary>
     /// Actualiza un maestro (Teacher).
     /// </summary>
     /// <param name="message">El mensaje que contiene los detalles del maestro a actualizar.</param>
     /// <returns>Un resultado que contiene la respuesta del maestro actualizado.</returns>
-    Task<Result<UpdateTeacherResponse>> Update(UpdateTeacherMessage message);
+    Task<Result<UpdateTeacherResult>> Update(UpdateTeacherMessage message);
 
     /// <summary>
     /// Elimina un maestro (Teacher).
     /// </summary>
     /// <param name="message">El mensaje que contiene los detalles del maestro a eliminar.</param>
     /// <returns>Un resultado que contiene la respuesta del maestro eliminado.</returns>
-    Task<Result<DeleteTeacherResponse>> Delete(DeleteTeacherMessage message);
+    Task<Result<DeleteTeacherResult>> Delete(DeleteTeacherMessage message);
 
     /// <summary>
     /// Añade un estudiante a un maestro.
     /// </summary>
     /// <param name="message">El mensaje que contiene los detalles del estudiante a añadir.</param>
     /// <returns>Un resultado que contiene la respuesta del estudiante añadido.</returns>
-    Task<Result<AddStudentResponse>> AddStudent(AddStudentMessage message);
+    Task<Result<AddStudentResult>> AddStudent(AddStudentMessage message);
 }
