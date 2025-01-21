@@ -98,6 +98,6 @@ public class AddStudentResultTests
         // Act & Assert
         var exception = Assert.Throws<ArgumentNullException>(() => AddStudentResult.CreateFrom(teacher, student));
         Assert.Equal(nameof(student), exception.ParamName);
-        Assert.Equal(Error.Child.IsNull.Message + " (Parameter 'student')", exception.Message);
+        Assert.Equal(Error.Children.IsNull.Message + " (Parameter 'student')", exception.Message);
     }
 }

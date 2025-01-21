@@ -58,7 +58,7 @@ public static class TeacherValidator
 
         if (!ValidateGradeLevel(teacher.GradeLevel))
         {
-            errors.Add(Error.GradeLevel.Invalid);
+            errors.Add(Error.GradeLevels.Invalid);
         }
 
         return errors.IsEmpty() ? Result<bool>.Success(true) : Result<bool>.Failure(errors);

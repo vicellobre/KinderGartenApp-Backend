@@ -54,7 +54,7 @@ public record class AddStudentResult
 
         if (student is null)
         {
-            throw new ArgumentNullException(nameof(student), Error.Child.IsNull.Message);
+            throw new ArgumentNullException(nameof(student), Error.Children.IsNull.Message);
         }
 
         return new AddStudentResult

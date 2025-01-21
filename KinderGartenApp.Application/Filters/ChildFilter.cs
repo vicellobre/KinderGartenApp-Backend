@@ -21,7 +21,7 @@ public class ChildFilter
     {
         if (child is null)
         {
-            throw new ArgumentNullException(nameof(child), Error.Child.IsNull.Message);
+            throw new ArgumentNullException(nameof(child), Error.Children.IsNull.Message);
         }
 
         return new ChildFilter()
@@ -54,7 +54,7 @@ public class ChildFilter
     /// <exception cref="ArgumentNullException">Se lanza cuando el parámetro child es nulo.</exception>
     public ChildFilter Set(Child child)
     {
-        _child = child ?? throw new ArgumentNullException(nameof(child), Error.Child.IsNull.Message);
+        _child = child ?? throw new ArgumentNullException(nameof(child), Error.Children.IsNull.Message);
         return this;
     }
 
